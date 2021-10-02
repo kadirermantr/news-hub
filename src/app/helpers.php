@@ -6,7 +6,7 @@ function publicPath(?string $path = null)
     echo $env['APP_URL'] . '/' . $path;
 }
 
-function view($view, string $title, array $data = []): mixed
+function view($view, string $title, array $data = [])
 {
     require_once __DIR__ . '/views/'.$view.'.php';
 }

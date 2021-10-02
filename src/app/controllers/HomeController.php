@@ -11,6 +11,6 @@ class HomeController extends Controller
         $name = "Kadir";
         $lastname = "Erman";
 
-        return view('home', 'Homepage', compact('name', 'lastname'));
+        view('home', 'Homepage', compact('name', 'lastname'));
     }
 }

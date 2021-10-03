@@ -9,4 +9,4 @@
 <body>
 
 <?php require 'navbar.php';?>
-
+<main class="py-4">

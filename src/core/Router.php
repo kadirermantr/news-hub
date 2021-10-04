@@ -35,6 +35,9 @@ class Router
 
     public function run()
     {
+        session_start();
+        session_destroy();
+
         $requestUri = parse_url($_SERVER['REQUEST_URI']);
         $requestPath = $requestUri['path'];
         $method = $_SERVER['REQUEST_METHOD'];

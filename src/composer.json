@@ -8,5 +8,8 @@
     "files": [
       "app/helpers.php"
     ]
+  },
+  "require": {
+    "ext-pdo": "*"
   }
 }

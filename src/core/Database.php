@@ -19,7 +19,7 @@ class Database
         try {
             $dsn = "mysql:host=$host; dbname=$database;";
             $pdo = new PDO($dsn, $username, $password);
-            //return $pdo;
+            return $pdo;
         } catch (PDOException $e) {
             echo "Veritabanı hatası " . $e->getMessage();
             exit(1);

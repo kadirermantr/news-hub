@@ -1,8 +1,11 @@
 <?php
 
 use Core\Router;
+use Core\Session;
 
 require __DIR__ . '/../vendor/autoload.php';
+
+Session::init();
 
 $router = new Router();
 

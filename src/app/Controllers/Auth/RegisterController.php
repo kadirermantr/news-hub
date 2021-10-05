@@ -4,6 +4,7 @@ namespace App\Controllers\Auth;
 
 use App\Models\User;
 use Core\Controller;
+use Core\Session;
 
 class RegisterController extends Controller
 {
@@ -19,20 +20,19 @@ class RegisterController extends Controller
         $email = test_input($_POST["email"]);
         $password = test_input($_POST["password"]);
 
-        session_start();
-        $_SESSION['name'] = $name;
-        $_SESSION['lastname'] = $lastname;
-        $_SESSION['email'] = $email;
-
-        $isEmail = User::getWhere('users', 'email', $email);
+        $_SESSION = [
+            'name'      => $name,
+            'lastname'  => $lastname,
+            'email'     => $email,
+        ];
 
         if (validate_input() === true) {
-            if (!empty($isEmail)) {
-                session_start();
+            $isEmail = User::getWhere('users', 'email', $email);
 
-                $_SESSION['error'] = ["E-Posta adresi kullanılıyor."];
+            if (!empty($isEmail)) {
+                Session::add('error', ["E-Posta adresi kullanılıyor."]);
                 header("Location: " . $_SERVER['REQUEST_URI']);
-                return false;
+                exit();
             }
 
             User::create([
@@ -42,6 +42,8 @@ class RegisterController extends Controller
                 'password'  => $password,
             ]);
         }
+
+        echo "kayıt başarılı";
 
         return true;
     }

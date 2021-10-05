@@ -70,4 +70,14 @@ abstract class Model
         $stm->execute();
         return $stm->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public static function getWhereAll(string $table, string $columnName1, $columnName2, mixed $id1, mixed $id2): mixed
+    {
+        $db = self::getDB();
+        $stm = $db->prepare("SELECT * FROM $table WHERE $columnName1 = :$columnName1 AND $columnName2 = :$columnName2");
+        $stm->bindParam(":$columnName1", $id1);
+        $stm->bindParam(":$columnName2", $id2);
+        $stm->execute();
+        return $stm->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

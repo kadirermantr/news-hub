@@ -1,5 +1,7 @@
 <?php
 
+use Core\Session;
+
 function publicPath(?string $path = null)
 {
     $env = parse_ini_file(__DIR__ . '/../.env');
@@ -9,6 +11,7 @@ function publicPath(?string $path = null)
 function view($view, string $title, array $data = [])
 {
     require_once __DIR__ . '/views/'.$view.'.php';
+    Session::remove('error');
 }
 
 function env(string $data)
@@ -26,7 +29,7 @@ function validate_input()
         }
     }
 
-    if (isset($_POST["email"])) {
+    if (isset($_POST["email"])  && !empty($_POST['email'])) {
         $email = test_input($_POST["email"]);
 
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -44,11 +47,9 @@ function validate_input()
     }
 
     if (!empty($error_msg)) {
-        session_start();
-
-        $_SESSION['error'] = $error_msg;
+        Session::add('error', $error_msg);
         header("Location: " . $_SERVER['REQUEST_URI']);
-        return false;
+        exit();
     }
 
     return true;
@@ -60,4 +61,14 @@ function test_input($data) {
     $data = htmlspecialchars($data);
 
     return $data;
+}
+
+function session_control() {
+    $user = Session::get('user');
+
+    if (isset($user)) {
+        return $user;
+    }
+
+    return false;
 }

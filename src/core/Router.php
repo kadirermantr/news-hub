@@ -2,76 +2,62 @@
 
 namespace Core;
 
+
 class Router
 {
-    private array $handlers;
-    private $notFoundHandler;
-    private const METHOD_GET = 'GET';
-    private const METHOD_POST = 'POST';
+    public Request $request;
+    protected array $routes = [];
 
-    public function get(string $uri, $handler): void
+    public function __construct(Request $request)
     {
-        $this->addHandler(self::METHOD_GET, $uri, $handler);
+        $this->request = $request;
     }
 
-    public function post(string $uri, $handler): void
+    public function get($path, $callback)
     {
-        $this->addHandler(self::METHOD_POST, $uri, $handler);
+        $this->routes['get'][$path] = $callback;
     }
 
-    public function addNotFoundHandler($handler): void
+    public function post($path, $callback)
     {
-        $this->notFoundHandler = $handler;
+        $this->routes['post'][$path] = $callback;
     }
 
-    private function addHandler(string $method, string $uri, $handler): void
+    public function resolve()
     {
-        $this->handlers[$method . $uri] = [
-            'path'      => $uri,
-            'method'    => $method,
-            'handler'   => $handler,
-        ];
-    }
+        $path = $this->request->getPath();
+        $method = $this->request->method();
+        $callback = $this->routes[$method][$path] ?? false;
 
-    public function run()
-    {
-        $requestUri = parse_url($_SERVER['REQUEST_URI']);
-        $requestPath = $requestUri['path'];
-        $method = $_SERVER['REQUEST_METHOD'];
-
-        $callback = null;
-
-        foreach ($this->handlers as $handler)
-        {
-            if ($handler['path'] === $requestPath && $method === $handler['method']) {
-                $callback = $handler['handler'];
-            }
+        if ($callback === false) {
+            http_response_code(404);
+            return $this->view('404', 'Hata | 404');
         }
 
         if (is_string($callback)) {
-            $parts = explode('::', $callback);
-
-            if (is_array($parts)) {
-                $className = array_shift($parts);
-                $handler = new $className;
-
-                $method = array_shift($parts);
-                $callback = [$handler, $method];
-            }
+            return $this->view($callback);
         }
 
-        if (!$callback) {
-            http_response_code(404);
-
-            if (!empty($this->notFoundHandler)) {
-                $callback = $this->notFoundHandler;
-            }
+        if (is_array($callback)) {
+            $callback[0] = new $callback[0]();
         }
 
-        call_user_func_array($callback, [
-            array_merge($_GET, $_POST)
-        ]);
+        return call_user_func($callback, $this->request);
     }
 
+    public function view(string $view, ?string $title = null, array $data = [])
+    {
+        if (is_null($title)) {
+            $title = env('APP_NAME');
+        }
 
+        foreach ($data as $key => $value) {
+            $$key = $value;
+        }
+
+        ob_start();
+        require_once __DIR__ . "/../app/views/$view.php";
+        unset($_SESSION['error']);
+        return ob_get_clean();
+    }
 }

@@ -22,7 +22,56 @@ class DB
             return $pdo;
         } catch (PDOException $e) {
             echo "Veritabanı hatası " . $e->getMessage();
-            exit(1);
+            exit();
         }
+    }
+
+    public static function table(string $table)
+    {
+        $db = self::connection();
+        $stm = $db->prepare("SELECT * FROM $table");
+        $stm->execute();
+
+        return $stm->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public static function where($table, string $column, mixed $value)
+    {
+        $db = self::connection();
+        $stm = $db->prepare("SELECT * FROM $table WHERE $column = :$column");
+        $stm->bindParam(":$column", $value);
+        $stm->execute();
+
+        return $stm->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public static function insert(string $table, array $data)
+    {
+        foreach ($data as $key => $value) {
+            $values[] = ":" . $key;
+        }
+
+        $columns = implode(',', array_keys($data));
+        $values = implode(',', $values);
+
+        $db = self::connection();
+        $query = "INSERT INTO $table ($columns) VALUES($values)";
+        $stm = $db->prepare($query);
+
+        foreach ($data as $key => $value) {
+            $stm->bindValue(":$key", $value);
+        }
+
+        return $stm->execute();
+    }
+
+    public static function delete($table, string $column, mixed $value)
+    {
+        $db = self::connection();
+        $stm = $db->prepare("DELETE FROM $table WHERE $column = :$column");
+        $stm->bindParam(":$column", $value);
+        $stm->execute();
+
+        return $stm->fetchAll(PDO::FETCH_ASSOC);
     }
 }

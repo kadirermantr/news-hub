@@ -2,16 +2,10 @@
 
 use Core\Session;
 
-function publicPath(?string $path = null)
+function public_path(?string $path = null)
 {
     $env = parse_ini_file(__DIR__ . '/../.env');
     echo $env['APP_URL'] . '/' . $path;
-}
-
-function view($view, string $title, array $data = [])
-{
-    require_once __DIR__ . '/views/'.$view.'.php';
-    Session::remove('error');
 }
 
 function env(string $data)
@@ -48,8 +42,7 @@ function validate_input()
 
     if (!empty($error_msg)) {
         Session::add('error', $error_msg);
-        header("Location: " . $_SERVER['REQUEST_URI']);
-        exit();
+        redirect($_SERVER['REQUEST_URI']);
     }
 
     return true;
@@ -61,6 +54,13 @@ function test_input($data) {
     $data = htmlspecialchars($data);
 
     return $data;
+}
+
+function redirect(string $url, ?int $statusCode = 200)
+{
+    http_response_code($statusCode);
+    header("Location: " . $url);
+    exit();
 }
 
 function session_control() {

@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Eighth navbar example">
+<nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
     <div class="container">
-        <a class="navbar-brand text-uppercase" href="<?php echo env('APP_URL'); ?>"><?php echo env('APP_NAME'); ?></a>
+        <a class="navbar-brand text-uppercase" href="<?= env('APP_URL'); ?>"><?= env('APP_NAME'); ?></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbars" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -8,7 +8,7 @@
         <div class="collapse navbar-collapse" id="navbars">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="<?php echo env('APP_URL'); ?>">Anasayfa</a>
+                    <a class="nav-link active" aria-current="page" href="<?= env('APP_URL'); ?>">Anasayfa</a>
                 </li>
 
                 <li class="nav-item">
@@ -25,9 +25,22 @@
                 </li>
             </ul>
 
+            <div class="navbar-collapse">
+                <ul class="navbar-nav ml-auto">
 
-            <div class="navbar-nav ml-auto">
-                <a href="/login" class="btn btn-primary me-2">Oturum Aç</a>
+                    <?php
+                    $user = session_control();
+
+                    if ($user !== false) {
+                        echo "<li class='nav-item'><a href='#' class='btn btn-primary mr-3'>$user</a></li>";
+                        echo "<li class='nav-item'><a href='/logout' class='btn btn-danger'>Oturumu Kapat</a></li>";
+                    } else {
+                        echo "<li class='nav-item'><a href='/login' class='btn btn-primary'>Oturum Aç</a></li>";
+                    }
+
+                    ?>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>

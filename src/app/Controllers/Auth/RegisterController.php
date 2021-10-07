@@ -4,36 +4,33 @@ namespace App\Controllers\Auth;
 
 use App\Models\User;
 use Core\Controller;
+use Core\Request;
 use Core\Session;
 
 class RegisterController extends Controller
 {
     public function index()
     {
-        view('auth/register', 'Kaydol');
+        return $this->view('auth/register', 'Kaydol');
     }
 
-    public function store()
+    public function store(Request $request)
     {
-        $name = test_input($_POST["name"]);
-        $lastname = test_input($_POST["lastname"]);
-        $email = test_input($_POST["email"]);
-        $password = test_input($_POST["password"]);
-
-        $_SESSION = [
-            'name'      => $name,
-            'lastname'  => $lastname,
-            'email'     => $email,
-        ];
+        $name = $request->getBody()["name"];
+        $lastname = $request->getBody()["lastname"];
+        $email = $request->getBody()["email"];
+        $password = $request->getBody()["password"];
 
         if (validate_input() === true) {
-            $isEmail = User::getWhere('users', 'email', $email);
+            $isEmail = User::where('email', $email);
 
             if (!empty($isEmail)) {
                 Session::add('error', ["E-Posta adresi kullanılıyor."]);
-                header("Location: " . $_SERVER['REQUEST_URI']);
+                redirect('/register');
                 exit();
             }
+
+            $password = password_hash($password, PASSWORD_DEFAULT);
 
             User::create([
                 'name'      => $name,

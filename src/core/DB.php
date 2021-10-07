@@ -5,7 +5,7 @@ namespace Core;
 use PDO;
 use PDOException;
 
-class Database
+class DB
 {
     public static function connection()
     {

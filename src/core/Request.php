@@ -4,6 +4,33 @@ namespace Core;
 
 class Request
 {
+    private array $array = [];
+
+    public function __construct()
+    {
+        $this->array = array_merge($_GET, $_POST);
+    }
+
+    public function get($key)
+    {
+        return $this->array[$key];
+    }
+
+    public function set($key, $value)
+    {
+        $this->array[$key] = $value;
+    }
+
+    public function merge(array $array)
+    {
+        $this->array = array_merge($this->array, $array);
+    }
+
+    public function all()
+    {
+        return $this->array;
+    }
+
     public function getPath()
     {
         $path = $_SERVER['REQUEST_URI'] ?? '/';

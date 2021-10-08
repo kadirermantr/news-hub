@@ -2,9 +2,6 @@
 
 namespace Core;
 
-
-use App\Controllers\HomeController;
-use App\Exceptions\ForbiddenException;
 use App\Exceptions\NotFoundException;
 use App\Exceptions\PageExpiredException;
 
@@ -38,17 +35,6 @@ class Router
         $method = $this->request->method();
         $callback = $this->routes[$method][$path] ?? false;
 
-        if ($method === 'post') {
-            validate_input();
-
-            $token = Session::get('token');
-            $postToken = $this->request->getBody()["_token"] ?? '';
-
-            if ($token !== $postToken) {
-                throw new PageExpiredException();
-            }
-        }
-
         if ($callback === false) {
             throw new NotFoundException();
         }
@@ -58,13 +44,23 @@ class Router
         }
 
         if (is_array($callback)) {
+            validate_input();
+
             $controller = new $callback[0]();
             Application::$app->controller = $controller;
-            $controller->action = $callback[1];
             $callback[0] = $controller;
 
-            foreach ($controller->getMiddlewares() as $middleware) {
-                $middleware->execute();
+            $request = new Request();
+            $middlewares = $controller->getMiddlewares() ?? [];
+
+            foreach ($middlewares as $middleware) {
+                if ($request instanceof Request) {
+                    $request = Middleware::call(new $middleware, function ($re) {
+                        return $re;
+                    }, $request);
+                } else {
+                    break;
+                }
             }
         }
 

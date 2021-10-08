@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Core\Session;
 
 function public_path(?string $path = null)
@@ -14,7 +15,7 @@ function env(string $data)
     return $env[$data];
 }
 
-function validate_input()
+function validate_input(): bool
 {
     foreach ($_POST as $key => $value) {
         if (empty($value)) {
@@ -43,6 +44,7 @@ function validate_input()
     if (!empty($error_msg)) {
         Session::add('error', $error_msg);
         redirect($_SERVER['REQUEST_URI']);
+        return false;
     }
 
     return true;
@@ -63,12 +65,27 @@ function redirect(string $url, ?int $statusCode = 200)
     exit();
 }
 
-function session_control() {
-    $user = Session::get('user');
-
-    if (isset($user)) {
-        return $user;
+function isGuest(): bool
+{
+    if (Session::get('user') === null) {
+        return true;
     }
 
     return false;
+}
+
+function user(string $key)
+{
+    $id = Session::get('user');
+    $user = User::where('user_id', $id)[0];
+
+    return $user[$key];
+}
+
+function csrf()
+{
+    $token = bin2hex(random_bytes(32));
+    Session::add('token', $token);
+
+    return $token;
 }

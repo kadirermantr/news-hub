@@ -15,6 +15,8 @@ require __DIR__ . '/../layouts/header.php';
 
                     <div class="card-body">
                         <form action="" method="POST">
+                            <input type="hidden" name="_token" value="<?=csrf()?>">
+
                             <div class="form-group row">
                                 <label for="name" class="col-md-4 col-form-label text-md-right">Ad</label>
 

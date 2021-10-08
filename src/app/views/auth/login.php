@@ -15,6 +15,8 @@ require __DIR__ . '/../layouts/header.php';
 
                     <div class="card-body">
                         <form action="" method="POST">
+                            <input type="hidden" name="_token" value="<?=csrf()?>">
+
                             <div class="form-group row">
                                 <label for="email" class="col-md-4 col-form-label text-md-right">E-Posta Adresi</label>
 
@@ -51,7 +53,7 @@ require __DIR__ . '/../layouts/header.php';
                         <hr>
 
                         <div class="text-center">
-                            Bize katılmak ister misin? <a href="/register">Şimdi kaydol.</a>
+                            Bize katılmak ister misiniz? <a href="/register">Şimdi kaydolun.</a>
                         </div>
                     </div>
                 </div>

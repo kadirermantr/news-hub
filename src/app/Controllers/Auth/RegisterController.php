@@ -2,7 +2,7 @@
 
 namespace App\Controllers\Auth;
 
-use App\Middlewares\AuthMiddleware;
+use App\Middlewares\VerifyCsrfToken;
 use App\Models\User;
 use Core\Controller;
 use Core\Request;
@@ -10,6 +10,11 @@ use Core\Session;
 
 class RegisterController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(VerifyCsrfToken::class);
+    }
+
     public function index()
     {
         return $this->view('auth/register', 'Kaydol');

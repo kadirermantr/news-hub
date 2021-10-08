@@ -2,6 +2,7 @@
 
 namespace App\Controllers\Auth;
 
+use App\Middlewares\VerifyCsrfToken;
 use App\Models\User;
 use Core\Controller;
 use Core\Request;
@@ -9,12 +10,17 @@ use Core\Session;
 
 class LoginController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(VerifyCsrfToken::class);
+    }
+
     public function index()
     {
         return $this->view('auth/login', 'Oturum Aç');
     }
 
-    public function login(Request $request)
+    public static function login(Request $request)
     {
         $email = $request->getBody()["email"] ?? null;
         $password = $request->getBody()["password"] ?? null;

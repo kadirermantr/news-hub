@@ -2,17 +2,14 @@
 
 namespace App\Controllers\Auth;
 
-use App\Middlewares\AuthMiddleware;
-use App\Models\User;
+use App\Middlewares\Authenticate;
 use Core\Controller;
-use Core\Request;
-use Core\Session;
 
 class UserController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(new AuthMiddleware(['index']));
+        $this->middleware(Authenticate::class);
     }
 
     public function index()

@@ -2,6 +2,8 @@
 
 namespace Core;
 
+use Exception;
+
 class Application
 {
     public Router $router;
@@ -20,8 +22,16 @@ class Application
 
     public function run()
     {
-        echo $this->router->resolve();
-    }
+        try {
+            echo $this->router->resolve();
+        } catch(Exception $e) {
+            $message = $e->getMessage();
+            $code = $e->getCode();
+
+            http_response_code($code);
+            echo $this->router->view('_error', 'Hata | $code', compact('message', 'code'));
+        }
+     }
 
     public function getController(): Controller
     {

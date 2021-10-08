@@ -4,6 +4,9 @@ namespace Core;
 
 
 use App\Controllers\HomeController;
+use App\Exceptions\ForbiddenException;
+use App\Exceptions\NotFoundException;
+use App\Exceptions\PageExpiredException;
 
 class Router
 {
@@ -25,6 +28,10 @@ class Router
         $this->routes['post'][$path] = $callback;
     }
 
+    /**
+     * @throws NotFoundException
+     * @throws PageExpiredException
+     */
     public function resolve()
     {
         $path = $this->request->getPath();
@@ -38,12 +45,12 @@ class Router
             $postToken = $this->request->getBody()["_token"] ?? '';
 
             if ($token !== $postToken) {
-                return HomeController::error(419, 'Üzgünüz, oturumunuz süresi doldu.');
+                throw new PageExpiredException();
             }
         }
 
         if ($callback === false) {
-            return HomeController::error(404, 'Üzgünüz, aradığınız sayfa bulunamadı.');
+            throw new NotFoundException();
         }
 
         if (is_string($callback)) {

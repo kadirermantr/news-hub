@@ -10,36 +10,24 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="<?= env('APP_URL'); ?>">Anasayfa</a>
                 </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdown" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</a>
-                    <ul class="dropdown-menu" aria-labelledby="dropdown">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
-                </li>
             </ul>
 
             <div class="navbar-collapse">
                 <ul class="navbar-nav ml-auto">
-
-                    <?php
-                    $user = session_control();
-
-                    if ($user !== false) {
-                        echo "<li class='nav-item'><a href='#' class='btn btn-primary mr-3'>$user</a></li>";
-                        echo "<li class='nav-item'><a href='/logout' class='btn btn-danger'>Oturumu Kapat</a></li>";
-                    } else {
-                        echo "<li class='nav-item'><a href='/login' class='btn btn-primary'>Oturum Aç</a></li>";
-                    }
-
-                    ?>
+                <?php if (isGuest()): ?>
+                    <li class='nav-item mr-3'><a href="/register" class="nav nav-link">Kaydol</a></li>
+                    <li class='nav-item'><a href="/login" class="nav nav-link">Oturum Aç</a></li>
+                <?php else: ?>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <?php echo user('name') ?>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdown">
+                            <li><a class="dropdown-item" href="/account">Hesap</a></li>
+                            <li><a class="dropdown-item" href="/logout">Oturumu kapat</a></li>
+                        </ul>
                     </li>
+                <?php endif; ?>
                 </ul>
             </div>
         </div>

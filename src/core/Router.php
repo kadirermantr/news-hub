@@ -3,6 +3,8 @@
 namespace Core;
 
 
+use App\Controllers\HomeController;
+
 class Router
 {
     public Request $request;
@@ -29,9 +31,19 @@ class Router
         $method = $this->request->method();
         $callback = $this->routes[$method][$path] ?? false;
 
+        if ($method === 'post') {
+            validate_input();
+
+            $token = Session::get('token');
+            $postToken = $this->request->getBody()["_token"] ?? '';
+
+            if ($token !== $postToken) {
+                return HomeController::error(419, 'Üzgünüz, oturumunuz süresi doldu.');
+            }
+        }
+
         if ($callback === false) {
-            http_response_code(404);
-            return $this->view('404', 'Hata | 404');
+            return HomeController::error(404, 'Üzgünüz, aradığınız sayfa bulunamadı.');
         }
 
         if (is_string($callback)) {
@@ -39,8 +51,14 @@ class Router
         }
 
         if (is_array($callback)) {
-            Application::$app->controller = new $callback[0]();
-            $callback[0] = Application::$app->controller;
+            $controller = new $callback[0]();
+            Application::$app->controller = $controller;
+            $controller->action = $callback[1];
+            $callback[0] = $controller;
+
+            foreach ($controller->getMiddlewares() as $middleware) {
+                $middleware->execute();
+            }
         }
 
         return call_user_func($callback, $this->request);

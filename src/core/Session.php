@@ -32,7 +32,6 @@ class Session
 
     public static function close()
     {
-        session_unset();
         session_destroy();
     }
 

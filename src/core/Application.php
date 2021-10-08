@@ -29,7 +29,7 @@ class Application
             $code = $e->getCode();
 
             http_response_code($code);
-            echo $this->router->view('_error', 'Hata | $code', compact('message', 'code'));
+            echo $this->router->view("_error", "Hata | $code", compact('message', 'code'));
         }
      }
 

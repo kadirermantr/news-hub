@@ -9,7 +9,7 @@
                     </div>
 
                     <div class="card-body">
-                        <p><?= $description ?></p>
+                        <p><?= $message ?></p>
                         <a href="/">» Anasayfaya geri dön.</a>
                     </div>
                 </div>

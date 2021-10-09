@@ -42,9 +42,4 @@ class LoginController extends Controller
         Session::add('user', $user['user_id']);
         redirect('/');
     }
-
-    public function logout() {
-        Session::close();
-        redirect('/');
-    }
 }

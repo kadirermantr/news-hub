@@ -29,7 +29,10 @@ class Application
             $message = $e->getMessage();
             $code = $e->getCode();
 
-            http_response_code($code);
+            if (is_int($code)) {
+                http_response_code($code);
+            }
+
             echo $this->router->view("_error", "HTTP Error | $code", compact('message', 'code'));
         }
      }

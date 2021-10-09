@@ -9,8 +9,7 @@
                     </div>
 
                     <div class="card-body">
-                        <p><?= $message ?></p>
-                        <a href="/">» Anasayfaya geri dön.</a>
+                        <?= $message ?>
                     </div>
                 </div>
             </div>

@@ -4,6 +4,7 @@ namespace Core;
 
 use App\Exceptions\NotFoundException;
 use App\Exceptions\PageExpiredException;
+use App\Exceptions\ServiceUnavailableException;
 
 class Router
 {
@@ -27,13 +28,18 @@ class Router
 
     /**
      * @throws NotFoundException
-     * @throws PageExpiredException
+     * @throws ServiceUnavailableException
      */
     public function resolve()
     {
         $path = $this->request->getPath();
         $method = $this->request->method();
         $callback = $this->routes[$method][$path] ?? false;
+
+        if (env('MAINTENANCE_MODE')) {
+            Session::close();
+            throw new ServiceUnavailableException();
+        }
 
         if ($callback === false) {
             throw new NotFoundException();

@@ -2,6 +2,7 @@
 
 namespace Core;
 
+use App\Exceptions\ServiceUnavailableException;
 use Exception;
 
 class Application
@@ -29,7 +30,7 @@ class Application
             $code = $e->getCode();
 
             http_response_code($code);
-            echo $this->router->view("_error", "Hata | $code", compact('message', 'code'));
+            echo $this->router->view("_error", "HTTP Error | $code", compact('message', 'code'));
         }
      }
 

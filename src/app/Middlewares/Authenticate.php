@@ -2,9 +2,8 @@
 
 namespace App\Middlewares;
 
-use App\Exceptions\ForbiddenException;
+use App\Exceptions\UnauthorizedException;
 use Closure;
-use Core\Application;
 use Core\Middleware;
 use Core\Request;
 
@@ -14,14 +13,12 @@ class Authenticate extends Middleware
      * @param Closure $next
      * @param Request $request
      * @return mixed
-     * @throws ForbiddenException
+     * @throws UnauthorizedException
      */
     public function handle(Closure $next, $request)
     {
         if (isGuest()) {
-            if (empty($this->actions) || in_array(Application::$app->controller->action, $this->actions)) {
-                throw new ForbiddenException();
-            }
+            throw new UnauthorizedException();
         }
 
         return $next($request);

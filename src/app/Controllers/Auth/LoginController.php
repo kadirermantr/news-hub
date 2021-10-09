@@ -39,7 +39,7 @@ class LoginController extends Controller
             redirect('/login');
         }
 
-        Session::add('user', $user['user_id']);
+        Session::add('user', $user['id']);
         redirect('/');
     }
 }

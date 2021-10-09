@@ -60,8 +60,7 @@ function test_input($data) {
 
 function redirect(string $url, ?int $statusCode = 200)
 {
-    http_response_code($statusCode);
-    header("Location: " . $url);
+    header("Location: " . $url, response_code: $statusCode);
     exit();
 }
 

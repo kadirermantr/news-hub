@@ -2,6 +2,7 @@
 
 namespace App\Controllers\Auth;
 
+use App\Middlewares\RedirectAuthenticated;
 use App\Middlewares\VerifyCsrfToken;
 use App\Models\User;
 use Core\Controller;
@@ -13,6 +14,7 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware(VerifyCsrfToken::class);
+        $this->middleware(RedirectAuthenticated::class);
     }
 
     public function index()

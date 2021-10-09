@@ -1,4 +1,4 @@
-<?php require __DIR__ . '/../layouts/header.php';?>
+<?php require __DIR__ . '/../../layouts/header.php';?>
 
     <div class="container">
         <div class="row justify-content-center py-5">
@@ -35,7 +35,7 @@
                                 }
                                 ?>
                             </li>
-                        </ul>
+                            </ul>
                         </p>
                     </div>
                 </div>
@@ -43,4 +43,4 @@
         </div>
     </div>
 
-<?php require __DIR__ . '/../layouts/footer.php';?>
+<?php require __DIR__ . '/../../layouts/footer.php';?>

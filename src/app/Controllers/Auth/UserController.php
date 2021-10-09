@@ -15,7 +15,7 @@ class UserController extends Controller
 
     public function index()
     {
-        return $this->view('user/account', 'Hesap');
+        return $this->view('auth/user/account', 'Hesap');
     }
 
     public function logout() {

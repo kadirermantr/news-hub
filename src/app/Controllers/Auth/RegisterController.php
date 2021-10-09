@@ -44,7 +44,9 @@ class RegisterController extends Controller
             'password'  => $password,
         ]);
 
-        echo "kayıt başarılı";
+        $user = User::where('email', $email)[0];
+        Session::add('user', $user['user_id']);
+        redirect('/');
 
         return true;
     }

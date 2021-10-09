@@ -36,7 +36,7 @@ class Router
         $method = $this->request->method();
         $callback = $this->routes[$method][$path] ?? false;
 
-        if (env('MAINTENANCE_MODE')) {
+        if (env('MAINTENANCE_MODE') == true) {
             Session::close();
             throw new ServiceUnavailableException();
         }

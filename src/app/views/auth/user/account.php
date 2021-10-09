@@ -9,34 +9,11 @@
                     </div>
 
                     <div class="card-body">
-                        <p>
-                            <ul>
+                        <ul>
                             <li><strong>Ad:</strong> <?= user('name')?></li>
                             <li><strong>Soyad</strong> <?= user('lastname')?></li>
                             <li><strong>E-Posta:</strong> <a href="mailto:<?= user('email')?>"><?= user('email')?></a></li>
-                            <li><strong>Üyelik türü:</strong>
-                                <?php
-                                switch (user('role_level')) {
-                                    case 1:
-                                        echo "Kullanıcı";
-                                        break;
-
-                                    case 2:
-                                        echo "Editör";
-                                        break;
-
-                                    case 3:
-                                        echo "Moderatör";
-                                        break;
-
-                                    case 4:
-                                        echo "Admin";
-                                        break;
-                                }
-                                ?>
-                            </li>
-                            </ul>
-                        </p>
+                        </ul>
                     </div>
                 </div>
             </div>

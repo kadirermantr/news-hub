@@ -3,7 +3,6 @@
 namespace Core;
 
 use App\Exceptions\NotFoundException;
-use App\Exceptions\PageExpiredException;
 use App\Exceptions\ServiceUnavailableException;
 
 class Router

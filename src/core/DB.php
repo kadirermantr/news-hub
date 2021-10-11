@@ -35,6 +35,17 @@ class DB
         return $stm->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public static function find(string $table, mixed $id)
+    {
+        $db = self::connection();
+        $stm = $db->prepare("SELECT * FROM $table WHERE id = :id");
+        $stm->bindParam(":id", $id);
+        $stm->execute();
+
+        return $stm->fetch(PDO::FETCH_ASSOC);
+    }
+
+
     public static function where($table, string $column, mixed $value)
     {
         $db = self::connection();
@@ -61,6 +72,24 @@ class DB
         foreach ($data as $key => $value) {
             $stm->bindValue(":$key", $value);
         }
+
+        return $stm->execute();
+    }
+
+    public static function update(string $table, array $data)
+    {
+        $values = null;
+
+        foreach ($data as $key => $value) {
+            $values .= $key . ' = ' . "'$value'";
+
+            if ($key !== array_key_last($data)) {
+                $values .= ", ";
+            }
+        }
+
+        $db = self::connection();
+        $stm = $db->prepare("UPDATE $table SET $values WHERE id = " . $_POST['id']);
 
         return $stm->execute();
     }

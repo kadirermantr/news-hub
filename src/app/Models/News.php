@@ -19,4 +19,10 @@ class News extends Model
         $category = Category::find($category_id);
         return $category;
     }
+
+    public function getSummary(string $data)
+    {
+        $end = strlen($data) > 200 ? "..." : "";
+        return mb_substr($data, 0, 200) . $end;
+    }
 }

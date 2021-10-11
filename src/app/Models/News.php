@@ -10,14 +10,12 @@ class News extends Model
 
     public function getUser(int $user_id)
     {
-        $user = User::find($user_id);
-        return $user;
+        return User::find($user_id);
     }
 
     public function getCategory(int $category_id)
     {
-        $category = Category::find($category_id);
-        return $category;
+        return Category::find($category_id);
     }
 
     public function getSummary(string $data)

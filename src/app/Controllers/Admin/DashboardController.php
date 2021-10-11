@@ -12,11 +12,16 @@ class AdminController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(new Authenticate(['index']));
+        $this->middleware(new Authenticate(['index', 'edit']));
     }
 
     public function index()
     {
-        return $this->view('auth/admin/index', 'Yönetim Paneli');
+        return $this->view('auth/admin/dashboard', 'Kontrol Paneli');
+    }
+
+    public function edit()
+    {
+        return $this->view('auth/admin/profile', 'Profil');
     }
 }

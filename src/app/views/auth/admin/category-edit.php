@@ -45,6 +45,12 @@ require __DIR__ . '/layouts/header.php';?>
                             </div>
                         </form>
 
+                        <div class="col-md-6 offset-md-4 pt-3">
+                            <p class="small text-muted font-italic">
+                                Uyarı: Kategori silindiği takdirde kategoriye ait tüm haberlerde kalıcı olarak silinir.
+                            </p>
+                        </div>
+
                         <?php if (Session::get('error')) { ?>
                             <div class="col-md-6 offset-md-4 my-3">
                                 <?php foreach (Session::get('error') as $error) { ?>

@@ -21,7 +21,6 @@
                             <thead>
                             <tr>
                                 <th scope="col">Başlık</th>
-                                <th scope="col">İçerik</th>
                                 <th scope="col">Kategori</th>
                                 <th scope="col">Tarih</th>
                                 <th scope="col">Yazar</th>
@@ -33,9 +32,8 @@
                             <?php foreach($news as $post): ?>
                                 <tr>
                                     <td><?= $post['title'] ?></td>
-                                    <td><?= $post['content'] ?></td>
                                     <td><?= $post['category'] ?></td>
-                                    <td><?= date("d/m/Y", strtotime($post['date'])) ?></td>
+                                    <td><?= $post['date'] ?></td>
                                     <td><?= $post['user'] ?>
                                     </td>
                                     <td>

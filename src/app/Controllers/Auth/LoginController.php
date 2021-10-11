@@ -13,8 +13,8 @@ class LoginController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(VerifyCsrfToken::class);
-        $this->middleware(RedirectAuthenticated::class);
+        $this->middleware(new RedirectAuthenticated(['index']));
+        $this->middleware(new VerifyCsrfToken(['login']));
     }
 
     public function index()

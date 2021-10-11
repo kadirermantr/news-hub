@@ -81,9 +81,9 @@ public function __construct()
             $name = $request->getBody()["name"] ?? null;
             $description = $request->getBody()["description"] ?? null;
 
-            $isCategory = Category::where('name', $name);
+            $isCategory = Category::where('name', $name)[0];
 
-            if (!empty($isCategory)) {
+            if (!empty($isCategory) && $isCategory !== $category) {
                 Session::add('error', ["Aynı isimde bir kategori zaten var."]);
                 redirect('/admin/category/edit?id=' . $id);
                 exit();

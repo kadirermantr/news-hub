@@ -76,7 +76,6 @@ class NewsController extends Controller
 
         $news = $news[0];
 
-
         $dbCategory = $news['category_id'];
         $categories = Category::all();
 

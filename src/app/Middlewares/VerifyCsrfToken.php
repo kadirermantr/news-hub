@@ -4,30 +4,34 @@ namespace App\Middlewares;
 
 use App\Exceptions\PageExpiredException;
 use Closure;
+use Core\Application;
 use Core\Middleware;
 use Core\Request;
 use Core\Session;
 
 class VerifyCsrfToken extends Middleware
 {
+    public array $actions = [];
+
+    public function __construct(array $actions = [])
+    {
+        $this->actions = $actions;
+    }
+
     /**
-     * @param Closure $next
-     * @param Request $request
      * @throws PageExpiredException
      */
-    public function handle(Closure $next, $request)
+    public function execute()
     {
-        $method = $request->method();
-
-        if ($method === 'post') {
+        if (empty($this->actions) || in_array(Application::$app->controller->action, $this->actions)) {
             $token = Session::get('token');
-            $postToken = $request->getBody()["_token"] ?? '';
+            $postToken = $_POST["_token"] ?? '';
 
             if ($token !== $postToken) {
                 throw new PageExpiredException();
             }
         }
 
-        return $next($request);
+        return true;
     }
 }

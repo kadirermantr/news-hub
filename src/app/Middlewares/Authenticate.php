@@ -4,23 +4,30 @@ namespace App\Middlewares;
 
 use App\Exceptions\UnauthorizedException;
 use Closure;
+use Core\Application;
 use Core\Middleware;
 use Core\Request;
 
 class Authenticate extends Middleware
 {
+    public array $actions = [];
+
+    public function __construct(array $actions = [])
+    {
+        $this->actions = $actions;
+    }
+
     /**
-     * @param Closure $next
-     * @param Request $request
-     * @return mixed
      * @throws UnauthorizedException
      */
-    public function handle(Closure $next, $request)
+    public function execute()
     {
-        if (isGuest()) {
-            throw new UnauthorizedException();
+        if (empty($this->actions) || in_array(Application::$app->controller->action, $this->actions)) {
+            if (isGuest()) {
+                throw new UnauthorizedException();
+            }
         }
 
-        return $next($request);
+        return true;
     }
 }

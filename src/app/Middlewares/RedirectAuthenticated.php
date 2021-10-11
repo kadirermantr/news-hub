@@ -3,22 +3,27 @@
 namespace App\Middlewares;
 
 use Closure;
+use Core\Application;
 use Core\Middleware;
 use Core\Request;
 
 class RedirectAuthenticated extends Middleware
 {
-    /**
-     * @param Closure $next
-     * @param Request $request
-     * @return mixed
-     */
-    public function handle(Closure $next, $request)
+    public array $actions = [];
+
+    public function __construct(array $actions = [])
     {
-        if (!isGuest()) {
-            redirect('/', 204);
+        $this->actions = $actions;
+    }
+
+    public function execute()
+    {
+        if (empty($this->actions) || in_array(Application::$app->controller->action, $this->actions)) {
+            if (!isGuest()) {
+                redirect('/', 204);
+            }
         }
 
-        return $next($request);
+        return true;
     }
 }

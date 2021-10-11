@@ -12,13 +12,9 @@ abstract class Controller
         return Application::$app->router->view($view, $title, $data);
     }
 
-    public function middleware(...$middlewares): array
+    public function middleware(Middleware $middleware)
     {
-        foreach ($middlewares as $middleware) {
-            $this->middlewares[] = $middleware;
-        }
-
-        return $this->middlewares;
+        $this->middlewares[] = $middleware;
     }
 
     public function getMiddlewares(): array

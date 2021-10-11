@@ -53,19 +53,14 @@ class Router
 
             $controller = new $callback[0]();
             Application::$app->controller = $controller;
+            $controller->action = $callback[1];
             $callback[0] = $controller;
 
             $request = new Request();
             $middlewares = $controller->getMiddlewares() ?? [];
 
             foreach ($middlewares as $middleware) {
-                if ($request instanceof Request) {
-                    $request = Middleware::call(new $middleware, function ($re) {
-                        return $re;
-                    }, $request);
-                } else {
-                    break;
-                }
+                $middleware->execute();
             }
         }
 

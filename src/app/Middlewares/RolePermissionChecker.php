@@ -1,0 +1,68 @@
+<?php
+
+namespace App\Middlewares;
+
+use App\Exceptions\UnauthorizedException;
+use Closure;
+use Core\Application;
+use Core\Middleware;
+use Core\Request;
+
+class RolePermissionChecker extends Middleware
+{
+    public array $actions = [];
+    public int $role_level;
+
+    public function __construct(int $role_level, array $actions = [])
+    {
+        $this->actions = $actions;
+        $this->role_level = $role_level;
+    }
+
+    /**
+     * @throws UnauthorizedException
+     */
+    public function execute()
+    {
+        $user_role_level = user('role_level');
+
+        if (empty($this->actions) || in_array(Application::$app->controller->action, $this->actions)) {
+            if ($user_role_level >= $this->role_level) {
+                return true;
+            } else {
+                throw new UnauthorizedException();
+            }
+        }
+    }
+
+
+    /*
+
+
+     */
+
+    /*
+        public function __construct(int $role_level)
+    {
+        $this->role_level = $role_level;
+    }
+     */
+
+    /**
+     * @param Closure $next
+     * @param Request $request
+     * @return mixed
+     * @throws UnauthorizedException
+     */
+    /*
+    public function handle(Closure $next, $request)
+    {
+        // role_level doğru değilse exit();
+        // 403 ??
+
+        echo "selam role permission checker!!";
+
+        return $next($request);
+    }
+    */
+}

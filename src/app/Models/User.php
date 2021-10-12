@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Core\Model;
+use Core\Request;
 
 class User extends Model
 {
@@ -26,5 +27,10 @@ class User extends Model
         }
 
         return $role_name;
+    }
+
+    public function getRequest(int $user_id)
+    {
+        return DeleteRequest::where('user_id', $user_id);
     }
 }

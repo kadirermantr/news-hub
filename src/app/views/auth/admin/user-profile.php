@@ -43,6 +43,12 @@ require __DIR__ . '/layouts/header.php';?>
                                 </div>
                             </div>
 
+                            <div class="form-group row mb-0 mb-2">
+                                <div class="col-md-6 offset-md-4">
+                                    <a href="/admin/profile/delete">» Hesabı silme isteğinde bulun.</a>
+                                </div>
+                            </div>
+
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <input type="hidden" id="id" name="id" value="<?= $user['id'] ?>">

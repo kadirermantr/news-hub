@@ -79,6 +79,7 @@ class Router
 
         ob_start();
         require_once __DIR__ . "/../app/views/$view.php";
+        unset($_SESSION['success']);
         unset($_SESSION['error']);
         return ob_get_clean();
     }

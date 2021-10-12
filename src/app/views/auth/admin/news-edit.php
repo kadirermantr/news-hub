@@ -8,7 +8,7 @@ require __DIR__ . '/layouts/header.php';?>
 
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/admin">Yönetim Paneli</a></li>
+                        <li class="breadcrumb-item"><a href="/admin">Kontrol Paneli</a></li>
                         <li class="breadcrumb-item"><a href="/admin/news">Haberler</a></li>
                         <li class="breadcrumb-item active" aria-current="page"><?= $title ?></li>
                     </ol>
@@ -61,7 +61,6 @@ require __DIR__ . '/layouts/header.php';?>
                                 </div>
                             </div>
                         </form>
-
 
                         <?php if (Session::get('error')) { ?>
                             <div class="col-md-6 offset-md-4 my-3">

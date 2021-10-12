@@ -5,6 +5,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
+
         <div class="collapse navbar-collapse" id="navbars">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
@@ -13,24 +14,25 @@
             </ul>
 
             <div class="navbar-collapse">
-                <ul class="navbar-nav ml-auto">
+                <div class="navbar-nav ml-auto">
                 <?php if (isGuest()): ?>
-                    <li class='nav-item mr-3'><a href="/register" class="nav nav-link">Kaydol</a></li>
-                    <li class='nav-item'><a href="/login" class="nav nav-link">Oturum Aç</a></li>
+                    <li class='nav-item mr-3'><a href="/register" class="nav nav-link text-white">Kaydol</a></li>
+                    <li class='nav-item'><a href="/login" class="nav nav-link text-white">Oturum Aç</a></li>
                 <?php else: ?>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-white" href="#" id="dropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                            <?php echo user('name') ?>
+                    <div class="dropdown">
+                        <a class="nav-link dropdown-toggle text-white" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                            Merhaba, <?php echo user('name') ?> <?php echo user('lastname') ?>
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="dropdown">
-                            <a class="dropdown-item" href="/account">Hesap</a>
-                            <a class="dropdown-item" href="/admin">Yönetim Paneli</a>
+
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="/admin/profile">Profili güncelle</a>
+                            <a class="dropdown-item" href="/admin">Kontrol paneli</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="/logout">Oturumu kapat</a>
-                        </div>
-                    </li>
+                        </ul>
+                    </div>
                 <?php endif; ?>
-                </ul>
+                </div>
             </div>
         </div>
     </div>

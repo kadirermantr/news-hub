@@ -15,7 +15,7 @@
 
 </main>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="<?php public_path('js/jquery-3.6.0.min.js')?>"></script>
 <script src="<?php public_path('js/bootstrap.bundle.min.js')?>"></script>
 </body>
 </html>

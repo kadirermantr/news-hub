@@ -4,6 +4,7 @@ namespace App\Controllers\Admin;
 
 use App\Exceptions\NotFoundException;
 use App\Middlewares\Authenticate;
+use App\Middlewares\RolePermissionChecker;
 use App\Models\Category;
 use App\Models\News;
 use Core\Controller;
@@ -14,7 +15,8 @@ class NewsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(new Authenticate(['index', 'create', 'store', 'edit', 'update']));
+        $this->middleware(new Authenticate(['index', 'create', 'store', 'edit', 'update', 'destroy']));
+        $this->middleware(new RolePermissionChecker(2, ['index', 'create', 'store', 'edit', 'update', 'destroy']));
     }
 
     public function index()

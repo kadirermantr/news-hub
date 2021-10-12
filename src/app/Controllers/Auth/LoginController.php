@@ -2,6 +2,7 @@
 
 namespace App\Controllers\Auth;
 
+use App\Middlewares\Authenticate;
 use App\Middlewares\RedirectAuthenticated;
 use App\Middlewares\VerifyCsrfToken;
 use App\Models\User;
@@ -15,6 +16,7 @@ class LoginController extends Controller
     {
         $this->middleware(new RedirectAuthenticated(['index']));
         $this->middleware(new VerifyCsrfToken(['login']));
+        $this->middleware(new Authenticate(['logout']));
     }
 
     public function index()
@@ -40,6 +42,11 @@ class LoginController extends Controller
         }
 
         Session::add('user', $user['id']);
+        redirect('/');
+    }
+
+    public function logout() {
+        Session::close();
         redirect('/');
     }
 }

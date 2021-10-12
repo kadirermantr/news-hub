@@ -4,6 +4,7 @@ namespace App\Controllers\Admin;
 
 use App\Exceptions\NotFoundException;
 use App\Middlewares\Authenticate;
+use App\Middlewares\RolePermissionChecker;
 use App\Models\Category;
 use Core\Controller;
 use Core\Request;
@@ -11,12 +12,10 @@ use Core\Session;
 
 class CategoryController extends Controller
 {
-    public string $action = '';
-
-public function __construct()
+    public function __construct()
     {
         $this->middleware(new Authenticate(['index', 'create', 'store', 'edit', 'update']));
-        //$this->middleware(new RolePermissionChecker(4, ['index']));
+        $this->middleware(new RolePermissionChecker(2, ['index', 'create', 'store', 'edit', 'update', 'destroy']));
     }
 
     public function index()

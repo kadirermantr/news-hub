@@ -8,7 +8,7 @@ require __DIR__ . '/layouts/header.php';?>
 
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/admin">Yönetim Paneli</a></li>
+                        <li class="breadcrumb-item"><a href="/admin">Kontrol Paneli</a></li>
                         <li class="breadcrumb-item"><a href="/admin/user">Kullanıcılar</a></li>
                         <li class="breadcrumb-item active" aria-current="page"><?= $title ?></li>
                     </ol>
@@ -40,23 +40,7 @@ require __DIR__ . '/layouts/header.php';?>
                                 <label for="role_level" class="col-md-4 col-form-label text-md-right">Mevcut Rol</label>
 
                                 <div class="col-md-6">
-                                    <?php
-                                    switch ($user['role_level']) {
-                                        case 1:
-                                            $role = "Kullanıcı";
-                                            break;
-                                        case 2:
-                                            $role = "Editör";
-                                            break;
-                                        case 3:
-                                            $role = "Moderatör";
-                                            break;
-                                        case 4:
-                                            $role = "Admin";
-                                            break;
-                                    }
-                                    ?>
-                                    <input id="role_level" type="text" class="form-control" name="role_level" readonly value="<?= $role ?>">
+                                    <input id="role_level" type="text" class="form-control" name="role_level" readonly value="<?= $user['role'] ?>">
                                 </div>
                             </div>
 

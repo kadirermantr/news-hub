@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
     <div class="container">
-        <a class="navbar-brand text-uppercase" href="/admin">YÖNETİM PANELİ</a>
+        <a class="navbar-brand text-uppercase" href="/admin">Kontrol Paneli</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbars" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -14,38 +14,47 @@
                     </a>
                 </li>
 
+                <?php if (user('role_level') >= 2): ?>
                 <li class="nav-item">
                     <a class="nav-link text-white" aria-current="page" href="/admin/news">
                         <i class="fas fa-feather-alt"></i> Haberler
                     </a>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link text-white" aria-current="page" href="/admin/category">
-                        <i class="fas fa-list-alt"></i> Kategoriler
-                    </a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" aria-current="page" href="/admin/category">
+                            <i class="fas fa-list-alt"></i> Kategoriler
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link text-white" aria-current="page" href="/admin/comment">
+                            <i class="fas fa-comments"></i> Yorumlar
+                        </a>
+                    </li>
 
                 <li class="nav-item">
                     <a class="nav-link text-white" aria-current="page" href="/admin/user">
                         <i class="fas fa-user"></i> Kullanıcılar
                     </a>
                 </li>
+                <?php endif; ?>
             </ul>
 
             <div class="navbar-collapse">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-white" href="#" id="dropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                            <?php echo user('name') ?>
+                    <div class="dropdown">
+                        <a class="nav-link dropdown-toggle text-white" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                            Merhaba, <?php echo user('name') ?> <?php echo user('lastname') ?>
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="dropdown">
-                            <a class="dropdown-item" href="/account">Hesap</a>
+
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="/admin/profile">Profili güncelle</a>
                             <a class="dropdown-item" href="/">Siteye geri dön</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="/logout">Oturumu kapat</a>
-                        </div>
-                    </li>
+                        </ul>
+                    </div>
                 </ul>
             </div>
         </div>

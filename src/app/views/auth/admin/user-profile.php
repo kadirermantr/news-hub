@@ -9,7 +9,6 @@ require __DIR__ . '/layouts/header.php';?>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="/admin">Kontrol Paneli</a></li>
-                        <li class="breadcrumb-item"><a href="/admin/user">Kullanıcılar</a></li>
                         <li class="breadcrumb-item active" aria-current="page"><?= $title ?></li>
                     </ol>
                 </nav>
@@ -24,7 +23,7 @@ require __DIR__ . '/layouts/header.php';?>
                                 <label for="name" class="col-md-4 col-form-label text-md-right">Ad</label>
 
                                 <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control" name="name" required autocomplete="name" autofocus>
+                                    <input id="name" type="text" class="form-control" name="name" value="<?= $user['name'] ?>">
                                 </div>
                             </div>
 
@@ -32,37 +31,22 @@ require __DIR__ . '/layouts/header.php';?>
                                 <label for="name" class="col-md-4 col-form-label text-md-right">Soyad</label>
 
                                 <div class="col-md-6">
-                                    <input id="lastname" type="text" class="form-control" name="lastname" required autocomplete="lastname">
+                                    <input id="lastname" type="text" class="form-control" name="lastname" value="<?= $user['lastname'] ?>">
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label for="email" class="col-md-4 col-form-label text-md-right">E-Posta Adresi</label>
+                                <label for="name" class="col-md-4 col-form-label text-md-right">E-Posta</label>
 
                                 <div class="col-md-6">
-                                    <input id="email" type="text" class="form-control" name="email" required autocomplete="email">
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="password" class="col-md-4 col-form-label text-md-right">Parola</label>
-
-                                <div class="col-md-6">
-                                    <input id="password" type="password" class="form-control" name="password" required autocomplete="new-password">
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Parola Tekrarı</label>
-
-                                <div class="col-md-6">
-                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                    <input id="email" type="email" class="form-control" name="email" value="<?= $user['email'] ?>">
                                 </div>
                             </div>
 
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">Kaydol</button>
+                                    <input type="hidden" id="id" name="id" value="<?= $user['id'] ?>">
+                                    <button type="submit" class="btn btn-primary" value="update">Güncelle</button>
                                 </div>
                             </div>
                         </form>
@@ -74,6 +58,14 @@ require __DIR__ . '/layouts/header.php';?>
                                         <strong>Hata:</strong> <?php echo $error; ?>
                                     </div>
                                 <?php }?>
+                            </div>
+                        <?php } ?>
+
+                        <?php if (Session::get('success')) { ?>
+                            <div class="col-md-6 offset-md-4 my-3">
+                                <div class="alert alert-success" role="alert">
+                                    <?= Session::get('success') ?>
+                                </div>
                             </div>
                         <?php } ?>
 

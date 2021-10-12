@@ -31,6 +31,6 @@ class User extends Model
 
     public function getRequest(int $user_id)
     {
-        return DeleteRequest::where('user_id', $user_id);
+        return UserRequest::where('user_id', $user_id);
     }
 }

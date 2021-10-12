@@ -4,6 +4,7 @@ use App\Controllers\Admin\CommentController;
 use App\Controllers\Admin\DashboardController;
 use App\Controllers\Admin\CategoryController;
 use App\Controllers\Admin\ProfileController;
+use App\Controllers\Admin\UserRequestController;
 use App\Controllers\Admin\UserController;
 use App\Controllers\Admin\NewsController;
 use App\Controllers\Auth\LoginController;
@@ -55,3 +56,8 @@ $app->router->get('/admin/user/create', [UserController::class, 'create']);
 $app->router->post('/admin/user/create', [UserController::class, 'store']);
 $app->router->get('/admin/user/edit', [UserController::class, 'edit']);
 $app->router->post('/admin/user/edit', [UserController::class, 'update']);
+
+
+$app->router->get('/admin/user/request', [UserRequestController::class, 'index']);
+$app->router->get('/admin/user/request/edit', [UserRequestController::class, 'edit']);
+$app->router->post('/admin/user/request/edit', [UserRequestController::class, 'destroy']);

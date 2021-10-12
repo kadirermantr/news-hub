@@ -3,7 +3,7 @@
 namespace App\Controllers\Admin;
 
 use App\Middlewares\Authenticate;
-use App\Models\DeleteRequest;
+use App\Models\UserRequest;
 use App\Models\User;
 use Core\Controller;
 use Core\Request;
@@ -67,14 +67,14 @@ class ProfileController extends Controller
         $action = $request->get('submit');
 
         if ($action === "request") {
-            DeleteRequest::create([
+            UserRequest::create([
                 'user_id'   => $user_id,
             ]);
         } else {
-            $delete_request = DeleteRequest::where('user_id', $user_id)[0];
+            $delete_request = UserRequest::where('user_id', $user_id)[0];
             $request_id = $delete_request['id'];
 
-            DeleteRequest::delete('id', $request_id);
+            UserRequest::delete('id', $request_id);
         }
 
         redirect('/admin/profile/delete');

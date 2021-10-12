@@ -14,28 +14,39 @@
                     </a>
                 </li>
 
+                <li class="nav-item">
+                    <a class="nav-link text-white" aria-current="page" href="/admin/profile">
+                        <i class="fas fa-user"></i>
+                        Profil
+                    </a>
+                </li>
+
                 <?php if (user('role_level') >= 2): ?>
                 <li class="nav-item">
                     <a class="nav-link text-white" aria-current="page" href="/admin/news">
-                        <i class="fas fa-feather-alt"></i> Haberler
+                        <i class="fas fa-feather-alt"></i>
+                        Haberler
                     </a>
                 </li>
 
                     <li class="nav-item">
                         <a class="nav-link text-white" aria-current="page" href="/admin/category">
-                            <i class="fas fa-list-alt"></i> Kategoriler
+                            <i class="fas fa-list-alt"></i>
+                            Kategoriler
                         </a>
                     </li>
 
                     <li class="nav-item">
                         <a class="nav-link text-white" aria-current="page" href="/admin/comment">
-                            <i class="fas fa-comments"></i> Yorumlar
+                            <i class="fas fa-comments"></i>
+                            Yorumlar
                         </a>
                     </li>
 
                 <li class="nav-item">
                     <a class="nav-link text-white" aria-current="page" href="/admin/user">
-                        <i class="fas fa-user"></i> Kullanıcılar
+                        <i class="fas fa-users"></i>
+                        Kullanıcılar
                     </a>
                 </li>
                 <?php endif; ?>

@@ -23,4 +23,9 @@ class News extends Model
         $end = strlen($data) > 200 ? "..." : "";
         return mb_substr($data, 0, 200) . $end;
     }
+
+    public function getComments(int $comment_id)
+    {
+        return Comment::find($comment_id);
+    }
 }

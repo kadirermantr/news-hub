@@ -3,7 +3,6 @@
 use App\Controllers\Admin\CommentController;
 use App\Controllers\Admin\DashboardController;
 use App\Controllers\Admin\CategoryController;
-use App\Controllers\Admin\DeleteRequestController;
 use App\Controllers\Admin\ProfileController;
 use App\Controllers\Admin\UserController;
 use App\Controllers\Admin\NewsController;
@@ -28,8 +27,8 @@ $app->router->get('/logout', [LoginController::class, 'logout']);
 $app->router->get('/admin', [DashboardController::class, 'index']);
 $app->router->get('/admin/profile', [ProfileController::class, 'edit']);
 $app->router->post('/admin/profile', [ProfileController::class, 'update']);
-$app->router->get('/admin/profile/delete', [DeleteRequestController::class, 'edit']);
-$app->router->post('/admin/profile/delete', [DeleteRequestController::class, 'update']);
+$app->router->get('/admin/profile/delete', [ProfileController::class, 'show']);
+$app->router->post('/admin/profile/delete', [ProfileController::class, 'store']);
 
 
 $app->router->get('/admin/news', [NewsController::class, 'index']);

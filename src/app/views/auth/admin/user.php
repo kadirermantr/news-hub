@@ -14,7 +14,8 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="pb-3">
-                            <a href="user/create">» Yeni kullanıcı ekle</a>
+                            <a href="user/create">» Yeni kullanıcı ekle</a><br />
+                            <a href="user/delete-request">» Hesap silme istekleri (sayııı)</a>
                         </div>
 
                         <table class="table caption-top table-hover">

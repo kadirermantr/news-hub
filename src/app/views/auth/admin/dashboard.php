@@ -12,7 +12,30 @@
 
                 <div class="card">
                     <div class="card-body">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus, vero.
+                        <h5>Yorumlarım:</h5>
+
+                        <table class="table caption-top table-hover">
+                            <thead>
+                            <tr>
+                                <th scope="col">Yorum</th>
+                                <th scope="col">Haber</th>
+                                <th scope="col">Tarih</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            <?php foreach($comments as $comment): ?>
+                                <?php if ($comment['user_id'] === user('id')): ?>
+                                <tr>
+                                    <td><?= $comment['content'] ?></td>
+                                    <td><a href="/news?id=<?= $comment['news_id'] ?>" target="_blank"><?= $comment['news'] ?></a></td>
+                                    <td><?= $comment['date'] ?></td>
+                                    </td>
+                                </tr>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

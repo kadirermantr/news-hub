@@ -33,4 +33,9 @@ class User extends Model
     {
         return UserRequest::where('user_id', $user_id);
     }
+
+    public function getNews(int $news_id)
+    {
+        return News::find($news_id);
+    }
 }

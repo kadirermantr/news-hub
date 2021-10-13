@@ -53,7 +53,7 @@ class Log implements LoggerInterface
 
         if (isGuest()) {
             $user = "Anonim kullanıcı";
-            $role = "";
+            $role = null;
         } else {
             if ($context[0] ?? true != false) {
                 $user = user('id') . " nolu kullanıcı";

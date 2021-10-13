@@ -119,20 +119,23 @@ class CategoryController extends Controller
             }
 
             if (isset($users)) {
-                foreach ($users as $user) {
-                    $is_editor = EditorCategories::where([
-                        'user_id'       => $user,
-                        'category_id'   =>  $id,
-                    ]);
+                $old_relations = EditorCategories::where(['category_id' => $id]);
 
-                    if ($is_editor) {
-                        EditorCategories::delete('user_id', $user);
-                    } else {
-                        EditorCategories::create([
-                            'user_id'        => $user,
-                            'category_id'    => $id,
-                        ]);
-                    }
+                foreach ($old_relations as $relation) {
+                    EditorCategories::delete('category_id', $relation['category_id']);
+                }
+
+                foreach ($users as $user) {
+                    EditorCategories::create([
+                        'user_id'        => $user,
+                        'category_id'    => $id,
+                    ]);
+                }
+            } else {
+                $old_relations = EditorCategories::where(['category_id' => $id]);
+
+                foreach ($old_relations as $relation) {
+                    EditorCategories::delete('category_id', $relation['category_id']);
                 }
             }
 

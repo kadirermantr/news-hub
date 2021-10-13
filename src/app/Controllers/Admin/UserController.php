@@ -15,7 +15,7 @@ class UserController extends Controller
     public function __construct()
     {
         $this->middleware(new Authenticate(['index', 'create', 'store', 'edit', 'update', 'show']));
-        $this->middleware(new RolePermissionChecker(2, ['index', 'create', 'store', 'edit', 'update', 'show']));
+        $this->middleware(new RolePermissionChecker(3, ['index', 'create', 'store', 'edit', 'update', 'show', 'showActivity']));
     }
 
     public function index()
@@ -33,7 +33,11 @@ class UserController extends Controller
                 }
             }
         } else {
-            $filtered_users = $users;
+            for ($i=0; $i < count($users); $i++) {
+                $role = (new User())->getRole($users[$i]['role_level']);
+                $users[$i]['role'] = $role;
+                $filtered_users = $users;
+            }
         }
 
         return $this->view('auth/admin/user', 'Kullanıcılar', compact('filtered_users'));
@@ -60,6 +64,8 @@ class UserController extends Controller
             redirect('/admin/user/create');
             exit();
         }
+
+        $password = password_hash($password, PASSWORD_DEFAULT);
 
         User::create([
             'name'      => $name,

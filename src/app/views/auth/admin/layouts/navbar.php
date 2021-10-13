@@ -35,7 +35,9 @@
                             Kategoriler
                         </a>
                     </li>
+                <?php endif; ?>
 
+                <?php if (user('role_level') >= 3): ?>
                     <li class="nav-item">
                         <a class="nav-link text-white" aria-current="page" href="/admin/comment">
                             <i class="fas fa-comments"></i>

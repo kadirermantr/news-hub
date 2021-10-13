@@ -14,7 +14,7 @@ class CommentController extends Controller
     public function __construct()
     {
         $this->middleware(new Authenticate(['index', 'edit', 'update', 'destroy']));
-        $this->middleware(new RolePermissionChecker(2, ['index', 'edit', 'update', 'destroy']));
+        $this->middleware(new RolePermissionChecker(3, ['index', 'edit', 'update', 'destroy']));
     }
 
     public function index()

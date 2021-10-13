@@ -7,7 +7,6 @@ use App\Models\Category;
 use App\Models\Comment;
 use App\Models\FollowedCategories;
 use App\Models\News;
-use App\Models\User;
 use Core\Controller;
 use Core\Request;
 use Core\Session;
@@ -38,7 +37,7 @@ class HomeController extends Controller
      */
     public function showNews(Request $request)
     {
-        $id = $request->get('id');
+        $id = $request->getBody()['id'] ?? null;
         $news = News::where('id', $id);
         $comments = Comment::all();
         $newsComments = [];
@@ -71,7 +70,7 @@ class HomeController extends Controller
     public function storeComment(Request $request)
     {
         $content = $request->getBody()["content"] ?? null;
-        $news_id = $request->get('id');
+        $news_id = $request->getBody()['id'] ?? null;
         $anonymous = $request->getBody()['anonymous'] ?? null;
 
         if ($anonymous || isGuest()) {
@@ -93,7 +92,7 @@ class HomeController extends Controller
      * @throws NotFoundException
      */
     public function showCategory(Request $request) {
-        $id = $request->get('id');
+        $id = $request->getBody()['id'] ?? null;
         $category = Category::where('id', $id);
         $categories = Category::all();
         $user = [];

@@ -69,7 +69,7 @@ class NewsController extends Controller
      */
     public function edit(Request $request)
     {
-        $id = $request->get('id');
+        $id = $request->getBody()['id'] ?? null;
         $news = News::where('id', $id);
 
         if (empty($news)) {
@@ -87,7 +87,7 @@ class NewsController extends Controller
 
     public function update(Request $request)
     {
-        $id = $request->get('id');
+        $id = $request->getBody()['id'] ?? null;
         $action = $request->get('submit');
 
         if ($action === "delete") {

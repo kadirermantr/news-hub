@@ -65,7 +65,7 @@ class UserController extends Controller
      */
     public function edit(Request $request)
     {
-        $id = $request->get('id');
+        $id = $request->getBody()['id'] ?? null;
         $user = User::where('id', $id);
 
         if (empty($user)) {

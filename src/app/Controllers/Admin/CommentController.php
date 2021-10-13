@@ -45,7 +45,7 @@ class CommentController extends Controller
      */
     public function edit(Request $request)
     {
-        $id = $request->get('id');
+        $id = $request->getBody()['id'] ?? null;
         $comments = Comment::where('id', $id);
 
         if (empty($comments)) {
@@ -70,7 +70,7 @@ class CommentController extends Controller
 
     public function update(Request $request)
     {
-        $id = $request->get('id');
+        $id = $request->getBody()['id'] ?? null;
         $action = $request->get('submit');
 
         if ($action === "delete") {

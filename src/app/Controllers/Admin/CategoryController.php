@@ -58,7 +58,7 @@ class CategoryController extends Controller
      */
     public function edit(Request $request)
     {
-        $id = $request->get('id');
+        $id = $request->getBody()['id'] ?? null;
         $category = Category::where('id', $id);
         $users = User::where('role_level', 2);
         $editors = EditorCategories::where('category_id', $id);
@@ -87,7 +87,7 @@ class CategoryController extends Controller
 
     public function update(Request $request)
     {
-        $id = $request->get('id');
+        $id = $request->getBody()['id'] ?? null;
         $action = $request->get('submit');
 
         if ($action === "delete") {

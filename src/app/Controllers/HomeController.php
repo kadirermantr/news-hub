@@ -124,7 +124,9 @@ class HomeController extends Controller
             throw new NotFoundException();
         }
 
-        $news = News::where('category_id', $id);
+        $news = News::where([
+            'category_id'   => $id,
+        ]);
 
         if (empty($news)) {
             Session::add('error', ['Bu kategoride hiç haber yok.']);

@@ -89,3 +89,30 @@ function csrf()
 
     return $token;
 }
+
+function isImage($file)
+{
+    $tmp_path = $file['tmp_name'];
+    $file_info = finfo_open(FILEINFO_MIME_TYPE);
+    $mime_type = finfo_file($file_info, $tmp_path);
+    $extension = pathinfo($file['name'], PATHINFO_EXTENSION);
+
+    $allowed_types = [
+        "image/gif"     => "gif",
+        "image/png"     => "png",
+        "image/jpeg"    => ["jpg", "jpe", "jpeg"],
+    ];
+
+    $match_mime_type = key_exists($mime_type, $allowed_types);
+    $ext_match = false;
+
+    if ($match_mime_type) {
+        if (is_string($allowed_types[$mime_type])) {
+            $allowed_types[$mime_type] = [$allowed_types[$mime_type]];
+        }
+
+        $ext_match = in_array($extension, $allowed_types[$mime_type]);
+    }
+
+    return $match_mime_type === true && $ext_match === true;
+}

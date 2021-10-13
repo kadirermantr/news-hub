@@ -3,13 +3,12 @@
 namespace App\Models;
 
 use Core\Model;
-use Core\Request;
 
 class User extends Model
 {
     protected static $table = "users";
 
-    public function getRole(int $role_level)
+    public static function getRole(int $role_level)
     {
         switch ($role_level) {
             case 1:
@@ -32,7 +31,7 @@ class User extends Model
     public function getRequest(int $user_id)
     {
         return UserRequest::where([
-            'user_id'   => $user_id
+            'user_id'   =>  $user_id
         ]);
     }
 

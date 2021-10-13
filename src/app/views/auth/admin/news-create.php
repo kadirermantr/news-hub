@@ -17,7 +17,7 @@ require __DIR__ . '/layouts/header.php';?>
                 <div class="card">
                     <div class="card-body">
 
-                        <form action="" method="POST">
+                        <form action="" method="POST" enctype="multipart/form-data">
                             <input type="hidden" name="_token" value="<?=csrf()?>">
 
                             <div class="form-group row">
@@ -46,6 +46,15 @@ require __DIR__ . '/layouts/header.php';?>
                                             <option value="<?= $category['id'] ?>"><?= $category['name'] ?> </option>
                                         <?php endforeach; ?>
                                     </select>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group row">
+                                <label for="image" class="col-md-4 col-form-label text-md-right">Resim</label>
+
+                                <div class="col-md-6">
+                                    <input type="file" class="form-control-file" id="image" name="image">
                                 </div>
                             </div>
 

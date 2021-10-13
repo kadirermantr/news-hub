@@ -9,6 +9,8 @@ use App\Models\FollowedCategories;
 use App\Models\News;
 use App\Models\ReadedNews;
 use Core\Controller;
+use Core\log\Log;
+use Core\log\Logger;
 use Core\Request;
 use Core\Session;
 
@@ -30,6 +32,7 @@ class HomeController extends Controller
             $news[$i]['content'] = $content;
         }
 
+        Logger::info('Anasayfayı görüntülendi.');
         return $this->view('home', 'Anasayfa', compact('news', 'categories'));
     }
 

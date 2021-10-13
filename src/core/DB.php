@@ -2,6 +2,7 @@
 
 namespace Core;
 
+use Core\log\Logger;
 use PDO;
 use PDOException;
 
@@ -22,6 +23,7 @@ class DB
             return $pdo;
         } catch (PDOException $e) {
             echo "Veritabanı hatası " . $e->getMessage();
+            Logger::emergency('Veritabanına bağlanamadı.', [false]);
             exit();
         }
     }

@@ -11,8 +11,8 @@ require __DIR__ . '/layouts/header.php';?>
                     </div>
 
                     <div class="card-body">
-                        <div class="col-12 pb-4">
-                            <img src="https://mdbootstrap.com/img/new/slides/031.jpg" class="img-fluid">
+                        <div class="col-12 pb-4 text-center">
+                            <img src="<?php public_path('uploads/img/' . $news['image'])?>" class="img-fluid">
                         </div>
 
                         <?= $news['content'] ?>

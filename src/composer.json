@@ -11,7 +11,8 @@
   },
   "require": {
     "ext-pdo": "*",
-    "ext-mbstring": "*"
+    "ext-mbstring": "*",
+    "ext-fileinfo": "*"
   },
   "scripts": {
     "pre-install-cmd": [

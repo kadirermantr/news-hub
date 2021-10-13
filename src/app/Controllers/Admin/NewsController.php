@@ -47,6 +47,20 @@ class NewsController extends Controller
         $title = $request->getBody()["title"] ?? null;
         $content = $request->getBody()["content"] ?? null;
         $category_id = $request->getBody()["category_id"] ?? null;
+        $file = $request->get("image");
+
+        if (isImage($file) == false) {
+            $error_msg[] = "Resim kabul edilmedi.";
+            Session::add('error', $error_msg);
+            redirect($_SERVER['REQUEST_URI']);
+        }
+
+        $extension = pathinfo($file['name'], PATHINFO_EXTENSION);
+        $img_name = basename($file['name'], '.' . $extension);
+        $new_img_name = $img_name . "-" . uniqid() . "." . $extension;
+
+        $path = __DIR__ . '/../../../public/uploads/img/';
+        move_uploaded_file($file['tmp_name'], $path . $new_img_name);
 
         if (is_null($category_id)) {
             $error_msg[] = "Kategori seçilmedi.";
@@ -55,10 +69,11 @@ class NewsController extends Controller
         }
 
         News::create([
-            'title'    => $title,
-            'content'  => $content,
-            'user_id'  => user('id'),
+            'title'         => $title,
+            'content'       => $content,
+            'user_id'       => user('id'),
             'category_id'   => $category_id,
+            'image'         => $new_img_name,
         ]);
 
         redirect('/admin/news');

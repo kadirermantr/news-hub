@@ -1,4 +1,6 @@
-<?php require __DIR__ . '/layouts/header.php';?>
+<?php use Core\Session;
+
+require __DIR__ . '/layouts/header.php';?>
 
 <!--
     <div class="container">

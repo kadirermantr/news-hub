@@ -36,6 +36,19 @@ require __DIR__ . '/layouts/header.php';?>
                                 </div>
                             </div>
 
+                            <div class="form-group row">
+                                <label for="new_role" class="col-md-4 col-form-label text-md-right">Sorumlu Editörler</label>
+
+                                <div class="col-md-6">
+                                    <select name="users[]" class="form-select form-control" multiple>
+                                        <option disabled>Seçim yapınız</option>
+                                        <?php foreach ($users as $user): ?>
+                                            <option value="<?= $user['id'] ?>" <?= $user['is_editor'] ? 'selected' : '' ?>><?= $user['name'] . " " . $user['lastname'] ?> </option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+                            </div>
+
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <input type="hidden" id="id" name="id" value="<?= $category['id'] ?>">

@@ -11,6 +11,19 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="<?= env('APP_URL'); ?>">Anasayfa</a>
                 </li>
+
+                <div class="dropdown">
+                    <a class="nav-link dropdown-toggle text-white" href="#" role="button" id="dropdown-user" data-bs-toggle="dropdown" aria-expanded="false">
+                        Haber Kategorileri
+                    </a>
+
+                    <ul class="dropdown-menu" aria-labelledby="dropdown-user">
+                        <?php foreach ($categories as $nav_category): ?>
+                        <a class="dropdown-item" href="/category?id=<?= $nav_category['id'] ?>"><?= $nav_category['name']?></a>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+
             </ul>
 
             <div class="navbar-collapse">
@@ -20,11 +33,11 @@
                     <li class='nav-item'><a href="/login" class="nav nav-link text-white">Oturum Aç</a></li>
                 <?php else: ?>
                     <div class="dropdown">
-                        <a class="nav-link dropdown-toggle text-white" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle text-white" href="#" role="button" id="dropdown-user" data-bs-toggle="dropdown" aria-expanded="false">
                             Merhaba, <?php echo user('name') ?> <?php echo user('lastname') ?>
                         </a>
 
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <ul class="dropdown-menu" aria-labelledby="dropdown-user">
                             <a class="dropdown-item" href="/admin/profile">Profili güncelle</a>
                             <a class="dropdown-item" href="/admin">Kontrol paneli</a>
                             <div class="dropdown-divider"></div>

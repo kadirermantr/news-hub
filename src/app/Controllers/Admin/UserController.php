@@ -5,6 +5,7 @@ namespace App\Controllers\Admin;
 use App\Exceptions\NotFoundException;
 use App\Middlewares\Authenticate;
 use App\Middlewares\RolePermissionChecker;
+use App\Models\Category;
 use App\Models\User;
 use Core\Controller;
 use Core\Request;

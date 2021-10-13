@@ -43,12 +43,12 @@
                         </a>
                     </li>
 
-                <li class="nav-item">
-                    <a class="nav-link text-white" aria-current="page" href="/admin/user">
-                        <i class="fas fa-users"></i>
-                        Kullanıcılar
-                    </a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" aria-current="page" href="/admin/user">
+                            <i class="fas fa-users"></i>
+                            Kullanıcılar
+                        </a>
+                    </li>
                 <?php endif; ?>
             </ul>
 

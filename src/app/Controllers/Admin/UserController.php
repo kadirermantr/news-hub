@@ -14,8 +14,8 @@ class UserController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(new Authenticate(['index', 'create', 'store', 'edit', 'update']));
-        $this->middleware(new RolePermissionChecker(2, ['index', 'create', 'store', 'edit', 'update']));
+        $this->middleware(new Authenticate(['index', 'create', 'store', 'edit', 'update', 'show']));
+        $this->middleware(new RolePermissionChecker(2, ['index', 'create', 'store', 'edit', 'update', 'show']));
     }
 
     public function index()
@@ -97,5 +97,25 @@ class UserController extends Controller
         ]);
 
         redirect('/admin/user');
+    }
+
+    public function showActivity()
+    {
+        $log_file = __DIR__ . '/../../../app/storage/logs/app.log';
+        $logs = file($log_file);
+        $private_logs = '';
+
+        if (user('role_level') == 3) {
+            for ($i=0; $i < count($logs); $i++) {
+                $first = strtok($logs[$i], ' ');
+                if ($first != "Moderatör" && $first != "Admin") {
+                    $private_logs .= $logs[$i];
+                }
+            }
+        } else {
+            $private_logs = file_get_contents($log_file);
+        }
+
+        return $this->view('auth/admin/user-activitiy', 'Aktiviteler', compact('private_logs'));
     }
 }

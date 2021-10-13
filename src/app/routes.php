@@ -64,6 +64,7 @@ $app->router->get('/admin/user/create', [UserController::class, 'create']);
 $app->router->post('/admin/user/create', [UserController::class, 'store']);
 $app->router->get('/admin/user/edit', [UserController::class, 'edit']);
 $app->router->post('/admin/user/edit', [UserController::class, 'update']);
+$app->router->get('/admin/user/activity', [UserController::class, 'showActivity']);
 
 
 $app->router->get('/admin/user/request', [UserRequestController::class, 'index']);

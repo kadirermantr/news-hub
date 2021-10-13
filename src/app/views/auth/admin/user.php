@@ -31,7 +31,7 @@
                             </thead>
 
                             <tbody>
-                            <?php foreach($users as $user): ?>
+                            <?php foreach($filtered_users as $user): ?>
                                 <tr>
                                     <td><?= $user['name'] ?></td>
                                     <td><?= $user['lastname'] ?></td>

@@ -21,13 +21,22 @@ class UserController extends Controller
     public function index()
     {
         $users = array_reverse(User::all());
+        $filtered_users = [];
 
-        for ($i=0; $i < count($users); $i++) {
-            $role = (new User())->getRole($users[$i]['role_level']);
-            $users[$i]['role'] = $role;
+        if (user('role_level') != 4) {
+            for ($i=0; $i < count($users); $i++) {
+                $role = (new User())->getRole($users[$i]['role_level']);
+                $users[$i]['role'] = $role;
+
+                if ($users[$i]['role_level'] < user('role_level')) {
+                    $filtered_users[] = $users[$i];
+                }
+            }
+        } else {
+            $filtered_users = $users;
         }
 
-        return $this->view('auth/admin/user', 'Kullanıcılar', compact('users'));
+        return $this->view('auth/admin/user', 'Kullanıcılar', compact('filtered_users'));
     }
 
     public function create()
@@ -84,6 +93,9 @@ class UserController extends Controller
 
     public function update(Request $request)
     {
+        $id = $request->getBody()['id'] ?? null;
+        $user = User::find($id);
+
         $role_level = $request->getBody()["new_role"] ?? null;
 
         if (is_null($role_level)) {
@@ -92,11 +104,16 @@ class UserController extends Controller
             redirect($_SERVER['REQUEST_URI']);
         }
 
-        User::update([
-            'role_level'    => $role_level,
-        ]);
-
-        redirect('/admin/user');
+        if (user('role_level') > $user['role_level']) {
+            User::update([
+                'role_level'    => $role_level,
+            ]);
+            redirect('/admin/user');
+        } else {
+            Session::add('error', ["Kendi yetkinize eşit ve yüksek kullanıcıları değiştiremezsiniz."]);
+            redirect('/admin/user/edit?id=' . $id);
+            exit();
+        }
     }
 
     public function showActivity()

@@ -52,8 +52,10 @@ require __DIR__ . '/layouts/header.php';?>
                                         <option disabled selected>Seçim yapınız</option>
                                         <option value="1">Kullanıcı</option>
                                         <option value="2">Editör</option>
+                                        <?php if(user('role_level') == 4): ?>
                                         <option value="3">Moderatör</option>
                                         <option value="4">Admin</option>
+                                        <?php endif; ?>
                                     </select>
                                 </div>
                             </div>

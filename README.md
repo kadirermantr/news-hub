@@ -13,7 +13,7 @@ src klasöründeyken aşağıdaki komut çalıştırımalıdır.
 composer install
 ```
 
-Bu komut ile beraber autoload, helper fonksiyonu ve gereklilikler composer dosyasına eklenir. Ekstra olarak composer'da tanımlanan script ile `.env` isminde bir dosya oluşturulur. .env dosyasında veritabanı bilgileri varsayılan olarak boş bırakılmıştır. Veritabanı bilgileri aşağıda mevcuttur.
+Bu komut ile beraber autoload, helper fonksiyonu ve gereklilikler composer dosyasına eklenir. 2. kez tekrar çalıştırıldığında ise composer'da tanımlanan script ile `.env` isminde bir dosya oluşturulur. .env dosyasında veritabanı bilgileri varsayılan olarak boş bırakılmıştır. Veritabanı bilgileri aşağıda mevcuttur.
 
 - DB_HOST=`mariadb`
 - DB_DATABASE=`news`

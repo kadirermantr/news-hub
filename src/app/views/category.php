@@ -10,6 +10,7 @@ require __DIR__ . '/layouts/header.php';?>
                         <strong class="text-uppercase"><?= $category['name'] ?> Haberleri</strong><br />
                         <span class="font-italic"><?= $category['description'] ?></span>
 
+                        <?php if (!isGuest()): ?>
                         <form action="" method="POST">
                             <div class="form-group row pt-3">
                                 <div class="col-md-12">
@@ -17,6 +18,7 @@ require __DIR__ . '/layouts/header.php';?>
                                 </div>
                             </div>
                         </form>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>

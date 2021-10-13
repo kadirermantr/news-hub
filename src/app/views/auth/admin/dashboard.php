@@ -27,7 +27,6 @@
                                 <th scope="col">Kategori</th>
                                 <th scope="col">Tarih</th>
                                 <th scope="col">Yazar</th>
-                                <th scope="col"></th>
                             </tr>
                             </thead>
 
@@ -39,13 +38,6 @@
                                     <td><?= $post['category'] ?></td>
                                     <td><?= $post['date'] ?></td>
                                     <td><?= $post['user'] ?>
-                                    </td>
-                                    <td>
-                                        <a href="news/edit?id=<?= $post['id'] ?>">
-                                            <span class="btn btn-outline-primary">
-                                            <i class="fa fa-edit"></i>
-                                            </span>
-                                        </a>
                                     </td>
                                 </tr>
                                 <?php endif; ?>

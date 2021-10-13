@@ -37,7 +37,9 @@ class CategoryController extends Controller
         $name = $request->getBody()["name"] ?? null;
         $description = $request->getBody()["description"] ?? null;
 
-        $isCategory = Category::where('name', $name);
+        $isCategory = Category::where([
+            'name'  => $name
+        ]);
 
         if (!empty($isCategory)) {
             Session::add('error', ["Aynı isimde bir kategori zaten var."]);
@@ -59,9 +61,15 @@ class CategoryController extends Controller
     public function edit(Request $request)
     {
         $id = $request->getBody()['id'] ?? null;
-        $category = Category::where('id', $id);
-        $users = User::where('role_level', 2);
-        $editors = EditorCategories::where('category_id', $id);
+        $category = Category::where([
+            'id'    => $id
+        ]);
+        $users = User::where([
+            'role_level'    => 2,
+        ]);
+        $editors = EditorCategories::where([
+            'category_id'   => $id
+        ]);
 
         if (empty($category)) {
             throw new NotFoundException();
@@ -93,12 +101,16 @@ class CategoryController extends Controller
         if ($action === "delete") {
             $this->destroy($id);
         } else {
-            $category = Category::where('id', $id)[0];
+            $category = Category::where([
+                'id'    => $id,
+            ])[0];
             $name = $request->getBody()["name"] ?? null;
             $description = $request->getBody()["description"] ?? null;
             $users = $request->get('users');
 
-            $isCategory = Category::where('name', $name)[0];
+            $isCategory = Category::where([
+                'name'  => $name
+            ])[0];
 
             if (!empty($isCategory) && $isCategory !== $category) {
                 Session::add('error', ["Aynı isimde bir kategori zaten var."]);
@@ -108,7 +120,9 @@ class CategoryController extends Controller
 
             if (isset($users)) {
                 foreach ($users as $user) {
-                    $test = EditorCategories::where('user_id', $user);
+                    $test = EditorCategories::where([
+                        'user_id'   => $user
+                    ]);
                     print_r($test);
                     exit();
                     /*

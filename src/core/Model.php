@@ -13,9 +13,9 @@ abstract class Model
         return DB::find($table, $id);
     }
 
-    public static function where(string $column, mixed $value) {
+    public static function where(array $values) {
         $table = static::$table;
-        return DB::where($table, $column,$value);
+        return DB::where($table, $values);
     }
 
     public static function create(array $data)

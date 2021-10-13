@@ -75,7 +75,9 @@ function isGuest(): bool
 function user(string $key)
 {
     $id = Session::get('user');
-    $user = User::where('id', $id)[0];
+    $user = User::where([
+        'id'    => $id
+    ])[0];
 
     return $user[$key];
 }

@@ -36,7 +36,9 @@ class UserRequestController extends Controller
     public function edit(Request $request)
     {
         $id = $request->getBody()['id'] ?? null;
-        $user_request = UserRequest::where('id', $id);
+        $user_request = UserRequest::where([
+            'id'    => $id
+        ]);
 
         if (empty($user_request)) {
             throw new NotFoundException();

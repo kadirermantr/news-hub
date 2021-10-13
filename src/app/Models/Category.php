@@ -11,6 +11,8 @@ class Category extends Model
 
     public function getFollower(int $category_id)
     {
-        return FollowedCategories::where('category_id', $category_id);
+        return FollowedCategories::where([
+            'category_id'   => $category_id
+        ]);
     }
 }

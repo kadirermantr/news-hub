@@ -70,7 +70,9 @@ class NewsController extends Controller
     public function edit(Request $request)
     {
         $id = $request->getBody()['id'] ?? null;
-        $news = News::where('id', $id);
+        $news = News::where([
+            'id'    => $id
+        ]);
 
         if (empty($news)) {
             throw new NotFoundException();
@@ -93,7 +95,9 @@ class NewsController extends Controller
         if ($action === "delete") {
             $this->destroy($id);
         } else {
-            $news = News::where('id', $id)[0];
+            $news = News::where([
+                'id'    => $id
+            ])[0];
             $title = $request->getBody()["title"] ?? null;
             $content = $request->getBody()["content"] ?? null;
             $category_id = $request->getBody()["category_id"] ?? null;

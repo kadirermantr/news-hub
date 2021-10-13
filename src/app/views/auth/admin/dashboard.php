@@ -85,4 +85,41 @@
         </div>
     </div>
 
+    <div class="container pb-5">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="py-2 text-center text-danger">Okuduğum haberler</h5>
+
+                        <table class="table caption-top table-hover">
+                            <thead>
+                            <tr>
+                                <th scope="col">Başlık</th>
+                                <th scope="col">Kategori</th>
+                                <th scope="col">Tarih</th>
+                                <th scope="col">Yazar</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            <?php foreach($news as $post): ?>
+                                <?php if ($post['is_following']): ?>
+                                    <tr>
+                                        <td><a href="news?id=<?= $post['id']?>" target="_blank"><?= $post['title'] ?></a></td>
+                                        <td><?= $post['category'] ?></td>
+                                        <td><?= $post['date'] ?></td>
+                                        <td><?= $post['user'] ?>
+                                        </td>
+                                    </tr>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 <?php require __DIR__ . '/layouts/footer.php';?>

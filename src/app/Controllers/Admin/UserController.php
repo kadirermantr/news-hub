@@ -42,7 +42,9 @@ class UserController extends Controller
         $email = $request->getBody()["email"] ?? null;
         $password = $request->getBody()["password"] ?? null;
 
-        $isEmail = User::where('email', $email);
+        $isEmail = User::where([
+            'email'     => $email
+        ]);
 
         if (!empty($isEmail)) {
             Session::add('error', ["E-Posta adresi kullanılıyor."]);
@@ -66,7 +68,9 @@ class UserController extends Controller
     public function edit(Request $request)
     {
         $id = $request->getBody()['id'] ?? null;
-        $user = User::where('id', $id);
+        $user = User::where([
+            'id'    => $id
+        ]);
 
         if (empty($user)) {
             throw new NotFoundException();

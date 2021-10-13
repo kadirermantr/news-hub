@@ -20,7 +20,9 @@ class DashboardController extends Controller
     {
         $news = array_reverse(News::all());
         $comments = array_reverse(Comment::all());
-        $users = FollowedCategories::where('user_id', user('id'));
+        $users = FollowedCategories::where([
+            'user_id'   => user('id')
+        ]);
 
         for ($i=0; $i < count($news); $i++) {
             $news[$i]['is_following'] = false;

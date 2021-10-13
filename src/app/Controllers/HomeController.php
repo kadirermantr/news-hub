@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Comment;
 use App\Models\FollowedCategories;
 use App\Models\News;
+use App\Models\ReadedNews;
 use Core\Controller;
 use Core\Request;
 use Core\Session;
@@ -38,7 +39,31 @@ class HomeController extends Controller
     public function showNews(Request $request)
     {
         $id = $request->getBody()['id'] ?? null;
-        $news = News::where('id', $id);
+        $news = News::where([
+            'id'    => $id,
+        ]);
+
+        if (empty($news)) {
+            throw new NotFoundException();
+        }
+
+        if(!isGuest()) {
+            echo "kullanıcı haberi görüntüledi";
+            $user_id = user('id');
+
+            $readed_news = ReadedNews::where([
+                'user_id'   => $user_id,
+                'news_id'   => $id,
+            ]);
+
+            if (empty($readed_news)) {
+                ReadedNews::create([
+                    'user_id'   => $user_id,
+                    'news_id'   => $id,
+                ]);
+            }
+        }
+
         $comments = Comment::all();
         $newsComments = [];
         $categories = Category::all();
@@ -56,10 +81,6 @@ class HomeController extends Controller
                 $comments[$i]['date'] = date("d/m/Y - H:i", strtotime($comments[$i]['date']));
                 $newsComments[] = $comments[$i];
             }
-        }
-
-        if (empty($news)) {
-            throw new NotFoundException();
         }
 
         $news = $news[0];
@@ -93,7 +114,9 @@ class HomeController extends Controller
      */
     public function showCategory(Request $request) {
         $id = $request->getBody()['id'] ?? null;
-        $category = Category::where('id', $id);
+        $category = Category::where([
+            'id'    => $id,
+        ]);
         $categories = Category::all();
         $user = [];
 
@@ -146,7 +169,9 @@ class HomeController extends Controller
                 'category_id'   => $category_id,
             ]);
         } else {
-            $delete_following_category = FollowedCategories::where('category_id', $category_id)[0];
+            $delete_following_category = FollowedCategories::where([
+                'category_id'   => $category_id,
+            ])[0];
             FollowedCategories::delete('id', $delete_following_category['id']);
         }
 

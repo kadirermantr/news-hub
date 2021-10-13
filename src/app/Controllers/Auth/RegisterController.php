@@ -29,7 +29,9 @@ class RegisterController extends Controller
         $email = $request->getBody()["email"] ?? null;
         $password = $request->getBody()["password"] ?? null;
 
-        $isEmail = User::where('email', $email);
+        $isEmail = User::where([
+            'email'     => $email
+        ]);
 
         if (!empty($isEmail)) {
             Session::add('error', ["E-Posta adresi kullanılıyor."]);
@@ -46,7 +48,9 @@ class RegisterController extends Controller
             'password'  => $password,
         ]);
 
-        $user = User::where('email', $email)[0];
+        $user = User::where([
+            'email'     => $email
+        ])[0];
         Session::add('user', $user['id']);
         redirect('/');
     }

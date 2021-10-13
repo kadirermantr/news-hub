@@ -19,7 +19,9 @@ class ProfileController extends Controller
     public function edit()
     {
         $id = user('id');
-        $user = User::where('id', $id)[0];
+        $user = User::where([
+            'id'    => $id
+        ])[0];
 
         return $this->view('auth/admin/user-profile', 'Profil', compact('user'));
     }
@@ -27,13 +29,17 @@ class ProfileController extends Controller
     public function update(Request $request)
     {
         $id = user('id');
-        $user = User::where('id', $id)[0];
+        $user = User::where([
+            'id'    => $id
+        ])[0];
 
         $name = $request->getBody()["name"] ?? null;
         $lastname = $request->getBody()["lastname"] ?? null;
         $email = $request->getBody()["email"] ?? null;
 
-        $isEmail = User::where('email', $email)[0];
+        $isEmail = User::where([
+            'email' => $email
+        ])[0];
 
         if (!empty($isEmail) && $isEmail !== $user) {
             Session::add('error', ["E-Posta adresi kullanılıyor."]);
@@ -55,7 +61,9 @@ class ProfileController extends Controller
     {
         $id = user('id');
 
-        $user = User::where('id', $id)[0];
+        $user = User::where([
+            'id'    => $id
+        ])[0];
         $user['request'] = (new User())->getRequest($id);
 
         return $this->view('auth/admin/user-profile-delete', 'Hesabı Sil', compact('user'));
@@ -71,7 +79,9 @@ class ProfileController extends Controller
                 'user_id'   => $user_id,
             ]);
         } else {
-            $delete_request = UserRequest::where('user_id', $user_id)[0];
+            $delete_request = UserRequest::where([
+                'user_id'   => $user_id
+            ])[0];
             UserRequest::delete('id', $delete_request['id']);
         }
 

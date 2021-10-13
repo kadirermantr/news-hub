@@ -29,7 +29,9 @@ class LoginController extends Controller
         $email = $request->getBody()["email"] ?? null;
         $password = $request->getBody()["password"] ?? null;
 
-        $user = User::where('email', $email)[0];
+        $user = User::where([
+            'email'     => $email
+        ])[0];
 
         if (empty($user)) {
             Session::add('error', ["Bu e‑posta adresi ile bağlantılı bir hesap bulunamadı."]);

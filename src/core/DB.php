@@ -45,12 +45,24 @@ class DB
         return $stm->fetch(PDO::FETCH_ASSOC);
     }
 
-
-    public static function where($table, string $column, mixed $value)
+    public static function where($table, array $values)
     {
+        $section = '';
+        $is_first = true;
+
+        foreach ($values as $column => $value) {
+            $section .= $is_first ? "$column = :$column" : " and $column = :$column";
+            $is_first = false;
+        }
+
         $db = self::connection();
-        $stm = $db->prepare("SELECT * FROM $table WHERE $column = :$column");
-        $stm->bindParam(":$column", $value);
+        $stm = $db->prepare("SELECT * FROM $table WHERE $section");
+
+
+        foreach ($values as $column => $value) {
+            $stm->bindValue(":$column", $value);
+        }
+
         $stm->execute();
 
         return $stm->fetchAll(PDO::FETCH_ASSOC);

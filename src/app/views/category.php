@@ -9,6 +9,14 @@ require __DIR__ . '/layouts/header.php';?>
                     <div class="card-header text-center">
                         <strong class="text-uppercase"><?= $category['name'] ?> Haberleri</strong><br />
                         <span class="font-italic"><?= $category['description'] ?></span>
+
+                        <form action="" method="POST">
+                            <div class="form-group row pt-3">
+                                <div class="col-md-12">
+                                    <button type="submit" class="btn btn-sm btn-secondary">Kategoriyi takip et</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

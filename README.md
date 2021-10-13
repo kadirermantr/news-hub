@@ -24,8 +24,11 @@ Bu komut ile beraber autoload, helper fonksiyonu ve gereklilikler composer dosya
 1. Phpmyadmin'de `news` isminde bir veritabanı oluşuturulmalıdır.
 2. Ana dizindeki `news.sql` dosyası phpmyadmin'den içe aktarılmalıdır.
 
-## Örnek kullanıcı:
+## Örnek kullanıcılar:
 - E-posta adresi: admin@ornek.com
+- E-posta adresi: moderator@ornek.com
+- E-posta adresi: editor@ornek.com
+- E-posta adresi: kullanici@ornek.com
 - Parola: 123456
 
 ---
@@ -35,3 +38,9 @@ Web sitesini bakım moduna almak için `.env` dosyasındaki `maintenance_mode` d
 ```
 MAINTENANCE_MODE=true
 ```
+
+## API
+Örnek kullanımlar:
+- http://localhost/api/getNews?id=1
+- http://localhost/api/allNews
+- http://localhost/api/allNews?category=2

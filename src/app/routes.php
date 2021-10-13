@@ -16,6 +16,7 @@ $app->router->get('/', [HomeController::class, 'index']);
 $app->router->get('/news', [HomeController::class, 'showNews']);
 $app->router->post('/news', [HomeController::class, 'storeComment']);
 $app->router->get('/category', [HomeController::class, 'showCategory']);
+$app->router->post('/category', [HomeController::class, 'followCategory']);
 
 
 $app->router->get('/register', [RegisterController::class, 'index']);

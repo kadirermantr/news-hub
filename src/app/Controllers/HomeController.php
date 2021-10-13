@@ -48,7 +48,6 @@ class HomeController extends Controller
         }
 
         if(!isGuest()) {
-            echo "kullanıcı haberi görüntüledi";
             $user_id = user('id');
 
             $readed_news = ReadedNews::where([

@@ -6,7 +6,6 @@ use App\Exceptions\NotFoundException;
 use App\Middlewares\Authenticate;
 use App\Middlewares\RolePermissionChecker;
 use App\Models\Comment;
-use App\Models\News;
 use Core\Controller;
 use Core\Request;
 
@@ -20,7 +19,7 @@ class CommentController extends Controller
 
     public function index()
     {
-        $comments = Comment::all();
+        $comments = array_reverse(Comment::all());
 
         for ($i=0; $i < count($comments); $i++) {
             $post = (new Comment())->getNews($comments[$i]['news_id']);

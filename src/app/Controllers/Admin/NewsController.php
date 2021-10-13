@@ -21,7 +21,7 @@ class NewsController extends Controller
 
     public function index()
     {
-        $news = News::all();
+        $news = array_reverse(News::all());
 
         for ($i=0; $i < count($news); $i++) {
             $user = (new News())->getUser($news[$i]['user_id']);

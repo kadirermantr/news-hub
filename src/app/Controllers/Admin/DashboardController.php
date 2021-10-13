@@ -6,8 +6,6 @@ use App\Middlewares\Authenticate;
 use App\Models\Comment;
 use App\Models\User;
 use Core\Controller;
-use Core\Request;
-use Core\Session;
 
 class DashboardController extends Controller
 {
@@ -18,7 +16,7 @@ class DashboardController extends Controller
 
     public function index()
     {
-        $comments = Comment::all();
+        $comments = array_reverse(Comment::all());
 
         for ($i=0; $i < count($comments); $i++) {
             $news = (new User())->getNews($comments[$i]['news_id']);

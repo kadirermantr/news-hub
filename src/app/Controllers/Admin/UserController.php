@@ -5,7 +5,6 @@ namespace App\Controllers\Admin;
 use App\Exceptions\NotFoundException;
 use App\Middlewares\Authenticate;
 use App\Middlewares\RolePermissionChecker;
-use App\Models\Category;
 use App\Models\User;
 use Core\Controller;
 use Core\Request;
@@ -21,7 +20,7 @@ class UserController extends Controller
 
     public function index()
     {
-        $users = User::all();
+        $users = array_reverse(User::all());
 
         for ($i=0; $i < count($users); $i++) {
             $role = (new User())->getRole($users[$i]['role_level']);

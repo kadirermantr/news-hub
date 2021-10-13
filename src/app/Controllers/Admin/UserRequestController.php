@@ -20,7 +20,7 @@ class UserRequestController extends Controller
 
     public function index()
     {
-        $user_requests = UserRequest::all();
+        $user_requests = array_reverse(UserRequest::all());
 
         for ($i=0; $i < count($user_requests); $i++) {
             $user = (new UserRequest())->getUser($user_requests[$i]['user_id']);

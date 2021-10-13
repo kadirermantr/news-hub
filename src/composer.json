@@ -12,5 +12,10 @@
   "require": {
     "ext-pdo": "*",
     "ext-mbstring": "*"
+  },
+  "scripts": {
+    "pre-install-cmd": [
+      "php -r \"copy('.env.example', '.env');\""
+    ]
   }
 }

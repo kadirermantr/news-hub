@@ -37,7 +37,7 @@ require __DIR__ . '/layouts/header.php';?>
             <div class="col mb-4">
                 <div class="card">
                     <a href="news?id=<?= $post['id']?>" class="stretched-link text-dark" style="position: relative;">
-                        <img src="https://mdbootstrap.com/img/new/standard/city/044.jpg" class="card-img-top">
+                        <img src="<?php public_path('uploads/img/' . $post['image'])?>" class="img-fluid">
 
                         <div class="card-body">
                             <h5 class="card-title"><?= $post['title'] ?></h5>

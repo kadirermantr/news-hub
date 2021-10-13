@@ -75,11 +75,9 @@ function isGuest(): bool
 function user(string $key)
 {
     $id = Session::get('user');
-    $user = User::where([
-        'id'    => $id
-    ])[0];
+    $user = User::find($id);
 
-    return $user[$key];
+    return $user[$key] ?? null;
 }
 
 function csrf()

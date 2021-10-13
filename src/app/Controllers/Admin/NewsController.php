@@ -16,7 +16,8 @@ class NewsController extends Controller
     public function __construct()
     {
         $this->middleware(new Authenticate(['index', 'create', 'store', 'edit', 'update', 'destroy']));
-        $this->middleware(new RolePermissionChecker(3, ['index', 'create', 'store', 'edit', 'update', 'destroy']));
+        $this->middleware(new RolePermissionChecker(2, ['create', 'store']));
+        $this->middleware(new RolePermissionChecker(3, ['index', 'edit', 'update', 'destroy']));
     }
 
     public function index()
@@ -76,7 +77,7 @@ class NewsController extends Controller
             'image'         => $new_img_name,
         ]);
 
-        redirect('/admin/news');
+        redirect('/');
     }
 
     /**

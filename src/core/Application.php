@@ -3,6 +3,7 @@
 namespace Core;
 
 use App\Exceptions\ServiceUnavailableException;
+use App\Models\Category;
 use Exception;
 
 class Application
@@ -33,7 +34,8 @@ class Application
                 http_response_code($code);
             }
 
-            echo $this->router->view("_error", "Hata | $code", compact('message', 'code'));
+            $categories = Category::all();
+            echo $this->router->view("_error", "Hata | $code", compact('message', 'code', 'categories'));
         }
      }
 

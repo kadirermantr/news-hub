@@ -21,7 +21,16 @@
                     </a>
                 </li>
 
-                <?php if (user('role_level') >= 2): ?>
+                <?php if (user('role_level') == 2): ?>
+                <li class="nav-item">
+                    <a class="nav-link text-white" aria-current="page" href="/admin/news/create">
+                        <i class="fas fa-feather-alt"></i>
+                        Haber Ekle
+                    </a>
+                </li>
+                <?php endif; ?>
+
+                <?php if (user('role_level') >= 3): ?>
                 <li class="nav-item">
                     <a class="nav-link text-white" aria-current="page" href="/admin/news">
                         <i class="fas fa-feather-alt"></i>

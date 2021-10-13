@@ -16,7 +16,7 @@ class CategoryController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(new Authenticate(['index', 'create', 'store', 'edit', 'update']));
+        $this->middleware(new Authenticate(['index', 'create', 'store', 'edit', 'update', 'destroy']));
         $this->middleware(new RolePermissionChecker(2, ['index', 'create', 'store', 'edit', 'update', 'destroy']));
     }
 

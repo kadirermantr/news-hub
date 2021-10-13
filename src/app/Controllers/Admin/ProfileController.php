@@ -13,7 +13,7 @@ class ProfileController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(new Authenticate(['edit', 'update']));
+        $this->middleware(new Authenticate(['edit', 'update', 'show', 'store']));
     }
 
     public function edit()

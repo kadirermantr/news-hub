@@ -11,6 +11,12 @@ use App\Controllers\Auth\LoginController;
 use App\Controllers\Auth\RegisterController;
 use App\Controllers\HomeController;
 
+//////////////////////////////////////////////////////////////////////////////////////////
+
+$app->router->get('/api/getNews', [NewsController::class, 'apiNews']);
+$app->router->get('/api/allNews', [NewsController::class, 'apiAllNews']);
+
+//////////////////////////////////////////////////////////////////////////////////////////
 
 $app->router->get('/', [HomeController::class, 'index']);
 $app->router->get('/news', [HomeController::class, 'showNews']);

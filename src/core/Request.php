@@ -13,7 +13,7 @@ class Request
 
     public function get($key)
     {
-        return $this->array[$key];
+        return $this->array[$key] ?? null;
     }
 
     public function set($key, $value)

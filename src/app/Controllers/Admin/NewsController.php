@@ -123,4 +123,59 @@ class NewsController extends Controller
         News::delete('id', $id);
         redirect('/admin/news');
     }
+
+    public function apiNews(Request $request)
+    {
+        header('Content-Type: application/json;');
+        $id = $request->get('id');
+
+        if (empty($id)) {
+            http_response_code(422);
+            $messages = [
+                'title' => 'Error',
+                'content'   => 'Girilen parametre yanlış.',
+            ];
+
+            return json_encode($messages);
+        }
+
+        $news = News::find($id);
+
+        if ($news == null) {
+            http_response_code(404);
+            $messages = [
+                'title'     => 'Error',
+                'content'   => 'Haber bulunamadı.',
+            ];
+
+            return json_encode($messages);
+        }
+
+        return json_encode($news);
+    }
+
+    public function apiAllNews(Request $request)
+    {
+        header('Content-Type: application/json;');
+        $category_id = $request->get('category');
+
+        if ($category_id) {
+            $news = News::where(['category_id' => $category_id]);
+
+            if ($news) {
+                return json_encode($news);
+            }
+
+            http_response_code(404);
+            $messages = [
+                'title'     => 'Error',
+                'content'   => 'Bu kategoriye ait haber bulunamadı.',
+            ];
+
+            return json_encode($messages);
+        }
+
+        $news = News::all();
+        return json_encode($news);
+    }
 }

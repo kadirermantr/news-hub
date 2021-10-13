@@ -5,7 +5,9 @@ namespace App\Controllers;
 use App\Exceptions\NotFoundException;
 use App\Models\Category;
 use App\Models\Comment;
+use App\Models\FollowedCategories;
 use App\Models\News;
+use App\Models\User;
 use Core\Controller;
 use Core\Request;
 use Core\Session;
@@ -66,6 +68,27 @@ class HomeController extends Controller
         return $this->view('news', 'Haber', compact('news','categories', 'newsComments'));
     }
 
+    public function storeComment(Request $request)
+    {
+        $content = $request->getBody()["content"] ?? null;
+        $news_id = $request->get('id');
+        $anonymous = $request->getBody()['anonymous'] ?? null;
+
+        if ($anonymous || isGuest()) {
+            $user_id = null;
+        } else {
+            $user_id = user('id');
+        }
+
+        Comment::create([
+            'content' => $content,
+            'user_id' => $user_id,
+            'news_id' => $news_id,
+        ]);
+
+        redirect('/news?id=' . $news_id);
+    }
+
     /**
      * @throws NotFoundException
      */
@@ -73,6 +96,7 @@ class HomeController extends Controller
         $id = $request->get('id');
         $category = Category::where('id', $id);
         $categories = Category::all();
+        $user = [];
 
         if (empty($category)) {
             throw new NotFoundException();
@@ -95,30 +119,38 @@ class HomeController extends Controller
             $news[$i]['content'] = $content;
         }
 
-
         $category = $category[0];
 
-        return $this->view('category', $category['name'] . ' Haberleri', compact('category', 'categories', 'news'));
+        if (!isGuest()) {
+            $user_id = user('id');
+            $followers = (new Category())->getFollower($category['id']);
+
+            foreach ($followers as $follower) {
+                if ($user_id === $follower['user_id']) {
+                    $user['category_followed'] = true;
+                }
+            }
+
+        }
+        return $this->view('category', $category['name'] . ' Haberleri', compact('category', 'categories', 'news', 'user'));
     }
 
-    public function storeComment(Request $request)
+    public function followCategory(Request $request)
     {
-        $content = $request->getBody()["content"] ?? null;
-        $news_id = $request->get('id');
-        $anonymous = $request->getBody()['anonymous'] ?? null;
+        $action = $request->get('submit');
+        $user_id = user('id');
+        $category_id = $request->getBody()['id'] ?? null;
 
-        if ($anonymous || isGuest()) {
-            $user_id = null;
+        if ($action === "follow") {
+            FollowedCategories::create([
+                'user_id'       => $user_id,
+                'category_id'   => $category_id,
+            ]);
         } else {
-            $user_id = user('id');
+            $delete_following_category = FollowedCategories::where('category_id', $category_id)[0];
+            FollowedCategories::delete('id', $delete_following_category['id']);
         }
 
-        Comment::create([
-            'content' => $content,
-            'user_id'  => $user_id,
-            'news_id' => $news_id,
-        ]);
-
-        redirect('/news?id=' . $news_id);
+        redirect('/category?id=' . $category_id);
     }
 }

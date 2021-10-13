@@ -31,6 +31,7 @@ require __DIR__ . '/layouts/header.php';?>
 
                             <div class="form-group row mb-0">
                                 <div class="col-md-12 text-center">
+                                    <input type="hidden" id="id" name="id" value="<?= $category['id'] ?>">
                                     <?php if(empty($user['request'])): ?>
                                          <button type="submit" name="submit" class="btn btn-danger" value="request">Silme isteği gönder</button>
                                     <?php else: ?>

@@ -72,9 +72,7 @@ class ProfileController extends Controller
             ]);
         } else {
             $delete_request = UserRequest::where('user_id', $user_id)[0];
-            $request_id = $delete_request['id'];
-
-            UserRequest::delete('id', $request_id);
+            UserRequest::delete('id', $delete_request['id']);
         }
 
         redirect('/admin/profile/delete');

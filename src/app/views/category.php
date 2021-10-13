@@ -11,13 +11,18 @@ require __DIR__ . '/layouts/header.php';?>
                         <span class="font-italic"><?= $category['description'] ?></span>
 
                         <?php if (!isGuest()): ?>
-                        <form action="" method="POST">
-                            <div class="form-group row pt-3">
-                                <div class="col-md-12">
-                                    <button type="submit" class="btn btn-sm btn-secondary">Kategoriyi takip et</button>
-                                </div>
+                        <div class="form-group row pt-3">
+                            <div class="col-md-12">
+                                <form action="" method="POST">
+                                <?php if(empty($user['category_followed'])): ?>
+                                    <button type="submit" name="submit" class="btn btn-sm btn-secondary" value="follow">Kategoriyi takip et</button>
+                                <?php else: ?>
+                                    <button type="submit" name="submit" class="btn btn-sm btn-danger" value="revert">Kategoriyi takip etmeyi bırak</button>
+                                <?php endif; ?>
+                                <input type="hidden" id="id" name="id" value="<?= $category['id'] ?>">
+                                </form>
                             </div>
-                        </form>
+                        </div>
                         <?php endif; ?>
                     </div>
                 </div>

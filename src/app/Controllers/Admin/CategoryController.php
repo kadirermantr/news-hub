@@ -120,17 +120,19 @@ class CategoryController extends Controller
 
             if (isset($users)) {
                 foreach ($users as $user) {
-                    $test = EditorCategories::where([
-                        'user_id'   => $user
-                    ]);
-                    print_r($test);
-                    exit();
-                    /*
-                        EditorCategories::create([
-                        'category_id'   => $id,
+                    $is_editor = EditorCategories::where([
                         'user_id'       => $user,
+                        'category_id'   =>  $id,
                     ]);
-                     */
+
+                    if ($is_editor) {
+                        EditorCategories::delete('user_id', $user);
+                    } else {
+                        EditorCategories::create([
+                            'user_id'        => $user,
+                            'category_id'    => $id,
+                        ]);
+                    }
                 }
             }
 

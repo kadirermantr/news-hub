@@ -1,4 +1,10 @@
 {
+  "require": {
+    "php": "^8.0",
+    "ext-pdo": "*",
+    "ext-mbstring": "*",
+    "ext-fileinfo": "*"
+  },
   "autoload": {
     "psr-4": {
       "App\\" : "app/",
@@ -8,11 +14,6 @@
     "files": [
       "app/helpers.php"
     ]
-  },
-  "require": {
-    "ext-pdo": "*",
-    "ext-mbstring": "*",
-    "ext-fileinfo": "*"
   },
   "scripts": {
     "pre-install-cmd": [

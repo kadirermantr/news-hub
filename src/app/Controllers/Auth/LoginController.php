@@ -5,6 +5,7 @@ namespace App\Controllers\Auth;
 use App\Middlewares\Authenticate;
 use App\Middlewares\RedirectAuthenticated;
 use App\Middlewares\VerifyCsrfToken;
+use App\Models\Category;
 use App\Models\User;
 use Core\Controller;
 use Core\Request;
@@ -21,7 +22,8 @@ class LoginController extends Controller
 
     public function index()
     {
-        return $this->view('auth/login', 'Oturum Aç');
+        $categories = Category::all();
+        return $this->view('auth/login', 'Oturum Aç', compact('categories'));
     }
 
     public static function login(Request $request)

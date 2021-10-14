@@ -4,6 +4,7 @@ namespace App\Controllers\Auth;
 
 use App\Middlewares\RedirectAuthenticated;
 use App\Middlewares\VerifyCsrfToken;
+use App\Models\Category;
 use App\Models\User;
 use Core\Controller;
 use Core\Request;
@@ -19,7 +20,8 @@ class RegisterController extends Controller
 
     public function index()
     {
-        return $this->view('auth/register', 'Kaydol');
+        $categories = Category::all();
+        return $this->view('auth/register', 'Kaydol', compact('categories'));
     }
 
     public function store(Request $request)

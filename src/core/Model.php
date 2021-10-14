@@ -8,7 +8,7 @@ abstract class Model
         $table = static::$table;
         return DB::table($table);
     }
-    public static function find(int $id) {
+    public static function find($id) {
         $table = static::$table;
         return DB::find($table, $id);
     }

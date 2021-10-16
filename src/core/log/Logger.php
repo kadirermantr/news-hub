@@ -2,8 +2,6 @@
 
 namespace Core\log;
 
-use App\Models\User;
-
 class Logger
 {
     public static function emergency($message, array $context = array())

@@ -34,35 +34,4 @@ class RolePermissionChecker extends Middleware
             }
         }
     }
-
-
-    /*
-
-
-     */
-
-    /*
-        public function __construct(int $role_level)
-    {
-        $this->role_level = $role_level;
-    }
-     */
-
-    /**
-     * @param Closure $next
-     * @param Request $request
-     * @return mixed
-     * @throws UnauthorizedException
-     */
-    /*
-    public function handle(Closure $next, $request)
-    {
-        // role_level doğru değilse exit();
-        // 403 ??
-
-        echo "selam role permission checker!!";
-
-        return $next($request);
-    }
-    */
 }

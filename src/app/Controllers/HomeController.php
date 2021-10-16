@@ -9,7 +9,6 @@ use App\Models\FollowedCategories;
 use App\Models\News;
 use App\Models\ReadedNews;
 use Core\Controller;
-use Core\log\Log;
 use Core\log\Logger;
 use Core\Request;
 use Core\Session;

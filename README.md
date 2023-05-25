@@ -21,10 +21,10 @@ This command adds autoload, a helper function, and requirements to the composer 
 
 ## Sample User Accounts
 - Emails: 
-  - admin@ornek.com
-  - moderator@ornek.com
-  - editor@ornek.com
-  - kullanici@ornek.com
+  - admin@test.com
+  - moderator@test.com
+  - editor@test.com
+  - user@test.com
 - Password: 123456
 
 ---

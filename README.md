@@ -1,46 +1,38 @@
-# Bitirme Projesi - Kadir Erman
-## Docker ortamını çalıştırma:
+# Graduation Project
+
+## Install
 
 ```bash
 cp .env.example .env
-docker-compose up
+docker-compose up -d
+cd ./src && composer install
 ```
 
-## Php için gerekenler:
-src klasöründeyken aşağıdaki komut çalıştırımalıdır.
-
-```bash
-composer install
-```
-
-Bu komut ile beraber autoload, helper fonksiyonu ve gereklilikler composer dosyasına eklenir. 2. kez tekrar çalıştırıldığında ise composer'da tanımlanan script ile `.env` isminde bir dosya oluşturulur. .env dosyasında veritabanı bilgileri varsayılan olarak boş bırakılmıştır. Veritabanı bilgileri aşağıda mevcuttur.
+This command adds autoload, a helper function, and requirements to the composer file. When executed for the second time, it creates a file named `.env` using the script defined in the composer. The `.env` file has the database information, which is initially left blank. The database information is provided below.
 
 - DB_HOST=`mariadb`
 - DB_DATABASE=`news`
 - DB_USERNAME=`root`
 - DB_PASSWORD=`root`
 
-## Veritabanını İçe Aktarma
-1. Phpmyadmin'de `news` isminde bir veritabanı oluşuturulmalıdır.
-2. Ana dizindeki `news.sql` dosyası phpmyadmin'den içe aktarılmalıdır.
+## Importing the Database
+1. A database named `news` should be created in PhpMyAdmin.
+2. The `news.sql` file in the root directory should be imported.
 
-## Örnek kullanıcılar:
-- E-posta adresi: admin@ornek.com
-- E-posta adresi: moderator@ornek.com
-- E-posta adresi: editor@ornek.com
-- E-posta adresi: kullanici@ornek.com
-- Parola: 123456
+## Sample User Accounts
+- Emails: 
+  - admin@ornek.com
+  - moderator@ornek.com
+  - editor@ornek.com
+  - kullanici@ornek.com
+- Password: 123456
 
 ---
 
-## Bakım modu
-Web sitesini bakım moduna almak için `.env` dosyasındaki `maintenance_mode` değişkeni true yapılmalıdır. Varsayılan olarak bu değişkenin değeri `false`'dir.
-```
-MAINTENANCE_MODE=true
-```
+## Maintenance Mode
+To put the website into maintenance mode, the `MAINTENANCE_MODE` variable in the `.env` file should be set to `true`. By default, the value of this variable is `false`.
 
 ## API
-Örnek kullanımlar:
 - http://localhost/api/getNews?id=1
 - http://localhost/api/allNews
 - http://localhost/api/allNews?category=2

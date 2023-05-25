@@ -8,11 +8,8 @@ docker-compose up -d
 cd ./src && composer install
 ```
 
-This command adds autoload, a helper function, and requirements to the composer file. When executed for the second time, it creates a file named `.env` using the script defined in the composer. The `.env` file has the database information, which is initially left blank. The database information is provided below.
+This command adds autoload, a helper function, and requirements to the composer file. When executed for the second time, it creates a file named `.env` using the script defined in the composer.
 
-- DB_HOST=`mariadb`
-- DB_DATABASE=`news`
-- DB_USERNAME=`root`
 - DB_PASSWORD=`root`
 
 ## Importing the Database

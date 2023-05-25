@@ -152,11 +152,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `lastname`, `email`, `password`, `role_level`) VALUES
-(1, 'Kadir', 'Erman', 'kadirermantr@gmail.com', '$2y$10$q5kSaFQCR5r7.aQqR0TNs.SE/0OYv1Ep..u.UV/7hA7ZAJwx7RGhe', 4),
-(2, 'Admin', 'Lastname', 'admin@test.com', '$2y$10$CA7.ahsSQnn/O/mQQhk2ueH9lwd4mCCFHSLbNfZEFfouHsSb28/de', 4),
-(3, 'Moderator', 'Lastname', 'moderator@test.com', '$2y$10$CxTIWdBVl7boJe2Zu07dK.V5HifJqy07xtxk5QBxLm2.oG4DkTaQG', 3),
-(4, 'Editor', 'Lastname', 'editor@test.com', '$2y$10$ouu/qah9XX.IaTH9eZdk9uJ2PH.Aaz5i4vvC7ss4Hb2kEwdERYG7W', 2),
-(5, 'User', 'Lastname', 'user@test.com', '$2y$10$4cJbBA4nFSs4VC4l/0XZ7umI3UB764f.m3TEghJdtefWoqnfHe.QW', 1);
+(1, 'Kadir', 'Erman', 'kadirermantr@gmail.com', '$2a$12$CTFdmIe.pPuxiKSQgIN2qerbBvc0XeHA.x0jzyIPL53uBZ886S.9C', 4),
+(2, 'Admin', 'Lastname', 'admin@test.com', '$2a$12$CTFdmIe.pPuxiKSQgIN2qerbBvc0XeHA.x0jzyIPL53uBZ886S.9C', 4),
+(3, 'Moderator', 'Lastname', 'moderator@test.com', '$2a$12$CTFdmIe.pPuxiKSQgIN2qerbBvc0XeHA.x0jzyIPL53uBZ886S.9C', 3),
+(4, 'Editor', 'Lastname', 'editor@test.com', '$2a$12$CTFdmIe.pPuxiKSQgIN2qerbBvc0XeHA.x0jzyIPL53uBZ886S.9C', 2),
+(5, 'User', 'Lastname', 'user@test.com', '$2a$12$CTFdmIe.pPuxiKSQgIN2qerbBvc0XeHA.x0jzyIPL53uBZ886S.9C', 1);
 
 -- --------------------------------------------------------
 

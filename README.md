@@ -5,7 +5,9 @@
 ```bash
 cp .env.example .env
 docker-compose up -d
-cd ./src && composer install && cp .env.example .env
+cd ./src
+composer install
+cp .env.example .env
 ```
 
 This command adds autoload, a helper function, and requirements to the composer file.

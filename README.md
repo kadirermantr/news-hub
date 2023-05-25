@@ -3,7 +3,6 @@
 ## Install
 
 ```bash
-cp .env.example .env
 docker-compose up -d
 cd ./src
 composer install

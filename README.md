@@ -14,8 +14,10 @@ This command adds autoload, a helper function, and requirements to the composer 
 - DB_PASSWORD=`root`
 
 ## Importing the Database
-1. A database named `news` should be created in PhpMyAdmin.
-2. The `news.sql` file in the root directory should be imported.
+```bash
+docker-compose exec mariadb bash
+mysql -u root -p < /docker-entrypoint-initdb.d/createdb.sql
+```
 
 ## Sample User Accounts
 - Emails: 

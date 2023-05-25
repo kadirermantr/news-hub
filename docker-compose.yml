@@ -13,8 +13,6 @@ volumes:
     driver: ${VOLUMES_DRIVER}
   docker-in-docker:
     driver: ${VOLUMES_DRIVER}
-  adminer:
-    driver: ${VOLUMES_DRIVER}
 
 services:
   php:
@@ -106,20 +104,6 @@ services:
       - "8081:80"
     depends_on:
       - mariadb
-    networks:
-      - frontend
-      - backend
-
-  adminer:
-    build: ./docker/adminer
-    environment:
-      - ADMINER_PLUGINS=${ADM_PLUGINS}
-      - ADMINER_DESIGN=${ADM_DESIGN}
-      - ADMINER_DEFAULT_SERVER=${ADM_DEFAULT_SERVER}
-    ports:
-      - "${ADM_PORT}:8080"
-    depends_on:
-      - php
     networks:
       - frontend
       - backend

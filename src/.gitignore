@@ -1,6 +1,4 @@
-/.idea
 /vendor
-.env
-composer.lock
 /public/uploads/
 /app/storage/logs/
+.env

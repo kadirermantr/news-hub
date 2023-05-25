@@ -1,6 +1,1 @@
-/data
 /.idea
-/logs
-.env
-.docker-sync
-testfile.txt

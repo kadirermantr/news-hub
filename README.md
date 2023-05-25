@@ -5,10 +5,10 @@
 ```bash
 cp .env.example .env
 docker-compose up -d
-cd ./src && composer install
+cd ./src && composer install && cp .env.example .env
 ```
 
-This command adds autoload, a helper function, and requirements to the composer file. When executed for the second time, it creates a file named `.env` using the script defined in the composer.
+This command adds autoload, a helper function, and requirements to the composer file.
 
 - DB_PASSWORD=`root`
 

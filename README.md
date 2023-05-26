@@ -13,12 +13,6 @@ This command adds autoload, a helper function, and requirements to the composer 
 
 - DB_PASSWORD=`root`
 
-## Importing the Database
-```bash
-docker-compose exec mariadb bash
-mysql -u root -p < /docker-entrypoint-initdb.d/createdb.sql
-```
-
 ## Sample User Accounts
 - Emails: 
   - admin@test.com

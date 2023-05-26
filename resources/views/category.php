@@ -36,7 +36,7 @@ require __DIR__ . '/layouts/header.php';?>
             <?php foreach($news as $post): ?>
             <div class="col mb-4">
                 <div class="card">
-                    <a href="news?id=<?= $post['id']?>" class="stretched-link text-dark" style="position: relative;">
+                    <a href="news?id=<?= $post['id']?>" class="stretched-link text-dark text-decoration-none" style="position: relative;">
                         <img src="<?php public_path('uploads/img/' . $post['image'])?>" class="img-fluid">
 
                         <div class="card-body">

@@ -14,7 +14,7 @@
 
                 <div class="dropdown">
                     <a class="nav-link dropdown-toggle text-white" href="#" role="button" id="dropdown-user" data-bs-toggle="dropdown" aria-expanded="false">
-                        Haber Kategorileri
+                        Kategoriler
                     </a>
 
                     <ul class="dropdown-menu" aria-labelledby="dropdown-user">

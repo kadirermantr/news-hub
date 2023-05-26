@@ -16,8 +16,8 @@ class RedirectAuthenticated extends Middleware
         $this->actions = $actions;
     }
 
-    public function execute()
-    {
+    public function execute(): bool
+	{
         if (empty($this->actions) || in_array(Application::$app->controller->action, $this->actions)) {
             if (!isGuest()) {
                 redirect('/', 204);

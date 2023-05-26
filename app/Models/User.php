@@ -6,26 +6,17 @@ use Core\Model;
 
 class User extends Model
 {
-    protected static $table = "users";
+    protected static string $table = "users";
 
-    public static function getRole(int $role_level)
-    {
-        switch ($role_level) {
-            case 1:
-                $role_name = "User";
-                break;
-            case 2:
-                $role_name = "Editor";
-                break;
-            case 3:
-                $role_name = "Moderator";
-                break;
-            case 4:
-                $role_name = "Admin";
-                break;
-        }
-
-        return $role_name;
+    public static function getRole(int $role_level): string
+	{
+		return match ($role_level) {
+			1 => 'User',
+			2 => 'Editor',
+			3 => 'Moderator',
+			4 => 'Admin',
+			default => 'Unknown',
+		};
     }
 
     public function getRequest(int $user_id)

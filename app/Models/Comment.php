@@ -6,7 +6,7 @@ use Core\Model;
 
 class Comment extends Model
 {
-    protected static $table = "comments";
+    protected static string $table = "comments";
 
     public function getUser(int $user_id)
     {
@@ -18,8 +18,8 @@ class Comment extends Model
         return News::find($news_id);
     }
 
-    public function getSummary(string $data)
-    {
+    public function getSummary(string $data): string
+	{
         $end = strlen($data) > 30 ? "..." : "";
         return mb_substr($data, 0, 30) . $end;
     }

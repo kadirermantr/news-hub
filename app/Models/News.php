@@ -6,7 +6,7 @@ use Core\Model;
 
 class News extends Model
 {
-    protected static $table = "news";
+    protected static string $table = "news";
 
     public function getUser(int $user_id)
     {
@@ -18,8 +18,8 @@ class News extends Model
         return Category::find($category_id);
     }
 
-    public function getSummary(string $data)
-    {
+    public function getSummary(string $data): string
+	{
         $end = strlen($data) > 200 ? "..." : "";
         return mb_substr($data, 0, 200) . $end;
     }

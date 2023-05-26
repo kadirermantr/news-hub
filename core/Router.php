@@ -15,13 +15,13 @@ class Router
         $this->request = $request;
     }
 
-    public function get($path, $callback)
-    {
+    public function get($path, $callback): void
+	{
         $this->routes['get'][$path] = $callback;
     }
 
-    public function post($path, $callback)
-    {
+    public function post($path, $callback): void
+	{
         $this->routes['post'][$path] = $callback;
     }
 
@@ -31,14 +31,15 @@ class Router
      */
     public function resolve()
     {
+		// Check if the application is in maintenance mode
+		if (env('MAINTENANCE_MODE')) {
+			Session::close();
+			throw new ServiceUnavailableException();
+		}
+
         $path = $this->request->getPath();
         $method = $this->request->method();
         $callback = $this->routes[$method][$path] ?? false;
-
-        if (env('MAINTENANCE_MODE') == true) {
-            Session::close();
-            throw new ServiceUnavailableException();
-        }
 
         if ($callback === false) {
             throw new NotFoundException();
@@ -56,7 +57,6 @@ class Router
             $controller->action = $callback[1];
             $callback[0] = $controller;
 
-            $request = new Request();
             $middlewares = $controller->getMiddlewares() ?? [];
 
             foreach ($middlewares as $middleware) {

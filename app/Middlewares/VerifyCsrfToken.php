@@ -21,8 +21,8 @@ class VerifyCsrfToken extends Middleware
     /**
      * @throws PageExpiredException
      */
-    public function execute()
-    {
+    public function execute(): bool
+	{
         if (empty($this->actions) || in_array(Application::$app->controller->action, $this->actions)) {
             $token = Session::get('token');
             $postToken = $_POST["_token"] ?? '';

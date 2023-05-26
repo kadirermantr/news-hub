@@ -20,8 +20,8 @@ class Authenticate extends Middleware
     /**
      * @throws UnauthorizedException
      */
-    public function execute()
-    {
+    public function execute(): bool
+	{
         if (empty($this->actions) || in_array(Application::$app->controller->action, $this->actions)) {
             if (isGuest()) {
                 throw new UnauthorizedException();

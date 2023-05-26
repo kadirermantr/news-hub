@@ -22,8 +22,8 @@ class Application
         $this->router = new Router($this->request);
     }
 
-    public function run()
-    {
+    public function run(): void
+	{
         try {
             echo $this->router->resolve();
         } catch(Exception $e) {

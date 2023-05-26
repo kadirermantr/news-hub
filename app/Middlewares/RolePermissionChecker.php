@@ -22,8 +22,8 @@ class RolePermissionChecker extends Middleware
     /**
      * @throws UnauthorizedException
      */
-    public function execute()
-    {
+    public function execute(): bool
+	{
         $user_role_level = user('role_level');
 
         if (empty($this->actions) || in_array(Application::$app->controller->action, $this->actions)) {
@@ -33,5 +33,7 @@ class RolePermissionChecker extends Middleware
                 throw new UnauthorizedException();
             }
         }
+
+		return true;
     }
 }

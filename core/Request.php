@@ -4,7 +4,7 @@ namespace Core;
 
 class Request
 {
-    private array $array = [];
+    private array $array;
 
     public function __construct()
     {
@@ -16,18 +16,18 @@ class Request
         return $this->array[$key] ?? null;
     }
 
-    public function set($key, $value)
-    {
+    public function set($key, $value): void
+	{
         $this->array[$key] = $value;
     }
 
-    public function merge(array $array)
-    {
+    public function merge(array $array): void
+	{
         $this->array = array_merge($this->array, $array);
     }
 
-    public function all()
-    {
+    public function all(): array
+	{
         return $this->array;
     }
 
@@ -43,13 +43,13 @@ class Request
         return substr($path, 0, $position);
     }
 
-    public function method()
-    {
+    public function method(): string
+	{
         return strtolower($_SERVER['REQUEST_METHOD']);
     }
 
-    public function getBody()
-    {
+    public function getBody(): array
+	{
         $body = [];
 
         if ($this->method() === 'get') {

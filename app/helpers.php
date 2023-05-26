@@ -24,7 +24,7 @@ function validate_input(): bool
         }
     }
 
-    if (isset($_POST["email"])  && !empty($_POST['email'])) {
+    if (!empty($_POST['email'])) {
         $email = test_input($_POST["email"]);
 
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -50,11 +50,10 @@ function validate_input(): bool
     return true;
 }
 
-function test_input($data) {
+function test_input($data): string
+{
     $data = trim($data);
-    $data = stripslashes($data);
-
-    return $data;
+	return stripslashes($data);
 }
 
 function redirect(string $url, ?int $statusCode = 200)
@@ -80,7 +79,7 @@ function user(string $key)
     return $user[$key] ?? null;
 }
 
-function csrf()
+function csrf(): string
 {
     $token = bin2hex(random_bytes(32));
     Session::add('token', $token);
@@ -88,7 +87,7 @@ function csrf()
     return $token;
 }
 
-function isImage($file)
+function isImage($file): bool
 {
     $tmp_path = $file['tmp_name'];
     $file_info = finfo_open(FILEINFO_MIME_TYPE);

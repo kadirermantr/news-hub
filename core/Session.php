@@ -4,13 +4,13 @@ namespace Core;
 
 class Session
 {
-    public static function init()
-    {
+    public static function init(): void
+	{
         session_start();
     }
 
-    public static function add($key, $value)
-    {
+    public static function add($key, $value): void
+	{
         $_SESSION[$key] = $value;
     }
 
@@ -30,13 +30,13 @@ class Session
             unset($_SESSION[$key]);
     }
 
-    public static function close()
-    {
+    public static function close(): void
+	{
         session_destroy();
     }
 
-    public static function getStatus()
-    {
+    public static function getStatus(): int
+	{
         return session_status();
     }
 }

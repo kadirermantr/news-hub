@@ -6,5 +6,5 @@ use Core\Model;
 
 class FollowedCategories extends Model
 {
-    protected static $table = "user_followed_categories";
+    protected static string $table = "user_followed_categories";
 }

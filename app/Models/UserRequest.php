@@ -6,7 +6,7 @@ use Core\Model;
 
 class UserRequest extends Model
 {
-    protected static $table = "requests";
+    protected static string $table = "requests";
 
     public function getUser(int $user_id)
     {

@@ -6,7 +6,7 @@ use Core\Model;
 
 class Category extends Model
 {
-    protected static $table = "categories";
+    protected static string $table = "categories";
 
 
     public function getFollower(int $category_id)

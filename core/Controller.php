@@ -12,8 +12,8 @@ abstract class Controller
         return Application::$app->router->view($view, $title, $data);
     }
 
-    public function middleware(Middleware $middleware)
-    {
+    public function middleware(Middleware $middleware): void
+	{
         $this->middlewares[] = $middleware;
     }
 

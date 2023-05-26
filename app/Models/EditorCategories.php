@@ -6,5 +6,5 @@ use Core\Model;
 
 class EditorCategories extends Model
 {
-    protected static $table = "editor_categories";
+    protected static string $table = "editor_categories";
 }

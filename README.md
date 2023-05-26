@@ -1,4 +1,4 @@
-# Graduation Project
+# News Hub
 
 ## Install
 

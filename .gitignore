@@ -3,5 +3,5 @@
 /docker/logs
 /vendor
 /public/uploads/
-/app/storage/logs/
+/storage/logs/
 .env

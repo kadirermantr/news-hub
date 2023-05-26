@@ -49,7 +49,7 @@ class Log implements LoggerInterface
 
     public function log($level, $message, array $context = array())
     {
-        $directory = __DIR__ . '/../../app/storage/logs/app.log';
+        $directory = __DIR__ . '/../../storage/logs/app.log';
 
         if (isGuest()) {
             $user = "Anonim kullanıcı";

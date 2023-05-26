@@ -124,7 +124,7 @@ class UserController extends Controller
 
     public function showActivity()
     {
-        $log_file = __DIR__ . '/../../../app/storage/logs/app.log';
+        $log_file = __DIR__ . '/../../../storage/logs/app.log';
         $logs = file($log_file);
         $private_logs = '';
 

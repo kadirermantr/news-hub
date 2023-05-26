@@ -2,7 +2,6 @@
 
 namespace Core;
 
-use App\Exceptions\ServiceUnavailableException;
 use App\Models\Category;
 use Exception;
 
@@ -37,15 +36,5 @@ class Application
             $categories = Category::all();
             echo $this->router->view("_error", "Error | $code", compact('message', 'code', 'categories'));
         }
-     }
-
-    public function getController(): Controller
-    {
-        return $this->controller;
-    }
-
-    public function setController(Controller $controller): void
-    {
-        $this->controller = $controller;
-    }
+	}
 }

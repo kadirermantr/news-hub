@@ -29,3 +29,7 @@ To put the website into maintenance mode, the `MAINTENANCE_MODE` variable in the
 - http://localhost/api/getNews?id=1
 - http://localhost/api/allNews
 - http://localhost/api/allNews?category=2
+
+---
+
+**Note:** You can access the first version of this project from [here](https://github.com/teknasyon-bootcamp/bitirme-projesi-kadir).

@@ -9,7 +9,7 @@ composer install
 cp .env.example .env
 ```
 
-This command adds autoload, a helper function, and requirements to the composer file.
+This command adds autoload, a helper function, and requirements to the composer file. It also creates a database and imports demo records.
 
 - DB_PASSWORD=`root`
 

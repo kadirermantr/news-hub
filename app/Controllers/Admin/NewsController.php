@@ -50,7 +50,7 @@ class NewsController extends Controller
         $category_id = $request->getBody()["category_id"] ?? null;
         $file = $request->get("image");
 
-        if (isImage($file) == false) {
+        if (! isImage($file)) {
             $error_msg[] = "Resim kabul edilmedi.";
             Session::add('error', $error_msg);
             redirect($_SERVER['REQUEST_URI']);

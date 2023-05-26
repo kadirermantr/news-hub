@@ -57,7 +57,7 @@ services:
         - no_proxy
     volumes:
       - ./src/:/var/www:cached
-      - ./logs/nginx/:/var/log/nginx
+      - ./docker/logs/nginx/:/var/log/nginx
       - ./docker/nginx/sites/:/etc/nginx/sites-available
       - ./docker/nginx/ssl/:/etc/nginx/ssl
     ports:
@@ -77,7 +77,7 @@ services:
         - https_proxy
         - no_proxy
     volumes:
-      - ./data/mariadb:/var/lib/mysql
+      - ./docker/data/mariadb:/var/lib/mysql
       - ./docker/mariadb/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
     ports:
       - "3306"

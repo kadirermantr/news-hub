@@ -13,7 +13,7 @@ This command adds autoload, a helper function, and requirements to the composer 
 
 - DB_PASSWORD=`root`
 
-## Sample User Accounts
+## User Accounts
 - Emails: 
   - admin@test.com
   - moderator@test.com

@@ -8,7 +8,7 @@ require __DIR__ . '/layouts/header.php';?>
                 <div class="card">
                     <div class="card-header text-center">
                         <strong class="text-uppercase"><?= $category['name'] ?> Haberleri</strong><br />
-                        <span class="font-italic"><?= $category['description'] ?></span>
+                        <?= $category['description'] ?>
 
                         <?php if (!isGuest()): ?>
                         <div class="form-group row pt-3">

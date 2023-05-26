@@ -40,12 +40,12 @@ class UserController extends Controller
             }
         }
 
-        return $this->view('auth/admin/user', 'Kullanıcılar', compact('filtered_users'));
+        return $this->view('auth/admin/user', 'Users', compact('filtered_users'));
     }
 
     public function create()
     {
-        return $this->view('auth/admin/user-create', 'Kullanıcı ekle');
+        return $this->view('auth/admin/user-create', 'Add new user');
     }
 
     public function store(Request $request)
@@ -60,7 +60,7 @@ class UserController extends Controller
         ]);
 
         if (!empty($isEmail)) {
-            Session::add('error', ["E-Posta adresi kullanılıyor."]);
+            Session::add('error', ["There is already a user with the same email."]);
             redirect('/admin/user/create');
             exit();
         }
@@ -94,7 +94,7 @@ class UserController extends Controller
         $user[0]['role'] = (new User())->getRole($user[0]['role_level']);;
         $user = $user[0];
 
-        return $this->view('auth/admin/user-edit', 'Kullanıcıyı düzenle', compact('user'));
+        return $this->view('auth/admin/user-edit', 'Edit user', compact('user'));
     }
 
     public function update(Request $request)
@@ -105,7 +105,7 @@ class UserController extends Controller
         $role_level = $request->getBody()["new_role"] ?? null;
 
         if (is_null($role_level)) {
-            $error_msg[] = "Rol seçilmedi.";
+            $error_msg[] = "No role selected.";
             Session::add('error', $error_msg);
             redirect($_SERVER['REQUEST_URI']);
         }
@@ -116,7 +116,7 @@ class UserController extends Controller
             ]);
             redirect('/admin/user');
         } else {
-            Session::add('error', ["Kendi yetkinize eşit ve yüksek kullanıcıları değiştiremezsiniz."]);
+            Session::add('error', ["You cannot modify users with equal or higher privileges than your own."]);
             redirect('/admin/user/edit?id=' . $id);
             exit();
         }
@@ -131,7 +131,7 @@ class UserController extends Controller
         if (user('role_level') == 3) {
             for ($i=0; $i < count($logs); $i++) {
                 $first = strtok($logs[$i], ' ');
-                if ($first != "Moderatör" && $first != "Admin") {
+                if ($first != "Moderator" && $first != "Admin") {
                     $private_logs .= $logs[$i];
                 }
             }
@@ -139,6 +139,6 @@ class UserController extends Controller
             $private_logs = file_get_contents($log_file);
         }
 
-        return $this->view('auth/admin/user-activitiy', 'Aktiviteler', compact('private_logs'));
+        return $this->view('auth/admin/user-activitiy', 'Activities', compact('private_logs'));
     }
 }

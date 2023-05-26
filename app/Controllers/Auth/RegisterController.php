@@ -21,7 +21,7 @@ class RegisterController extends Controller
     public function index()
     {
         $categories = Category::all();
-        return $this->view('auth/register', 'Kaydol', compact('categories'));
+        return $this->view('auth/register', 'Register', compact('categories'));
     }
 
     public function store(Request $request)
@@ -36,7 +36,7 @@ class RegisterController extends Controller
         ]);
 
         if (!empty($isEmail)) {
-            Session::add('error', ["E-Posta adresi kullanılıyor."]);
+            Session::add('error', ["There is already a user with the same email"]);
             redirect('/register');
             exit();
         }

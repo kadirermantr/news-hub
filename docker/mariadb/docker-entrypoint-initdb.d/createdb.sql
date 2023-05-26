@@ -1,33 +1,33 @@
 CREATE DATABASE IF NOT EXISTS `news` COLLATE 'utf8_general_ci';
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'root';
 
--- --------------------------------------------------------
-
 USE `news`;
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `categories`
 --
 
-CREATE TABLE IF NOT EXISTS `categories` (
+CREATE TABLE `categories` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `description` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `categories`
 --
 
 INSERT INTO `categories` (`id`, `name`, `description`) VALUES
-(1, 'Teknoloji', 'Teknoloji ile ilgili haberler.'),
-(2, 'Sağlık', 'Sağlık ile ilgili haberler.'),
-(3, 'Ekonomi', 'Ekonomi ile ilgili haberler.'),
-(4, 'Sanat', 'Sanat ile ilgili haberler.'),
-(5, 'Dünya', 'Dünya ile ilgili haberler.'),
-(6, 'Spor', 'Spor ile ilgili haberler.'),
-(7, 'Magazin', 'Magazin ile ilgili haberler.'),
-(8, 'Yaşam', 'Yaşam ile ilgili haberler.');
+(1, 'Technology', 'Technology news includes updates on gadgets, devices, software releases, scientific discoveries, and innovations in computing, electronics, telecommunications, artificial intelligence, robotics, and the internet.'),
+(2, 'Health', '&#13;&#10;Health news includes updates on medical breakthroughs, research findings, disease outbreaks, public health initiatives, healthcare policies, and advancements in healthcare technology and treatments.'),
+(3, 'Economy', '&#13;&#10;Economy news includes updates on financial markets, business trends, government policies, trade, employment, and economic growth.'),
+(4, 'Art', 'Art news covers updates on exhibitions, events, artists, market trends, and creative developments in various art forms such as visual arts, performing arts, literature, and music.'),
+(5, 'World', 'World news refers to updates and information about current events, developments, and issues of global significance happening across different countries and regions around the world.'),
+(6, 'Sport', 'Sport news refers to updates and information about various sports, including events, matches, tournaments, athlete performances, team updates, and sports-related news and developments.'),
+(7, 'Magazine', 'Magazine news refers to updates and information published in magazines, covering a wide range of topics such as lifestyle, fashion, entertainment, health, culture, and current events.'),
+(8, 'Life', 'Life news refers to updates and information about various aspects of human life, including lifestyle, health, relationships, personal development, and current events that impact individuals&#39; daily lives.');
 
 -- --------------------------------------------------------
 
@@ -35,22 +35,22 @@ INSERT INTO `categories` (`id`, `name`, `description`) VALUES
 -- Table structure for table `comments`
 --
 
-CREATE TABLE IF NOT EXISTS `comments` (
+CREATE TABLE `comments` (
   `id` int(11) NOT NULL,
   `content` text NOT NULL,
   `date` timestamp NOT NULL DEFAULT current_timestamp(),
   `user_id` int(11) DEFAULT NULL,
   `news_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `comments`
 --
 
 INSERT INTO `comments` (`id`, `content`, `date`, `user_id`, `news_id`) VALUES
-(1, 'Sabırsızlıkla bekliyoruz :)', '2021-10-13 20:34:50', NULL, 1),
-(2, 'Hoşgeldin kraliçe', '2021-10-13 20:34:57', 1, 1),
-(3, 'Bu sıralar hep sıkıntı çıkıyor.', '2021-10-13 20:35:42', NULL, 4);
+(1, 'We are eagerly waiting :)', '2021-10-13 17:34:50', NULL, 1),
+(2, 'Welcome queen!', '2021-10-13 17:34:57', 1, 1),
+(3, 'Troubles keep arising these days.\"', '2021-10-13 17:35:42', NULL, 4);
 
 -- --------------------------------------------------------
 
@@ -58,11 +58,11 @@ INSERT INTO `comments` (`id`, `content`, `date`, `user_id`, `news_id`) VALUES
 -- Table structure for table `editor_categories`
 --
 
-CREATE TABLE IF NOT EXISTS `editor_categories` (
+CREATE TABLE `editor_categories` (
   `id` int(11) NOT NULL,
   `category_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -70,7 +70,7 @@ CREATE TABLE IF NOT EXISTS `editor_categories` (
 -- Table structure for table `news`
 --
 
-CREATE TABLE IF NOT EXISTS `news` (
+CREATE TABLE `news` (
   `id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
   `content` text NOT NULL,
@@ -78,29 +78,27 @@ CREATE TABLE IF NOT EXISTS `news` (
   `category_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `image` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `news`
 --
 
 INSERT INTO `news` (`id`, `title`, `content`, `date`, `category_id`, `user_id`, `image`) VALUES
-(1, 'Adele, yeni single&#39;ı &#34;Easy on Me&#34; ile dönüyor', 'Ünlü şarkıcı Adele, uzun zaman sonra yeni single’ı “Easy on Me” ile 15 Ekim’de piyasaya dönecek. &#13;&#10;&#13;&#10;The Guardian’da yer alan habere göre, 33 yaşındaki Adele, 15 Ekim’de piyasaya çıkacak yeni single’ı Easy on Me’yi 20 saniyelik siyah beyaz bir kliple duyurdu. Klipte, Adele eski bir teyp kasetini arabasının müzik setine yerleştiriyor ve arabasının penceresinden nota sayfaları uçuşmaya başlıyor.&#13;&#10;&#13;&#10;Adele’in yeni single’ından sonra bir albümü de piyasaya çıkacak.&#13;&#10;&#13;&#10;21 albümü Adele, Guinness Rekorlar Kitabı&#39;na çok sayıda rekor ile girmişti. İngiltere&#39;de bir yıl içinde üç milyondan fazla kopya satan ilk sanatçı olmuştu. Hello şarkısı, 2017 Grammy Ödülleri&#39;nde &#34;Yılın Kaydı&#34;, &#34;Yılın Şarkısı&#34; ve &#34;En İyi Pop Solo Performansı&#34; ödüllerini kazanırken; 25 albümü, &#34;En İyi Pop Vokal Albümü&#34; ödülünün yanında &#34;Yılın Albümü&#34; kategorisinde de Grammmy kazandı. Böylece Adele, 2012&#39;de 21 albümüyle kazandığı ödülün ardından bu seneki zaferiyle Grammy Ödülleri tarihinde iki defa &#34;Yılın Albümü&#34; ödülünü kazanan ikinci kadın sanatçı oldu.', '2021-10-13', 4, 1, 'adele-61673dd023c81.jpg'),
-(2, 'Her gün aspirin kullanmak iç kanama riskini artırıyor', 'ABD&#39;de hastalıkları önleme konusunda gönüllü uzmanlardan oluşan bir heyet, 60 yaş üstü kişilerin her gün düşük dozda aspirin kullanmasının, iç kanama riskini artırdığı uyarısında bulundu.&#13;&#10;&#13;&#10;ABD Önleyici Hizmetler Görev Gücü adlı kurula göre bu nedenle 60 yaş üstü kişiler için kalp krizi ve inme riskini azaltma umuduyla her gün düşük dozda aspirin kullanmanın zararları, yararlarından daha fazla.&#13;&#10;&#13;&#10;Kurul ayrıca düşük dozda aspirin kullanımının, kalın bağırsak kanserinden ölüm ihtimalini azalttığı yolunda da yeterli kanıt olmadığını açıkladı.&#13;&#10;&#13;&#10;Aynı kurul 2016 yılında ise ilk kalp krizi ve inme vakalarını önlemede düşük doz aspirin kullanılmasının yararlı olduğu yönünde tavsiyede bulunmuştu.', '2021-10-13', 2, 1, 'aspirin-61673e919a622.jpg'),
-(3, 'Dışarıdan yemek sipariş verenler dikkat!', 'ABD&#39;de yapılan yeni bir araştırma, tüketici ürünlerindeki sentetik kimyasalların saçtığı tehlikeyi ortaya koydu. Uzmanlar uyarıyor! Ölümcül derecede olabilecek &#34;ftalat&#34; (esnekliklerini artırmak için plastiklere eklenen bir madde) isimli bu kimyasallar, yemek paketlerinden, çocuk oyuncaklarına pek çok yerde var.&#13;&#10;&#13;&#10;Gıda saklama kapları, şampuan, makyaj, parfüm ve çocuk oyuncakları gibi yüzlerce tüketici ürününde bulunan ftalat adı verilen sentetik kimyasallar, 55-64 yaş arasındaki 100 bin ölümün nedeni olabilir. Bu iddia, ABD’de yapılan bir araştırmanın sonucunda ortaya çıktı.&#13;&#10;&#13;&#10;Environmental Pollution dergisinde yayımlanan yeni bir araştırmaya göre, yüksek ftalat seviyesine maruz kalan kişilerin erken ölüm riskinin, kardiyovasküler hastalıklara bağlı ölüm riskinden daha çok olduğu ortaya çıkarıldı.&#13;&#10;&#13;&#10;&#34;Vücudun hormon üretim mekanizmasına müdahale ediyor&#34;&#13;&#10;Araştırma, bu durumun ABD’ye ekonomik üretkenlik kaybı nedeniyle her yıl yaklaşık 40 ila 47 milyar dolara mal olabileceğini öne sürdü.&#13;&#10;&#13;&#10;Çevre tıbbı profesörü Dr. Leonardo Trasande, &#34;Bu çalışma, plastiğin insan vücudu üzerindeki etkisine ilişkin daha önceki araştırmalara katkıda bulunuyor ve plastik kullanımını azaltmak veya tamamen ortadan kaldırmak için uygulanması gereken adımları gösteriyor.&#34; dedi.&#13;&#10;&#13;&#10;New York’taki NYU Langone Health’de yapılan araştırmaya göre, ftalatların vücudun endokrin sistem olarak bilinen hormon üretim mekanizmasına müdahale ettiği belirlenirken, bunların &#34;gelişim, üreme, beyin, bağışıklık ve diğer problemlerle&#34; bağlantılı olduğu da ortaya çıkardı.&#13;&#10;&#13;&#10;Ulusal Çevre Sağlığı Bilimleri Enstitüsü de araştırmayla ilgili küçük hormonal bozulmaların bile &#34;önemli gelişimsel ve biyolojik etkilere&#34; neden olabileceğini belirtirken, ftalat kullanımına dikkat çekti.', '2021-10-13', 2, 1, '1634041083184-sip-61673ec7d519c.jpg'),
-(4, 'Snapchat&#39;e erişim sorunu', 'Popüler paylaşım sitesi Snapchat’e erişim problemi yaşanıyor. Snapchat&#39;ten yapılan açıklamada &#34;Sorun yaşadığının farkındayız, araştırıyoruz&#34; denildi.&#13;&#10;&#13;&#10;Snapchat’e erişim sorunu yaşanıyor.&#13;&#10;&#13;&#10;Birçok kullanıcı popüler uygulamaya erişim sağlayamadıkları geri bildiriminde bulundu.&#13;&#10;&#13;&#10;Problemin saat 14.33 itibatıyla başladığı ve yaklaşık 3 saattir sürdüğü, Türkiye&#39;deki kullanıcıları da etkilediği belirtildi.&#13;&#10;&#13;&#10;Snapchat&#39;ten açıklama &#13;&#10;Snapchat&#39;ten yapılan açıklamada &#34;Bazı Snapchat kullanıcılarının şu anda uygulamayı kullanırken sorun yaşadığının farkındayız, araştırıyoruz&#34; denildi.', '2021-10-13', 1, 1, 'snap-61673ef25efb8.jpg'),
-(5, 'iPhone 13 üretiminde çip krizi etkisi: Apple hisseleri düştü', 'Apple, eylül ayında yeni iPhone 13 modellerini tanıtmıştı.&#13;&#10;&#13;&#10;Küresel bilgisayar çipi yetersizliği nedeniyle iPhone 13 üretim hedeflerine ulaşamama riski yaşanırken Apple hisseleri de düşüş yaşadı.&#13;&#10;&#13;&#10;BBC&#39;de yer alan habere göre, elektronik evi Apple, 2021&#39;nin son çeyreğinde 90 milyon iPhone üretmeyi hedefliyordu. Öte yandan Apple&#39;ın ortaklarına bu hedefin yaklaşık 10 milyon daha düşük olabileceğini bildirdiği ortaya çıkmıştı.&#13;&#10;&#13;&#10;Haberin çıkmasıyla Apple&#39;ın hisseleri yüzde 1.2 oranında düştü.&#13;&#10;&#13;&#10;Yarı iletken üreticileri Broadcom ve Texas Instruments da Apple&#39;a çip yetiştirme sorunları yaşadıklarını açıkladıktan sonra hisselerinde yüzde 1&#39;lik düşüş yaşadı.&#13;&#10;&#13;&#10;Apple, eylül ayında yeni iPhone 13 modellerini tanıtmıştı.&#13;&#10;&#13;&#10;Çip sorunu&#13;&#10;Çok sayıda endüstride milyonlarca cihazın çalışması bilgisayar çiplerine bağlı ve yarı iletken üretici fabrikalar şu anda talebe yetişmeye çalışıyor. Dünya genelinde yaşanan çip sorunu, akıllı telefon üretcilerini, araba ve oyun konsolu endüstrilerini etkiledi.', '2021-10-13', 1, 1, 'apple-61673f1561c18.jpg'),
-(6, 'Ünlü şarkıcı Emani 22, yaşamını yitirdi', 'ABD&#39;li şarkıcı Emani Johnson, 22 yaşında yaşamını yitirdi. Genç şarkıcının ölüm nedeni henüz açıklanmadı.&#13;&#10;&#13;&#10;Emani 22 olarak bilinen ünlü R&#38;B şarkıcısı Emani Johnson&#39;ın ölümü dün gece açıklandı.&#13;&#10;&#13;&#10;27 Aralık 1998 tarihinde Los Angeles&#39;ta doğan Emani, şarkıcılığının yanı sıra dansçılık da yapıyordu. Emani, 2020 yılında The Color Red albümünü yayınlamıştı.&#13;&#10;&#13;&#10;Rapçi Bhad Bhabie sosyal medyadan yaptığı paylaşımda &#34; Ne söyleyeceğimi bile bilmiyorum. Yaşananlar bana gerçek gibi gelmiyor. Neredeyse her günümü seninle birlikte geçirdim. Benim için anlamın büyüktü. Sen benim esin kaynağımdın, senin hep özleyeceğim&#34; yazdı.', '2021-10-13', 7, 1, 'emani-61673f3c7a6c6.jpg'),
-(7, 'Demet Akalın, &#34;Gelinim Mutfakta&#34; programından ayrıldı', 'Kanal D&#39;de yayınlanan Gelinim Mutfakta&#39;nın sunucusu Demet Akalın, programdan ayrıldığını açıkladı. &#13;&#10;&#13;&#10;Kanal D’de hafta içi her gün yayınlanan Gelinim Mutfakta’nın ilk sunucusu Fatih Ürek, 2. Sayfa programına konuk oldu. Ürek, bir dönem çok yakın dostu olan Demet Akalın&#39;ın Gelinim Mutfakta’dan ayrılacağını açıkladı.&#13;&#10;&#13;&#10;Akalın programa bağlanarak &#34;O hiçbir şey bilmeden benim adıma neden konuşuyor?&#34; diyerek tepki gösterdi.&#13;&#10;&#13;&#10;&#34;10 gün önce ayrıldım&#34;&#13;&#10;Fatih Ürek, bu soruya yanıt vermezken Akalın ise o iddiayı doğruladı. Akalın Gelinim Mutfakta’dan ayrıldığını söyleyen Ürek&#39;i onayladı. Akalın açıklamasında &#34;Ben disiplinli kadınım. Ben 5 gün konser üstüne 3 gün 15 saat çalışamam. Ben 2 gün diye anlaştım. 10 gün önce ayrıldım. Beni bırakın Gülben&#39;i alın Songül Karlı&#39;yı alın dedim. Fatih bile geri alabilir&#34; dedi. Ürek ise &#34;Allah korusun&#34; dedi.', '2021-10-13', 7, 1, 'demet-61673f747385c.jpg'),
-(8, 'Fransa&#39;da bir cami daha kapatılacak', 'Camide, 110 öğrencisi bulunan Kur&#39;an kursunun yer aldığı ifade edilirken, kursta &#34;silahlı cihadın&#34; öneminin anlatıldığı ileri sürüldü...&#13;&#10;&#13;&#10;Fransa&#39;nın Allonnes kentinde, bir caminin &#34;aşırı fikirler savunulduğu&#34; gerekçesiyle kapatılacağı belirtildi.&#13;&#10;&#13;&#10;Sarthe Valiliğinden yapılan yazılı açıklamada, 300 kişilik cemaate sahip camide &#34;radikal İslamcı harekete&#34; bağlı veya yakın kişilerin bulunduğu, vaazlarda terör eylemleri düzenlemenin, şiddetin, nefretin, ayrımcılığın, &#34;şehit&#34; olmanın ve &#34;şeriatın&#34; tesis edilmesinin teşvik edildiği iddia edildi.&#13;&#10;&#13;&#10;Camide, 110 öğrencisi bulunan Kur&#39;an kursunun yer aldığı ifade edilen açıklamada, kursta &#34;silahlı cihadın&#34; öneminin anlatıldığı ileri sürüldü.&#13;&#10;&#13;&#10;Açıklamada, bunun üzerine İçişleri Bakanı Gerald Darmanin&#39;in talebiyle bu caminin kapatılması için gerekli prosedürlerin başlatıldığı aktarıldı.&#13;&#10;&#13;&#10;Le Figaro gazetesinin konuyla ilgili haberinde, bu camiyle bağlantılı 8 kişinin de banka hesaplarına el konulacağı kaydedildi.', '2021-10-13', 5, 1, 'cami-61673fb6aa043.jpg'),
-(9, 'İklim krizi: yüzlerce kişinin ölebileceği uyarısında bulundu', 'David Shukman - BBC Bilim Editörü&#13;&#10;&#13;&#10;İngiltere Çevre Ajansı, ülke genelinde seller nedeniyle yüzlerce kişinin hayatını kaybedebileceği uyarısında bulundu.&#13;&#10;&#13;&#10;Ajansın hazırladığı rapora göre İngiltere iklim değişikliğinin etkilerine hazır değil.&#13;&#10;&#13;&#10;Bu yıl Almanya&#39;da sellerde onlarca kişi hayatını kaybetmişti.&#13;&#10;&#13;&#10;Ajans, İngiltere&#39;de iklim değişikliğinin etkilerine hazırlık yapılmaması durumunda bu tür sellerin &#34;er ya da geç yaşanacağını&#34; açıkladı.&#13;&#10;&#13;&#10;&#39;Ya adapte olacağız, ya öleceğiz&#39;&#13;&#10;İngiltere Çevre Ajansı Başkanı Emma Howard Boyd, &#34;Ya koşullara adapte olacağız, ya da öleceğiz&#34; dedi.&#13;&#10;&#13;&#10;Yayımlanmadan önce BBC&#39;nin incelediği rapordaki kıyametvari ifadelerin, hükümetleri ve şirketleri sel, kuraklık ve deniz seviyelerindeki artış gibi tehditlere karşı harekete geçirmesi umuluyor.&#13;&#10;&#13;&#10;İngiltere Çevre, Gıda ve Köy İşleri Bakanlığı ülkeyi küresel ısınmanın etkilerinden korumak için mühim önlemler aldıklarını aktardı.&#13;&#10;&#13;&#10;Mevcut koşullar İngiltere&#39;nin 2100 yılında 3 derece daha sıcak olabileceğini gösteriyor.&#13;&#10;&#13;&#10;Fakat 2 derecelik artışın bile yıkıcı etkileri olabilir.&#13;&#10;&#13;&#10;Ajansa göre 2050 yılında beklenen değişimler şöyle:', '2021-10-13', 5, 1, 'iklim-61673fedb2a50.jpg'),
-(10, 'Cristiano Ronaldo rekora doymuyor!', '2022 FIFA Dünya Kupası Avrupa Elemeleri&#39;nde ekim ayı mücadelesi A, B, C, D, F ve I gruplarında yapılan maçlarla tamamlandı. Portekizli yıldız Cristiano Ronaldo 10. kez 3 gol birden attı.&#13;&#10;&#13;&#10;Cristiano Ronaldo&#39;nun &#34;hat-trick&#34; yaptığı karşılaşmada Portekiz, sahasında Lüksemburg&#39;u 5-0 mağlup etti. Ev sahibi ekibin diğer gollerini Bruno Fernandes ve Palhinha kaydetti.&#13;&#10;&#13;&#10;36 yaşındaki Ronaldo, milli takım kariyerinde 10. kez sahadan &#34;hat-trick&#34; yaparak ayrıldı.&#13;&#10;&#13;&#10;Dünya Kupası Elemeleri&#39;nde 36 gole ulaşan Ronaldo&#39;nun kariyerindeki toplam &#34;hat-trick&#34; sayısı 58 oldu.&#13;&#10;&#13;&#10;Cristiano Ronaldo, Portekiz milli formasıyla 115 gole ulaştı. Avrupa&#39;da en çok milli takım forması giyen oyuncular arasında 182 maçla Ronaldo zirvede yer alıyor.', '2021-10-13', 6, 1, 'cristiano-616740232a496.jpg'),
-(11, 'Fenerbahçe&#39;den tarihi kâr', 'Dört büyükler finansal sonuçlarını açıkladı. Fenerbahçe, kripto para geliriyle tarihinin en yüksek çeyreklik kârını elde etti. Galatasaray kâr, Beşiktaş ve Trabzonspor ise zarar açıkladı.&#13;&#10;&#13;&#10;Dört büyük kulüp, haziran-ağustos dönemi bilançolarını açıkladı. Fenerbahçe kripto paradan gelen gelir sayesinde 255,5 milyon TL&#39;lik rekor kâr açıkladı. Galatasaray da bu dönemde kâr açıklarken, Beşiktaş ve Trabzonspor zarar etti.&#13;&#10;&#13;&#10;Hisseleri Borsa İstanbul&#39;da işlem gören dört büyük kulüp, 2021 yılı üçüncü çeyrek bilançolarını açıkladı.&#13;&#10;&#13;&#10;Bir önceki çeyrekte 201,8 milyon TL&#39;lik net zarar açıklayan Fenerbahçe, üçüncü çeyrekte 255,5 milyon TL&#39;lik rekor net kâr elde etti.&#13;&#10;&#13;&#10;Fenerbahçe, kripto para alım satım platformu Paribu ile yapılan ortaklık kapsamında düzenlenen ‘Fenerbahçe token&#39; ön satışından ağustosta 268,5 milyon TL gelir elde ettiğini açıklamıştı. Üçüncü çeyrekteki kâr rakamı da bu sayede ortaya çıktı.&#13;&#10;&#13;&#10;Kulübün bir önceki dönemde 120 milyon TL olan dönem geliri, Fenerbahçe Token sayesinde 471 milyon TL&#39;ye yükseldi.', '2021-10-13', 6, 1, 'fenerbahce-616740491bfa7.jpg'),
-(12, 'Neymar: 2022 benim oynayacağım son Dünya Kupası olacak', 'Dünyaca ünlü yıldız Neymar, 2022 Dünya Kupası&#39;nın kendisinin katılacağı son Dünya Kupası olduğunu dile getirdi.&#13;&#10;&#13;&#10;PSG&#39;nin yıldız futbolcusu Neymar, 2022 yılında Katar&#39;da düzenlenecek Dünya Kupası&#39;nın kendisinin son fırsatı olduğuna inanıyor. Brezilyalı yıldız 2022 yılındaki turnuvadan sonra başka bir Dünya Kupası&#39;nda oynamayı beklemediğini, oyunun gerginliğinin vücuduna ve zihnine zarar verdiğini açıkladı.&#13;&#10;&#13;&#10;DAZN&#39;ye konuşan Neymar, &#34;Sanırım bu benim oynayacağım son Dünya Kupası, bu turnuvayı bir son olarak görüyorum çünkü artık futbolla uğraşacak kadar mental gücüm var mı bilmiyorum. Bu yüzden ülkemle birlikte kazanmak, küçüklüğümden beri en büyük hayalimi gerçekleştirmek için her şeyi yapacağım&#34; ifadelerinde bulundu.', '2021-10-13', 6, 1, 'neymar-6167407d0ccc3.jpg'),
-(13, 'İtalya&#39;da &#39;eşit işe eşit ücret&#39; yasa tasarısı Temsilciler Meclisi&#39;nden geçti', 'İtalya&#39;da iş dünyasında kadınlara erkeklerden daha az maaş ödenmesine karşı hazırlanan yasa tasarısı parlamentonun alt kanadı Temsilciler Meclisi&#39;nde kabul edildi.&#13;&#10;Eşit ücret yasası olarak anılan yasal düzenleme, kadınların işgücüne katılımını ve şirketlerin kadınlarla erkeklere eşit maaş uygulamasını teşvik etmek amacıyla hazırlandı.&#13;&#10;&#13;&#10;Merkez-soldaki Demokratik Parti&#39;den milletvekili Chiara Gribaudo&#39;nun öncülüğünde hazırlanan yasa tasarısı bugün Temsilciler Meclisi&#39;nde oybirliğiyle kabul edildi.&#13;&#10;&#13;&#10;Tasarının yasalaşması için parlamentonun diğer kanadı Senato&#39;dan da geçmesi gerekiyor.&#13;&#10;&#13;&#10;Tasarı yasalaşırsa işverenler, eşit işe eşit ücret politikası uygulayarak ve yükselme fırsatı açısından cinsiyetler arasındaki farkı azaltarak &#34;cinsiyet eşitliği sertifikası&#34; almaya hak kazanacak.&#13;&#10;&#13;&#10;Bu sertifikayı alan şirketlere sosyal güvenlik katkı payı indirimi gibi mali avantajlar sağlanacak.&#13;&#10;&#13;&#10;50&#39;den fazla çalışanı olan şirketler düzenli olarak personel raporu hazırlamak zorunda olacak. Bu raporların eksik ya da hatalı olduğu belirlenirse şirketlere para cezası verilebilecek.&#13;&#10;&#13;&#10;Çalışan sayısı 50&#39;nin altında olan şirketler ise bu raporu gönüllü olarak hazırlayarak teşviklerden faydalanabilecek.&#13;&#10;&#13;&#10;Yasa tasarısını hazırlayan Demokratik Partili milletvekili Chiara Gribaudo, tasarının Temsilciler Meclisi&#39;nde kabul edilmesinin ardından sosyal medyada bir kutlama mesajı paylaştı ve &#34;Temsilciler Meclisi, eşit ücret yasa tasarısını oybirliğiyle onayladı! Bunu, parlamento içinde ve dışında mücadele eden tüm kadınlara adıyoruz&#34; dedi. Gribaudo mesajını, &#34;Eşit iş, eşit ücret, eşitiz&#34; diye bitirdi.', '2021-10-13', 3, 1, 'italya-6167415d223ef.jpg'),
-(14, 'Hazine ve Maliye Bakanlığından &#34;döviz bürolarında kimlik tespiti&#34; açıklaması', 'Hazine ve Maliye Bakanlığı, basında döviz bürolarına yönelik tebliğe ilişkin gerçeği yansıtmayan bazı iddialara yer verildiğini belirterek, &#34;Söz konusu yeni uygulamanın sektördeki kayıt dışılığın azaltılması ve kurumsallaşma düzeyinin artırılması ile uluslararası düzenlemelere uyum dışında başka hiçbir amacı yoktur. Tebliğ ile yapılan değişiklik, döviz piyasalarına ilişkin herhangi bir müdahaleyi kesinlikle içermemektedir.&#34; ifadelerini kullandı.&#13;&#10;&#13;&#10;Bakanlıktan yapılan açıklamada, bugün bazı basın yayın organlarında ve sosyal medya mecralarında döviz bürolarına yönelik Yetkili Müesseseler Tebliği&#39;ne ilişkin gerçeği yansıtmayan, gerçekle uzaktan yakından ilgisi olmayan bazı iddialara yer verildiği belirtildi.&#13;&#10;&#13;&#10;12 Ekim 2021 tarihli tebliğ değişikliğine kadar kambiyo mevzuatı kapsamında döviz alım satımında bir kimlik bildirim yükümlülüğü bulunmadığı anımsatılan açıklamada, &#34;Daha önce MASAK mevzuatı kapsamında işlem tutarı ya da birbiriyle bağlantılı birden fazla işlemin toplam tutarı 75 bin lirayı aşan işlemler ile vergi mevzuatı uyarınca 3 bin doları veya eşitini aşan işlemlerde kimlik tespiti zorunluluğu bulunmaktaydı.&#34; bilgisi verildi.', '2021-10-13', 3, 1, 'doviz-6167417f0f50b.jpg'),
-(15, 'Adele: Londra&#39;dan asla ev alamam, çok pahalı', 'Altı yıl aradan sonra albüm çıkarmaya hazırlanan Adele, çok pahalı olduğu için Londra&#39;dan ev alamadığını, onun yerine Los Angeles&#39;a taşındığını açıkladı. En çok kazanan kadın şarkıcıların arasında gösteriyen Adele&#39;in sözleri sosyal medyada gündem oldu.', '2021-10-13', 8, 1, 'adl-616741d5d0823.jpg'),
-(16, 'ABD&#39;nin Texas eyaletinde tüm Covid aşısı zorunlulukları yasaklandı', 'ABD’nin Texas eyaletinde Vali Greg Abbott, bütün Covid aşısı zorunlulukların kaldıran bir kararnameye imza attı. Texas’ta hiçbir kurum, özel şirket çalışanlarından ya da müşterilerinden Covid-19 aşısı yaptırmalarını bekleyemeyecek. &#13;&#10;&#13;&#10;Texas Tribune’de yer alan habere göre, kararı duyuran Vali Greg Abbott “Covid-19 aşısı güvenli, etkili ve virüse karşı en güçlü savunmamız ancak her zaman gönüllülük esasına dayanmalı ve asla zora olmamalı” yazan bir tweet attı. &#13;&#10;&#13;&#10;Abbott, daha önce özel işletmelerin çalışanları için Covid aşısını zorunlu tutmasının önünü açmıştı. &#13;&#10;&#13;&#10;Eyalette hükûmet kurumlarında aşı zorunluluğu başka bir kararnameyle engellenmiş, bu karara karşı dava açılmıştı. Eyaletin yasama organı, işletmelerin müşterilerden aşı belgesi talep etmesini de yasaklamıştı.&#13;&#10;&#13;&#10;ABD genelinde ise Joe Biden yönetimi, 100’den fazla çalışanı olan tüm işletmelerin aşıyı zorunlu tutması ya da haftalık PCR testi vermesini istemişti. Biden yönetimi aynı zamanda federal çalışanlar için de aşıyı zorunlu tutmuştu.', '2021-10-13', 5, 1, 'as-61674223283ae.jpg');
+(1, 'Adele is making a comeback with her new single &#34;Easy on Me.&#34;', 'According to The Guardian, renowned singer Adele will be making a comeback with her new single &#34;Easy on Me&#34; on October 15th.&#13;&#10;&#13;&#10;In a 20-second black and white teaser clip, Adele announced her upcoming single &#34;Easy on Me.&#34; In the video, she is seen inserting an old cassette tape into her car&#39;s music player, and as she rolls down the car window, pages of sheet music start flying out.&#13;&#10;&#13;&#10;Following the release of her new single, Adele will also be releasing an album.&#13;&#10;&#13;&#10;Adele&#39;s album &#34;21&#34; entered the Guinness World Records with numerous records. She became the first artist to sell over three million copies in a year in the UK. Her song &#34;Hello&#34; won the Record of the Year, Song of the Year, and Best Pop Solo Performance awards at the 2017 Grammy Awards, while her album &#34;25&#34; won the Grammy for Best Pop Vocal Album and Album of the Year. With this year&#39;s victory, Adele became the second female artist in Grammy Awards history to win the Album of the Year award twice, following her win in 2012 with the album &#34;21.&#34;', '2021-10-13', 4, 2, 'adele-61673dd023c81.jpg'),
+(3, 'Attention to those ordering food delivery from outside!', 'A new study conducted in the United States revealed the dangers posed by synthetic chemicals in consumer products. Experts are warning! These chemicals, such as &#34;phthalates&#34; (substances added to plastics to increase flexibility), which can be potentially lethal, are found in various places ranging from food packaging to children&#39;s toys.&#13;&#10;&#13;&#10;Phthalates, synthetic chemicals found in hundreds of consumer products such as food storage containers, shampoo, makeup, perfume, and children&#39;s toys, could be the cause of 100,000 deaths among individuals aged 55-64. This claim emerged as a result of a study conducted in the United States.&#13;&#10;&#13;&#10;According to a new study published in the journal Environmental Pollution, individuals exposed to high levels of phthalates have a higher risk of premature death compared to the risk of death from cardiovascular diseases.&#13;&#10;&#13;&#10;&#34;It interferes with the body&#39;s hormone production mechanism.&#34;&#13;&#10;The study suggests that this situation could cost the United States approximately $40 to $47 billion annually due to economic productivity loss.&#13;&#10;&#13;&#10;Dr. Leonardo Trasande, a professor of environmental medicine, stated, &#34;This study contributes to previous research on the impact of plastics on the human body and demonstrates the steps that need to be taken to reduce or eliminate plastic use.&#34;&#13;&#10;&#13;&#10;The study conducted at NYU Langone Health in New York revealed that phthalates interfere with the body&#39;s endocrine system, which is responsible for hormone production, and they are linked to &#34;development, reproduction, brain, immune, and other problems.&#34;&#13;&#10;&#13;&#10;The National Institute of Environmental Health Sciences also highlighted the importance of phthalate usage, stating that even minor hormonal disruptions could lead to &#34;significant developmental and biological effects.&#34;', '2021-10-13', 2, 2, '1634041083184-sip-61673ec7d519c.jpg'),
+(4, 'Access problem with Snapchat', 'There is an access problem to the popular social media platform Snapchat. In a statement from Snapchat, it was acknowledged that there is an issue and they are investigating it.&#13;&#10;&#13;&#10;There is an access problem to Snapchat.&#13;&#10;&#13;&#10;Many users have reported that they are unable to access the popular application.&#13;&#10;&#13;&#10;The issue started around 14:33 and has been ongoing for approximately 3 hours, affecting users in Turkey as well.&#13;&#10;&#13;&#10;Statement from Snapchat&#13;&#10;In a statement from Snapchat, it was mentioned that they are aware that some Snapchat users are currently experiencing issues while using the application, and they are investigating the matter.', '2021-10-13', 1, 2, 'snap-61673ef25efb8.jpg'),
+(5, 'Impact of chip crisis on iPhone 13 production: Apple shares declined.', 'Apple introduced the new iPhone 13 models in September.&#13;&#10;&#13;&#10;Due to the global computer chip shortage, there is a risk of not reaching the production targets for iPhone 13, and Apple&#39;s shares have also experienced a decline.&#13;&#10;&#13;&#10;According to a report by BBC, Apple aimed to produce 90 million iPhones in the last quarter of 2021. However, it was revealed that Apple informed its partners that this target could be approximately 10 million units lower.&#13;&#10;&#13;&#10;Following the news, Apple&#39;s shares dropped by 1.2 percent.&#13;&#10;&#13;&#10;Semiconductor manufacturers Broadcom and Texas Instruments also experienced a 1 percent decline in their shares after revealing chip supply issues with Apple.', '2021-10-13', 1, 2, 'apple-61673f1561c18.jpg'),
+(6, 'Famous singer Emani 22 has passed away', 'American singer Emani Johnson, known as Emani 22, has passed away at the age of 22. The cause of her death has not been disclosed yet.&#13;&#10;&#13;&#10;Emani Johnson, the renowned R&#38;B singer also known as Emani 22, was announced to have passed away last night.&#13;&#10;&#13;&#10;Born on December 27, 1998, in Los Angeles, Emani was not only a singer but also a dancer. She released her album titled &#34;The Color Red&#34; in 2020.&#13;&#10;&#13;&#10;Rapper Bhad Bhabie shared a post on social media, expressing her disbelief and stating, &#34;I don&#39;t even know what to say. It doesn&#39;t feel real. I spent almost every day with you. You meant so much to me. You were my inspiration, and I will always miss you.&#34;', '2021-10-13', 7, 2, 'emani-61673f3c7a6c6.jpg'),
+(7, 'Demet Akalın has left the &#34;Gelinim Mutfakta&#34; program', 'Demet Akalın, the host of the show &#34;Gelinim Mutfakta&#34; broadcasted on Kanal D, has announced her departure from the program. Fatih Ürek, the original host of the show, revealed Akalın&#39;s departure during an appearance on the program &#34;2. Sayfa.&#34;&#13;&#10;&#13;&#10;Akalın expressed her discontent with Ürek&#39;s comments and confirmed that she had indeed left &#34;Gelinim Mutfakta&#34; ten days ago. She cited her disciplined work schedule and the need for rest as reasons for her departure.&#13;&#10;&#13;&#10;Akalın also suggested other names as potential replacements for her role.', '2021-10-13', 7, 2, 'demet-61673f747385c.jpg'),
+(9, 'Climate crisis: warned of the possibility of hundreds of people dying', 'The UK Environment Agency has issued a warning that hundreds of people could lose their lives due to floods across the country.&#13;&#10;&#13;&#10;According to the agency&#39;s report, the UK is not prepared for the impacts of climate change.&#13;&#10;&#13;&#10;Earlier this year, Germany experienced the loss of dozens of lives due to floods.&#13;&#10;&#13;&#10;The agency has stated that if adequate preparations for the effects of climate change are not made, such floods will inevitably occur in the UK.&#13;&#10;&#13;&#10;&#39;Adapt or die&#39;&#13;&#10;Emma Howard Boyd, Chair of the UK Environment Agency, said, &#34;We either adapt to the conditions or we die.&#34;', '2021-10-13', 5, 2, 'iklim-61673fedb2a50.jpg'),
+(10, 'Cristiano Ronaldo is insatiable when it comes to breaking records!', 'In the October matches of the 2022 FIFA World Cup European qualifiers, Cristiano Ronaldo, the Portuguese star, scored a hat-trick for the 10th time. Portugal defeated Luxembourg 5-0 in the match where Ronaldo achieved this feat.&#13;&#10;&#13;&#10;With his 36th goal in World Cup qualifiers, Ronaldo&#39;s total number of hat-tricks in his career reached 58. He has now scored 115 goals for the Portuguese national team and holds the record for the most appearances in European national team matches with 182 games.', '2021-10-13', 6, 2, 'cristiano-616740232a496.jpg'),
+(11, 'Fenerbahçe achieves historic profit', 'The &#34;big four&#34; clubs in Turkish football have announced their financial results. Fenerbahçe has achieved its highest quarterly profit in history, thanks to income from cryptocurrency. Galatasaray reported a profit, while Beşiktaş and Trabzonspor declared losses.&#13;&#10;&#13;&#10;The four major clubs disclosed their financial statements for the period of June-August. Fenerbahçe announced a record profit of 255.5 million TL, driven by income from cryptocurrency. Galatasaray also reported a profit for this period, while Beşiktaş and Trabzonspor incurred losses.&#13;&#10;&#13;&#10;As the shares of these clubs are traded on Borsa Istanbul, they released their third-quarter financial statements for 2021.&#13;&#10;&#13;&#10;Fenerbahçe, which had previously reported a net loss of 201.8 million TL in the previous quarter, achieved a record net profit of 255.5 million TL in the third quarter.&#13;&#10;&#13;&#10;In August, Fenerbahçe announced that it generated an income of 268.5 million TL from the pre-sale of &#34;Fenerbahçe tokens&#34; in partnership with the cryptocurrency trading platform Paribu. This income contributed to the profit figure in the third quarter.&#13;&#10;&#13;&#10;The club&#39;s revenue for the period, which was previously 120 million TL, increased to 471 million TL with the introduction of Fenerbahçe Tokens.', '2021-10-13', 6, 2, 'fenerbahce-616740491bfa7.jpg'),
+(12, 'Neymar: 2022 will be my last World Cup', 'World-renowned star Neymar has expressed that the 2022 World Cup will be his last World Cup participation.&#13;&#10;&#13;&#10;Neymar, the star player of PSG, believes that the upcoming 2022 World Cup in Qatar will be his final opportunity. The Brazilian star stated that he does not expect to play in another World Cup after the tournament in 2022, as he believes the pressure of the game takes a toll on his body and mind.&#13;&#10;&#13;&#10;Speaking to DAZN, Neymar said, &#34;I think this will be my last World Cup to play. I see this tournament as a conclusion because I don&#39;t know if I will have the mental strength to deal with football anymore. Therefore, I will do everything to win it with my country and fulfill my biggest dream since childhood.&#34;&#13;&#10;&#13;&#10;Please note that this information is based on a hypothetical scenario and may not reflect the actual decision or future plans of Neymar.', '2021-10-13', 6, 2, 'neymar-6167407d0ccc3.jpg'),
+(13, 'The &#34;equal pay for equal work&#34; bill has passed in the Italian Chamber of Deputies', 'A bill aimed at addressing the gender pay gap in the Italian business world has been approved by the lower house of parliament, the Chamber of Deputies. The legislation, known as the Equal Pay Act, was designed to promote women&#39;s workforce participation and encourage companies to implement equal pay practices for women and men.&#13;&#10;&#13;&#10;The bill, championed by Democratic Party member Chiara Gribaudo, was unanimously approved in the Chamber of Deputies today.&#13;&#10;&#13;&#10;For the bill to become law, it also needs to pass through the other house of parliament, the Senate.&#13;&#10;&#13;&#10;If enacted, employers who implement equal pay policies and reduce gender disparities in terms of advancement opportunities will be eligible to receive a &#34;gender equality certificate.&#34;&#13;&#10;&#13;&#10;Companies that obtain this certificate will benefit from financial incentives such as a reduction in social security contributions.&#13;&#10;&#13;&#10;Companies with over 50 employees will be required to regularly prepare personnel reports. If these reports are found to be incomplete or inaccurate, fines may be imposed on the companies.&#13;&#10;&#13;&#10;Companies with fewer than 50 employees can voluntarily prepare these reports to take advantage of the incentives.&#13;&#10;&#13;&#10;After the bill&#39;s approval in the Chamber of Deputies, Democratic Party member Chiara Gribaudo shared a celebratory message on social media, dedicating the achievement to all women who have fought for this cause. She concluded her message with the statement, &#34;Equal work, equal pay, we are equal.&#34;', '2021-10-13', 3, 2, 'italya-6167415d223ef.jpg'),
+(14, 'Identification of individuals at currency exchange offices', 'The Ministry of Treasury and Finance stated that certain media outlets and social media platforms have published misleading and unsubstantiated claims regarding the regulation on currency exchange offices. The ministry emphasized that the new regulation aims solely to reduce informal activities in the sector, improve institutionalization, and ensure compliance with international standards. The statement clarified that the regulation does not involve any form of intervention in the foreign exchange markets.&#13;&#10;&#13;&#10;The ministry further explained that prior to the amendment of the regulation on October 12, 2021, there was no requirement for identification in foreign exchange transactions within the framework of exchange regulations. However, identification was mandatory for transactions that exceeded a transaction amount of 75,000 Turkish lira or the equivalent in multiple interconnected transactions, as well as for transactions exceeding $3,000 or its equivalent under tax legislation.', '2021-10-13', 3, 2, 'doviz-6167417f0f50b.jpg'),
+(15, 'Adele: I can never afford to buy a house in London', 'After a six-year hiatus, Adele, who is preparing to release a new album, revealed that she couldn&#39;t afford to buy a house in London due to high costs. Instead, she disclosed that she moved to Los Angeles. Adele, known for being among the highest-earning female singers, sparked discussions on social media with her statements.', '2021-10-13', 8, 2, 'adl-616741d5d0823.jpg'),
+(16, 'All COVID vaccine mandates have been banned in the state of Texas in the United States', 'Governor Greg Abbott of the state of Texas in the United States has signed an executive order lifting all COVID vaccine mandates. No institution in Texas, whether public or private, can require their employees or customers to receive the COVID-19 vaccine.&#13;&#10;&#13;&#10;According to a report by the Texas Tribune, Governor Greg Abbott announced the decision in a tweet stating, &#34;The COVID-19 vaccine is safe, effective, and our strongest defense against the virus, but it should always be voluntary and never forced.&#34;&#13;&#10;&#13;&#10;Abbott had previously allowed private businesses to mandate COVID vaccines for their employees.&#13;&#10;&#13;&#10;A separate executive order had already prohibited vaccine mandates in government entities in the state, leading to legal challenges. The state legislature had also banned businesses from requiring proof of vaccination from customers.&#13;&#10;&#13;&#10;On a national level, the Biden administration had called for all businesses with over 100 employees to mandate vaccines or require weekly PCR testing. The Biden administration had also made the COVID vaccine mandatory for federal employees.', '2021-10-13', 5, 2, 'as-61674223283ae.jpg');
 
 -- --------------------------------------------------------
 
@@ -108,11 +106,18 @@ INSERT INTO `news` (`id`, `title`, `content`, `date`, `category_id`, `user_id`, 
 -- Table structure for table `requests`
 --
 
-CREATE TABLE IF NOT EXISTS `requests` (
+CREATE TABLE `requests` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `date` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `requests`
+--
+
+INSERT INTO `requests` (`id`, `user_id`, `date`) VALUES
+(3, 2, '2023-05-26 06:01:21');
 
 -- --------------------------------------------------------
 
@@ -120,14 +125,14 @@ CREATE TABLE IF NOT EXISTS `requests` (
 -- Table structure for table `users`
 --
 
-CREATE TABLE IF NOT EXISTS `users` (
+CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `lastname` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `role_level` int(11) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
@@ -146,11 +151,11 @@ INSERT INTO `users` (`id`, `name`, `lastname`, `email`, `password`, `role_level`
 -- Table structure for table `user_followed_categories`
 --
 
-CREATE TABLE IF NOT EXISTS `user_followed_categories` (
+CREATE TABLE `user_followed_categories` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `category_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `user_followed_categories`
@@ -159,7 +164,8 @@ CREATE TABLE IF NOT EXISTS `user_followed_categories` (
 INSERT INTO `user_followed_categories` (`id`, `user_id`, `category_id`) VALUES
 (1, 1, 4),
 (2, 1, 1),
-(4, 1, 8);
+(4, 1, 8),
+(5, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -167,11 +173,11 @@ INSERT INTO `user_followed_categories` (`id`, `user_id`, `category_id`) VALUES
 -- Table structure for table `user_readed_news`
 --
 
-CREATE TABLE IF NOT EXISTS `user_readed_news` (
+CREATE TABLE `user_readed_news` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `news_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `user_readed_news`
@@ -179,11 +185,16 @@ CREATE TABLE IF NOT EXISTS `user_readed_news` (
 
 INSERT INTO `user_readed_news` (`id`, `user_id`, `news_id`) VALUES
 (1, 1, 1),
-(2, 1, 2),
 (3, 1, 13),
 (4, 1, 15),
 (5, 1, 16),
-(6, 1, 4);
+(6, 1, 4),
+(7, 2, 16),
+(8, 2, 15),
+(9, 2, 9),
+(10, 2, 14),
+(11, 2, 7),
+(12, 2, 10);
 
 --
 -- Indexes for dumped tables
@@ -262,7 +273,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `editor_categories`
@@ -280,7 +291,7 @@ ALTER TABLE `news`
 -- AUTO_INCREMENT for table `requests`
 --
 ALTER TABLE `requests`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -292,13 +303,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `user_followed_categories`
 --
 ALTER TABLE `user_followed_categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `user_readed_news`
 --
 ALTER TABLE `user_readed_news`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Constraints for dumped tables

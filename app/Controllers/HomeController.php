@@ -27,12 +27,12 @@ class HomeController extends Controller
 
             $news[$i]['user'] = $user['name'] . " " . $user['lastname'];
             $news[$i]['category'] = $category['name'];
-            $news[$i]['date'] = date("d/m/Y", strtotime($news[$i]['date']));
+            $news[$i]['date'] = date("Y/m/d", strtotime($news[$i]['date']));
             $news[$i]['content'] = $content;
         }
 
-        Logger::info('Anasayfayı görüntülendi.');
-        return $this->view('home', 'Anasayfa', compact('news', 'categories'));
+        Logger::info('Home page is viewed.');
+        return $this->view('home', 'Home', compact('news', 'categories'));
     }
 
     /**
@@ -73,20 +73,20 @@ class HomeController extends Controller
 
             if ($id === $comments[$i]['news_id']) {
                 if (is_null($comments[$i]['user_id'])) {
-                    $comments[$i]['user'] = "Anonim";
+                    $comments[$i]['user'] = "Anonym";
                 } else {
                     $user = (new Comment())->getUser($comments[$i]['user_id']);
                     $comments[$i]['user'] = $user['name'] . " " . $user['lastname'];
                 }
 
-                $comments[$i]['date'] = date("d/m/Y - H:i", strtotime($comments[$i]['date']));
+                $comments[$i]['date'] = date("Y/m/d - H:i", strtotime($comments[$i]['date']));
                 $newsComments[] = $comments[$i];
             }
         }
 
         $news = $news[0];
 
-        return $this->view('news', 'Haber', compact('news','categories', 'newsComments'));
+        return $this->view('news', 'News', compact('news','categories', 'newsComments'));
     }
 
     public function storeComment(Request $request)
@@ -130,7 +130,7 @@ class HomeController extends Controller
         ]);
 
         if (empty($news)) {
-            Session::add('error', ['Bu kategoride hiç haber yok.']);
+            Session::add('error', ['No news in this category.']);
         }
 
         $news = array_reverse($news);
@@ -140,7 +140,7 @@ class HomeController extends Controller
             $user = (new News())->getUser($news[$i]['user_id']);
 
             $news[$i]['user'] = $user['name'] . " " . $user['lastname'];
-            $news[$i]['date'] = date("d/m/Y", strtotime($news[$i]['date']));
+            $news[$i]['date'] = date("Y/m/d", strtotime($news[$i]['date']));
             $news[$i]['content'] = $content;
         }
 
@@ -157,7 +157,7 @@ class HomeController extends Controller
             }
 
         }
-        return $this->view('category', $category['name'] . ' Haberleri', compact('category', 'categories', 'news', 'user'));
+			return $this->view('category', $category['name'] . ' News', compact('category', 'categories', 'news', 'user'));
     }
 
     public function followCategory(Request $request)

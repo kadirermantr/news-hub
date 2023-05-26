@@ -7,7 +7,7 @@ require __DIR__ . '/layouts/header.php';?>
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header text-center">
-                        <strong class="text-uppercase"><?= $category['name'] ?> Haberleri</strong><br />
+                        <strong class="text-uppercase"><?= $category['name'] ?> News</strong><br />
                         <?= $category['description'] ?>
 
                         <?php if (!isGuest()): ?>
@@ -15,9 +15,9 @@ require __DIR__ . '/layouts/header.php';?>
                             <div class="col-md-12">
                                 <form action="" method="POST">
                                 <?php if(empty($user['category_followed'])): ?>
-                                    <button type="submit" name="submit" class="btn btn-sm btn-secondary" value="follow">Kategoriyi takip et</button>
+                                    <button type="submit" name="submit" class="btn btn-sm btn-secondary" value="follow">Follow the category</button>
                                 <?php else: ?>
-                                    <button type="submit" name="submit" class="btn btn-sm btn-danger" value="revert">Kategoriyi takip etmeyi bırak</button>
+                                    <button type="submit" name="submit" class="btn btn-sm btn-danger" value="revert">Unfollow the category</button>
                                 <?php endif; ?>
                                 <input type="hidden" id="id" name="id" value="<?= $category['id'] ?>">
                                 </form>

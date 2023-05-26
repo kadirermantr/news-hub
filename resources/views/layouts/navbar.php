@@ -9,12 +9,12 @@
         <div class="collapse navbar-collapse" id="navbars">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="<?= env('APP_URL'); ?>">Anasayfa</a>
+                    <a class="nav-link active" aria-current="page" href="<?= env('APP_URL'); ?>">Home</a>
                 </li>
 
                 <div class="dropdown">
                     <a class="nav-link dropdown-toggle text-white" href="#" role="button" id="dropdown-user" data-bs-toggle="dropdown" aria-expanded="false">
-                        Kategoriler
+                        Categories
                     </a>
 
                     <ul class="dropdown-menu" aria-labelledby="dropdown-user">
@@ -29,19 +29,19 @@
             <div class="navbar-collapse">
                 <div class="navbar-nav ml-auto">
                 <?php if (isGuest()): ?>
-                    <li class='nav-item mr-3'><a href="/register" class="nav nav-link text-white">Kaydol</a></li>
-                    <li class='nav-item'><a href="/login" class="nav nav-link text-white">Oturum Aç</a></li>
+                    <li class='nav-item mr-3'><a href="/register" class="nav nav-link text-white">Register</a></li>
+                    <li class='nav-item'><a href="/login" class="nav nav-link text-white">Login</a></li>
                 <?php else: ?>
                     <div class="dropdown">
                         <a class="nav-link dropdown-toggle text-white" href="#" role="button" id="dropdown-user" data-bs-toggle="dropdown" aria-expanded="false">
-                            Merhaba, <?php echo user('name') ?> <?php echo user('lastname') ?>
+                            Hello, <?php echo user('name') ?> <?php echo user('lastname') ?>
                         </a>
 
                         <ul class="dropdown-menu" aria-labelledby="dropdown-user">
-                            <a class="dropdown-item" href="/admin/profile">Profili güncelle</a>
-                            <a class="dropdown-item" href="/admin">Kontrol paneli</a>
+                            <a class="dropdown-item" href="/admin/profile">Update Profile</a>
+                            <a class="dropdown-item" href="/admin">Control Panel</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="/logout">Oturumu kapat</a>
+                            <a class="dropdown-item" href="/logout">Logout</a>
                         </ul>
                     </div>
                 <?php endif; ?>

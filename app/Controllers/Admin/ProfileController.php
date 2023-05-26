@@ -23,7 +23,7 @@ class ProfileController extends Controller
             'id'    => $id
         ])[0];
 
-        return $this->view('auth/admin/user-profile', 'Profil', compact('user'));
+        return $this->view('auth/admin/user-profile', 'Profile', compact('user'));
     }
 
     public function update(Request $request)
@@ -42,7 +42,7 @@ class ProfileController extends Controller
         ])[0];
 
         if (!empty($isEmail) && $isEmail !== $user) {
-            Session::add('error', ["E-Posta adresi kullanılıyor."]);
+            Session::add('error', ["There is already a user with the same email"]);
             redirect('/admin/profile');
             exit();
         }
@@ -53,7 +53,7 @@ class ProfileController extends Controller
             'email'     => $email,
         ]);
 
-        Session::add('success', "Kullanıcı bilgileri güncellendi.");
+        Session::add('success', "The user information has been updated.");
         redirect('/admin/profile');
     }
 
@@ -66,7 +66,7 @@ class ProfileController extends Controller
         ])[0];
         $user['request'] = (new User())->getRequest($id);
 
-        return $this->view('auth/admin/user-profile-delete', 'Hesabı Sil', compact('user'));
+        return $this->view('auth/admin/user-profile-delete', 'Delete Account', compact('user'));
     }
 
     public function store(Request $request)

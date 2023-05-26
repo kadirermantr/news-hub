@@ -22,8 +22,8 @@ class DB
             $pdo = new PDO($dsn, $username, $password);
             return $pdo;
         } catch (PDOException $e) {
-            echo "Veritabanı hatası " . $e->getMessage();
-            Logger::emergency('Veritabanına bağlanamadı.', [false]);
+            echo "Database error " . $e->getMessage();
+            Logger::emergency('Failed to connect to the database.', [false]);
             exit();
         }
     }

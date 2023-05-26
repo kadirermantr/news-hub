@@ -12,13 +12,13 @@ class User extends Model
     {
         switch ($role_level) {
             case 1:
-                $role_name = "Kullanıcı";
+                $role_name = "User";
                 break;
             case 2:
-                $role_name = "Editör";
+                $role_name = "Editor";
                 break;
             case 3:
-                $role_name = "Moderatör";
+                $role_name = "Moderator";
                 break;
             case 4:
                 $role_name = "Admin";

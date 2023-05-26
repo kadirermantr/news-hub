@@ -35,7 +35,7 @@ class Application
             }
 
             $categories = Category::all();
-            echo $this->router->view("_error", "Hata | $code", compact('message', 'code', 'categories'));
+            echo $this->router->view("_error", "Error | $code", compact('message', 'code', 'categories'));
         }
      }
 

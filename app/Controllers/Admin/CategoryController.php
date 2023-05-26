@@ -24,12 +24,12 @@ class CategoryController extends Controller
     {
         $categories = Category::all();
 
-        return $this->view('auth/admin/category', 'Kategoriler', compact('categories'));
+        return $this->view('auth/admin/category', 'Categories', compact('categories'));
     }
 
     public function create()
     {
-        return $this->view('auth/admin/category-create', 'Kategori ekle');
+        return $this->view('auth/admin/category-create', 'Add category');
     }
 
     public function store(Request $request)
@@ -42,7 +42,7 @@ class CategoryController extends Controller
         ]);
 
         if (!empty($isCategory)) {
-            Session::add('error', ["Aynı isimde bir kategori zaten var."]);
+            Session::add('error', ["There is already a category with the same name."]);
             redirect('/admin/category/create');
             exit();
         }
@@ -90,7 +90,7 @@ class CategoryController extends Controller
         $category = $category[0];
 
 
-        return $this->view('auth/admin/category-edit', 'Kategoriyi düzenle', compact('category',  'users'));
+        return $this->view('auth/admin/category-edit', 'Edit category', compact('category',  'users'));
     }
 
     public function update(Request $request)
@@ -113,7 +113,7 @@ class CategoryController extends Controller
             ])[0];
 
             if (!empty($isCategory) && $isCategory !== $category) {
-                Session::add('error', ["Aynı isimde bir kategori zaten var."]);
+                Session::add('error', ["There is already a category with the same name."]);
                 redirect('/admin/category/edit?id=' . $id);
                 exit();
             }

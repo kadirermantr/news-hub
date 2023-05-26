@@ -6,7 +6,7 @@
 
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/admin">Kontrol Paneli</a></li>
+                        <li class="breadcrumb-item"><a href="/admin">Control Panel</a></li>
                         <li class="breadcrumb-item active" aria-current="page"><?= $title ?></li>
                     </ol>
                 </nav>
@@ -16,10 +16,10 @@
                         <table class="table caption-top table-hover">
                             <thead>
                             <tr>
-                                <th scope="col">Yazar</th>
-                                <th scope="col">Yorum</th>
-                                <th scope="col">Haber</th>
-                                <th scope="col">Tarih</th>
+                                <th scope="col">Author</th>
+                                <th scope="col">Comment</th>
+                                <th scope="col">News</th>
+                                <th scope="col">Date</th>
                                 <th scope="col"></th>
                             </tr>
                             </thead>

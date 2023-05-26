@@ -18,7 +18,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="py-2 text-danger"><u>Takip ettiğim kategorilerde son haberler</u></h5>
+                        <h5 class="py-2 text-danger"><u>Latest news in the categories I follow</u></h5>
 
                         <?php foreach($news as $post): ?>
                             <?php if ($post['is_following']): ?>
@@ -41,7 +41,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="py-2 text-danger"><u>Yorumlarım</u></h5>
+                        <h5 class="py-2 text-danger"><u>My Comments</u></h5>
 
                         <?php foreach($comments as $comment): ?>
                             <?php if ($comment['user_id'] === user('id')): ?>
@@ -67,7 +67,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="py-2 text-danger"><u>Okuduğum haberler</u></h5>
+                        <h5 class="py-2 text-danger"><u>The news articles I have read</u></h5>
 
                         <?php foreach($news as $post): ?>
                             <?php if ($post['is_reading']): ?>

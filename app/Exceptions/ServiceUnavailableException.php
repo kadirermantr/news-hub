@@ -6,6 +6,6 @@ use Exception;
 
 class ServiceUnavailableException extends Exception
 {
-    protected $message = "Üzgünüz, web sitesi bakım modunda.";
+    protected $message = "Website is under maintenance. Please try again later.";
     protected $code = 503;
 }

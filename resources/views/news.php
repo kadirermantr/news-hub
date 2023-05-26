@@ -28,11 +28,11 @@ require __DIR__ . '/layouts/header.php';?>
                         <form action="" method="POST">
                             <input type="hidden" name="_token" value="<?=csrf()?>">
 
-                            <h4 class="pb-3">Yorum yaz</h4>
+                            <h4 class="pb-3">Write a comment</h4>
 
                             <div class="row">
                                 <div class="form-group col-xs-12 col-sm-9 col-lg-10">
-                                    <textarea name="content" class="form-control" id="message" placeholder="Bir yorum yaz"></textarea>
+                                    <textarea name="content" class="form-control" id="message" placeholder="Comment"></textarea>
                                 </div>
                             </div>
 
@@ -40,26 +40,26 @@ require __DIR__ . '/layouts/header.php';?>
                             <div class="form-check pb-3">
                                 <input class="form-check-input" type="checkbox" name="anonymous" id="anonymous">
                                 <label class="form-check-label text-muted font-italic small" for="anonymous">
-                                    Anonim olarak gönder
+									Send anonymously
                                 </label>
                             </div>
                             <?php endif; ?>
 
                             <input type="hidden" id="id" name="id" value="<?= $news['id'] ?>">
-                            <button type="submit" class="btn btn-primary">Gönder</button>
+                            <button type="submit" class="btn btn-primary">Send</button>
                         </form>
 
                         <?php if (Session::get('error')) { ?>
                             <div class="col-md-6">
                                 <?php foreach (Session::get('error') as $error) { ?>
                                     <div class="alert alert-danger" role="alert">
-                                        <strong>Hata:</strong> <?php echo $error; ?>
+                                        <strong>Error:</strong> <?php echo $error; ?>
                                     </div>
                                 <?php }?>
                             </div>
                         <?php } ?>
 
-                        <h3 class="pt-3"><?= count($newsComments) ?> Yorum</h3>
+                        <h3 class="pt-3"><?= count($newsComments) ?> Comment</h3>
 
                         <?php foreach($newsComments as $comment): ?>
                         <div class="media">

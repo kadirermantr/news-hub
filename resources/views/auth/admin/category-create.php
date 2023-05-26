@@ -8,8 +8,8 @@ require __DIR__ . '/layouts/header.php';?>
 
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/admin">Kontrol Paneli</a></li>
-                        <li class="breadcrumb-item"><a href="/admin/category">Kategoriler</a></li>
+                        <li class="breadcrumb-item"><a href="/admin">Control Panel</a></li>
+                        <li class="breadcrumb-item"><a href="/admin/category">Categories</a></li>
                         <li class="breadcrumb-item active" aria-current="page"><?= $title ?></li>
                     </ol>
                 </nav>
@@ -21,7 +21,7 @@ require __DIR__ . '/layouts/header.php';?>
                             <input type="hidden" name="_token" value="<?=csrf()?>">
 
                             <div class="form-group row">
-                                <label for="name" class="col-md-4 col-form-label text-md-right">İsim</label>
+                                <label for="name" class="col-md-4 col-form-label text-md-right">Title</label>
 
                                 <div class="col-md-6">
                                     <input id="name" type="text" class="form-control" name="name" required autocomplete="name">
@@ -29,7 +29,7 @@ require __DIR__ . '/layouts/header.php';?>
                             </div>
 
                             <div class="form-group row">
-                                <label for="description" class="col-md-4 col-form-label text-md-right">Açıklama</label>
+                                <label for="description" class="col-md-4 col-form-label text-md-right">Description</label>
 
                                 <div class="col-md-6">
                                     <textarea name="description" class="form-control" id="description" cols="30" rows="10" required></textarea>
@@ -38,7 +38,7 @@ require __DIR__ . '/layouts/header.php';?>
 
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">Ekle</button>
+                                    <button type="submit" class="btn btn-primary">Add</button>
                                 </div>
                             </div>
                         </form>

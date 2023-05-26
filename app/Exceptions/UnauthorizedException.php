@@ -6,6 +6,6 @@ use Exception;
 
 class UnauthorizedException extends Exception
 {
-    protected $message = "Üzgünüz, bu sayfaya erişiminiz yok.";
+    protected $message = "You don't have permission to access this page.";
     protected $code = 401;
 }

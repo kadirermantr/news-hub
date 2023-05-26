@@ -30,17 +30,17 @@ class NewsController extends Controller
 
             $news[$i]['user'] = $user['name'] . " " . $user['lastname'];
             $news[$i]['category'] = $category['name'];
-            $news[$i]['date'] = date("d/m/Y", strtotime($news[$i]['date']));
+            $news[$i]['date'] = date("Y/m/d", strtotime($news[$i]['date']));
         }
 
-        return $this->view('auth/admin/news', 'Haberler', compact('news'));
+        return $this->view('auth/admin/news', 'News', compact('news'));
     }
 
     public function create()
     {
         $categories = Category::all();
 
-        return $this->view('auth/admin/news-create', 'Haber ekle', compact('categories'));
+        return $this->view('auth/admin/news-create', 'Add news', compact('categories'));
     }
 
     public function store(Request $request)
@@ -100,7 +100,7 @@ class NewsController extends Controller
         $categories = Category::all();
 
 
-        return $this->view('auth/admin/news-edit', 'Haberi düzenle', compact('news', 'categories', 'dbCategory'));
+        return $this->view('auth/admin/news-edit', 'Edit news', compact('news', 'categories', 'dbCategory'));
     }
 
     public function update(Request $request)
@@ -119,7 +119,7 @@ class NewsController extends Controller
             $category_id = $request->getBody()["category_id"] ?? null;
 
             if ($category_id === null) {
-                Session::add('error', ["Tüm alanları doldurun."]);
+                Session::add('error', ["Please fill out all fields."]);
                 redirect('/admin/news/edit?id=' . $id);
             }
 
@@ -149,7 +149,7 @@ class NewsController extends Controller
             http_response_code(422);
             $messages = [
                 'title' => 'Error',
-                'content'   => 'Girilen parametre yanlış.',
+                'content'   => 'The entered parameter is incorrect.',
             ];
 
             return json_encode($messages);
@@ -161,7 +161,7 @@ class NewsController extends Controller
             http_response_code(404);
             $messages = [
                 'title'     => 'Error',
-                'content'   => 'Haber bulunamadı.',
+                'content'   => 'No news found.',
             ];
 
             return json_encode($messages);
@@ -185,7 +185,7 @@ class NewsController extends Controller
             http_response_code(404);
             $messages = [
                 'title'     => 'Error',
-                'content'   => 'Bu kategoriye ait haber bulunamadı.',
+                'content'   => 'No news found for this category.',
             ];
 
             return json_encode($messages);

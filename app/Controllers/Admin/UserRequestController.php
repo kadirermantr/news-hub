@@ -27,7 +27,7 @@ class UserRequestController extends Controller
             $user_requests[$i]['user'] = $user['name'] . " " . $user['lastname'];
         }
 
-        return $this->view('auth/admin/user-request', 'Hesap silme istekleri', compact('user_requests'));
+        return $this->view('auth/admin/user-request', 'Account deletion requests', compact('user_requests'));
     }
 
     /**
@@ -49,7 +49,7 @@ class UserRequestController extends Controller
 
         $user_request = $user_request[0];
 
-        return $this->view('auth/admin/user-request-edit', 'Hesap silme isteğini düzenle', compact('user_request'));
+        return $this->view('auth/admin/user-request-edit', 'Edit account deletion request', compact('user_request'));
     }
 
     public function destroy(Request $request)

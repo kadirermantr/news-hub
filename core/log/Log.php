@@ -52,19 +52,19 @@ class Log implements LoggerInterface
         $directory = __DIR__ . '/../../storage/logs/app.log';
 
         if (isGuest()) {
-            $user = "Anonim kullanıcı";
+            $user = "Anonym user";
             $role = null;
         } else {
             if ($context[0] ?? true != false) {
-                $user = user('id') . " nolu kullanıcı";
+                $user = "user number: " . user('id');
                 $role = User::getRole(user('role_level'));
             } else {
-                $user = 'Bilinemeyen';
-                $role = 'Bilinemeyen';
+                $user = 'Unknown';
+                $role = 'Unknown';
             }
         }
 
-        $log_message = $role . " " . $user . " " . date('d/m/Y G:i:s') . " tarihinde " . $message . PHP_EOL;
+        $log_message = date('Y/m/d G:i:s') . " " . $role . " " . $user . " " . $message . PHP_EOL;
         file_put_contents($directory, $log_message, FILE_APPEND);
     }
 }

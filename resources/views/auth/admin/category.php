@@ -6,7 +6,7 @@
 
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/admin">Kontrol Paneli</a></li>
+                        <li class="breadcrumb-item"><a href="/admin">Control Panel</a></li>
                         <li class="breadcrumb-item active" aria-current="page"><?= $title ?></li>
                     </ol>
                 </nav>
@@ -14,14 +14,14 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="pb-3">
-                            <a href="category/create">» Yeni kategori ekle</a>
+                            <a href="category/create">» Add new category</a>
                         </div>
 
                         <table class="table caption-top table-hover">
                             <thead>
                             <tr>
-                                <th scope="col">Ad</th>
-                                <th scope="col">Açıklama</th>
+                                <th scope="col">Title</th>
+                                <th scope="col">Description</th>
                                 <th scope="col"></th>
                             </tr>
                             </thead>

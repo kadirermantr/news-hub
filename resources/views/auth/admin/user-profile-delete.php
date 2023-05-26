@@ -8,8 +8,8 @@ require __DIR__ . '/layouts/header.php';?>
 
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/admin">Kontrol Paneli</a></li>
-                        <li class="breadcrumb-item"><a href="/admin/profile">Profil</a></li>
+                        <li class="breadcrumb-item"><a href="/admin">Control Panel</a></li>
+                        <li class="breadcrumb-item"><a href="/admin/profile">Profile</a></li>
                         <li class="breadcrumb-item active" aria-current="page"><?= $title ?></li>
                     </ol>
                 </nav>
@@ -17,10 +17,10 @@ require __DIR__ . '/layouts/header.php';?>
                 <div class="card">
                     <div class="card-body">
                         <div class="col-md-6 offset-md-3 text-center">
-                            <p>Bu sayfadan hesabınızı silmek için istek gönderebilirsiniz.</p>
+                            <p>You can send a request to delete your account from this page.</p>
                             <p>
                                 <span class="text-danger">
-                                    İşlem sonucunda hesabınızı yeniden etkinleştiremez veya eklediğiniz hiçbir içeriği ya da bilgiyi geri getiremezsiniz.
+									Please note that after the process is completed, you won't be able to reactivate your account or recover any of the content or information you have added.
                                 </span>
                             </p>
                         </div>
@@ -33,9 +33,9 @@ require __DIR__ . '/layouts/header.php';?>
                                 <div class="col-md-12 text-center">
                                     <input type="hidden" id="id" name="id" value="<?= $user['id'] ?>">
                                     <?php if(empty($user['request'])): ?>
-                                         <button type="submit" name="submit" class="btn btn-danger" value="request">Silme isteği gönder</button>
+                                         <button type="submit" name="submit" class="btn btn-danger" value="request">Send a deletion request</button>
                                     <?php else: ?>
-                                        <button type="submit" name="submit" class="btn btn-primary" value="revert">Silme isteğini iptal et</button>
+                                        <button type="submit" name="submit" class="btn btn-primary" value="revert">Cancel the deletion request</button>
                                     <?php endif; ?>
                                 </div>
                             </div>

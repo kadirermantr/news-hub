@@ -6,7 +6,7 @@
 
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/admin">Kontrol Paneli</a></li>
+                        <li class="breadcrumb-item"><a href="/admin">Control Panel</a></li>
                         <li class="breadcrumb-item active" aria-current="page"><?= $title ?></li>
                     </ol>
                 </nav>
@@ -14,18 +14,18 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="pb-3">
-                            <a href="user/create">» Yeni kullanıcı ekle</a><br />
-                            <a href="user/request">» Hesap silme istekleri</a><br />
-                            <a href="user/activity">» Aktiviteler</a>
+                            <a href="user/create">» Add new user</a><br />
+                            <a href="user/request">» Account deletion requests</a><br />
+                            <a href="user/activity">» Activities</a>
                         </div>
 
                         <table class="table caption-top table-hover">
                             <thead>
                             <tr>
-                                <th scope="col">Ad</th>
-                                <th scope="col">Soyad</th>
-                                <th scope="col">E-Posta</th>
-                                <th scope="col">Rol</th>
+                                <th scope="col">Firstname</th>
+                                <th scope="col">Lastname</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Role</th>
                                 <th scope="col"></th>
                             </tr>
                             </thead>

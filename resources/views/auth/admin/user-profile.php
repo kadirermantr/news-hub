@@ -8,7 +8,7 @@ require __DIR__ . '/layouts/header.php';?>
 
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/admin">Kontrol Paneli</a></li>
+                        <li class="breadcrumb-item"><a href="/admin">Control Panel</a></li>
                         <li class="breadcrumb-item active" aria-current="page"><?= $title ?></li>
                     </ol>
                 </nav>
@@ -20,7 +20,7 @@ require __DIR__ . '/layouts/header.php';?>
                             <input type="hidden" name="_token" value="<?=csrf()?>">
 
                             <div class="form-group row">
-                                <label for="name" class="col-md-4 col-form-label text-md-right">Ad</label>
+                                <label for="name" class="col-md-4 col-form-label text-md-right">Firstname</label>
 
                                 <div class="col-md-6">
                                     <input id="name" type="text" class="form-control" name="name" value="<?= $user['name'] ?>">
@@ -28,7 +28,7 @@ require __DIR__ . '/layouts/header.php';?>
                             </div>
 
                             <div class="form-group row">
-                                <label for="name" class="col-md-4 col-form-label text-md-right">Soyad</label>
+                                <label for="name" class="col-md-4 col-form-label text-md-right">Lastname</label>
 
                                 <div class="col-md-6">
                                     <input id="lastname" type="text" class="form-control" name="lastname" value="<?= $user['lastname'] ?>">
@@ -36,7 +36,7 @@ require __DIR__ . '/layouts/header.php';?>
                             </div>
 
                             <div class="form-group row">
-                                <label for="name" class="col-md-4 col-form-label text-md-right">E-Posta</label>
+                                <label for="name" class="col-md-4 col-form-label text-md-right">Email</label>
 
                                 <div class="col-md-6">
                                     <input id="email" type="email" class="form-control" name="email" value="<?= $user['email'] ?>">
@@ -45,14 +45,14 @@ require __DIR__ . '/layouts/header.php';?>
 
                             <div class="form-group row mb-0 mb-2">
                                 <div class="col-md-6 offset-md-4">
-                                    <a href="/admin/profile/delete">» Hesabı silme isteğinde bulun.</a>
+                                    <a href="/admin/profile/delete">» Request for account deletion.</a>
                                 </div>
                             </div>
 
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <input type="hidden" id="id" name="id" value="<?= $user['id'] ?>">
-                                    <button type="submit" class="btn btn-primary" value="update">Güncelle</button>
+                                    <button type="submit" class="btn btn-primary" value="update">Update</button>
                                 </div>
                             </div>
                         </form>

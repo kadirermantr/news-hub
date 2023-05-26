@@ -10,7 +10,7 @@ require __DIR__ . '/../layouts/header.php';
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header text-uppercase text-center">
-                        <strong>Kaydol</strong>
+                        <strong>Register</strong>
                     </div>
 
                     <div class="card-body">
@@ -18,7 +18,7 @@ require __DIR__ . '/../layouts/header.php';
                             <input type="hidden" name="_token" value="<?=csrf()?>">
 
                             <div class="form-group row">
-                                <label for="name" class="col-md-4 col-form-label text-md-right">Ad</label>
+                                <label for="name" class="col-md-4 col-form-label text-md-right">Firstname</label>
 
                                 <div class="col-md-6">
                                     <input id="name" type="text" class="form-control" name="name" required autocomplete="name" autofocus>
@@ -26,7 +26,7 @@ require __DIR__ . '/../layouts/header.php';
                             </div>
 
                             <div class="form-group row">
-                                <label for="name" class="col-md-4 col-form-label text-md-right">Soyad</label>
+                                <label for="name" class="col-md-4 col-form-label text-md-right">Lastname</label>
 
                                 <div class="col-md-6">
                                     <input id="lastname" type="text" class="form-control" name="lastname" required autocomplete="lastname">
@@ -34,7 +34,7 @@ require __DIR__ . '/../layouts/header.php';
                             </div>
 
                             <div class="form-group row">
-                                <label for="email" class="col-md-4 col-form-label text-md-right">E-Posta Adresi</label>
+                                <label for="email" class="col-md-4 col-form-label text-md-right">Email</label>
 
                                 <div class="col-md-6">
                                     <input id="email" type="text" class="form-control" name="email" required autocomplete="email">
@@ -42,7 +42,7 @@ require __DIR__ . '/../layouts/header.php';
                             </div>
 
                             <div class="form-group row">
-                                <label for="password" class="col-md-4 col-form-label text-md-right">Parola</label>
+                                <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
 
                                 <div class="col-md-6">
                                     <input id="password" type="password" class="form-control" name="password" required autocomplete="new-password">
@@ -50,7 +50,7 @@ require __DIR__ . '/../layouts/header.php';
                             </div>
 
                             <div class="form-group row">
-                                <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Parola Tekrarı</label>
+                                <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Password Confirmation</label>
 
                                 <div class="col-md-6">
                                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
@@ -59,7 +59,7 @@ require __DIR__ . '/../layouts/header.php';
 
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">Kaydol</button>
+                                    <button type="submit" class="btn btn-primary">Register</button>
                                 </div>
                             </div>
                         </form>
@@ -77,7 +77,7 @@ require __DIR__ . '/../layouts/header.php';
                         <hr>
 
                         <div class="text-center">
-                            Zaten üye misiniz? <a href="/login">Oturum açın</a>
+							Are you already a member? <a href="/login">Login</a>
                         </div>
                     </div>
                 </div>

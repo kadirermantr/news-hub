@@ -6,6 +6,6 @@ use Exception;
 
 class NotFoundException extends Exception
 {
-    protected $message = "Üzgünüz, aradığınız sayfa bulunamadı.";
+    protected $message = "Page not found or has been removed.";
     protected $code = 404;
 }

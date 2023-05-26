@@ -10,7 +10,7 @@ require __DIR__ . '/../layouts/header.php';
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header text-uppercase text-center">
-                        <strong>Oturum Aç</strong>
+                        <strong>Login</strong>
                     </div>
 
                     <div class="card-body">
@@ -18,7 +18,7 @@ require __DIR__ . '/../layouts/header.php';
                             <input type="hidden" name="_token" value="<?=csrf()?>">
 
                             <div class="form-group row">
-                                <label for="email" class="col-md-4 col-form-label text-md-right">E-Posta Adresi</label>
+                                <label for="email" class="col-md-4 col-form-label text-md-right">Email</label>
 
                                 <div class="col-md-6">
                                     <input id="email" type="text" class="form-control" name="email" required autocomplete="email" autofocus>
@@ -26,7 +26,7 @@ require __DIR__ . '/../layouts/header.php';
                             </div>
 
                             <div class="form-group row">
-                                <label for="password" class="col-md-4 col-form-label text-md-right">Parola</label>
+                                <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
 
                                 <div class="col-md-6">
                                     <input id="password" type="password" class="form-control" name="password" required autocomplete="new-password">
@@ -35,7 +35,7 @@ require __DIR__ . '/../layouts/header.php';
 
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">Oturum Aç</button>
+                                    <button type="submit" class="btn btn-primary">Login</button>
                                 </div>
                             </div>
                         </form>
@@ -53,7 +53,7 @@ require __DIR__ . '/../layouts/header.php';
                         <hr>
 
                         <div class="text-center">
-                            Bize katılmak ister misiniz? <a href="/register">Şimdi kaydolun.</a>
+							Would you like to join us? <a href="/register">Register now.</a>
                         </div>
                     </div>
                 </div>

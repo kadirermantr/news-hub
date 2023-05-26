@@ -6,6 +6,6 @@ use Exception;
 
 class ForbiddenException extends Exception
 {
-    protected $message = "Üzgünüz, bu sayfaya erişiminiz yasak.";
+    protected $message = "You don't have permission to access this page.";
     protected $code = 403;
 }

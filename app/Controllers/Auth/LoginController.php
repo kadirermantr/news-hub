@@ -23,7 +23,7 @@ class LoginController extends Controller
     public function index()
     {
         $categories = Category::all();
-        return $this->view('auth/login', 'Oturum Aç', compact('categories'));
+        return $this->view('auth/login', 'Login', compact('categories'));
     }
 
     public static function login(Request $request)
@@ -36,12 +36,12 @@ class LoginController extends Controller
         ])[0];
 
         if (empty($user)) {
-            Session::add('error', ["Bu e‑posta adresi ile bağlantılı bir hesap bulunamadı."]);
+            Session::add('error', ["No account found associated with this email address."]);
             redirect('/login');
         }
 
         if (!password_verify($password, $user['password'])){
-            Session::add('error', ["Parola yanlış."]);
+            Session::add('error', ["The password you entered is incorrect."]);
             redirect('/login');
         }
 

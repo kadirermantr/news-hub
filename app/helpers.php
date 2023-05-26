@@ -19,7 +19,7 @@ function validate_input(): bool
 {
     foreach ($_POST as $key => $value) {
         if (empty($value)) {
-            $error_msg[] = "Tüm alanları doldurun.";
+            $error_msg[] = "Please fill in the all fields.";
             break;
         }
     }
@@ -28,7 +28,7 @@ function validate_input(): bool
         $email = test_input($_POST["email"]);
 
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $error_msg[] = "E-Posta adresi geçersiz.";
+            $error_msg[] = "Invalid email format.";
         }
     }
 
@@ -37,7 +37,7 @@ function validate_input(): bool
         $password_confirmation = test_input($_POST["password_confirmation"]);
 
         if ($password !== $password_confirmation) {
-            $error_msg[] = "Girilen parolalar eşleşmedi.";
+            $error_msg[] = "Passwords do not match.";
         }
     }
 

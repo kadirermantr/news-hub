@@ -26,18 +26,18 @@ class CommentController extends Controller
             $content = (new Comment())->getSummary($comments[$i]['content']);
 
             $comments[$i]['news'] = $post['title'];
-            $comments[$i]['date'] = date("d/m/Y - H:i", strtotime($comments[$i]['date']));
+            $comments[$i]['date'] = date("Y/m/d - H:i", strtotime($comments[$i]['date']));
             $comments[$i]['content'] = $content;
 
             if ($comments[$i]['user_id'] === null) {
-                $comments[$i]['user'] = "Anonim";
+                $comments[$i]['user'] = "Anonym";
             } else {
                 $user = (new Comment())->getUser($comments[$i]['user_id']);
                 $comments[$i]['user'] = $user['name'] . " " . $user['lastname'];
             }
         }
 
-        return $this->view('auth/admin/comment', 'Yorumlar', compact('comments'));
+        return $this->view('auth/admin/comment', 'Comments', compact('comments'));
     }
 
     /**
@@ -55,11 +55,11 @@ class CommentController extends Controller
         }
 
         $post = (new Comment())->getNews($comments[0]['news_id']);
-        $comments[0]['date'] = date("d/m/Y - H:i", strtotime($comments[0]['date']));
+        $comments[0]['date'] = date("Y/m/d - H:i", strtotime($comments[0]['date']));
         $comments[0]['news'] = $post['title'];
 
         if ($comments[0]['user_id'] === null) {
-            $comments[0]['user'] = "Anonim";
+            $comments[0]['user'] = "Anonym";
         } else {
             $user = (new Comment())->getUser($comments[0]['user_id']);
             $comments[0]['user'] = $user['name'] . " " . $user['lastname'];
@@ -67,7 +67,7 @@ class CommentController extends Controller
 
         $comments = $comments[0];
 
-        return $this->view('auth/admin/comment-edit', 'Yorumu düzenle', compact('comments'));
+        return $this->view('auth/admin/comment-edit', 'Edit comment', compact('comments'));
     }
 
     public function update(Request $request)

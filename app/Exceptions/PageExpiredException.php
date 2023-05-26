@@ -6,6 +6,6 @@ use Exception;
 
 class PageExpiredException extends Exception
 {
-    protected $message = "Üzgünüz, oturumunuzun süresi doldu.";
+    protected $message = "Page has expired. Please try again.";
     protected $code = 419;
 }

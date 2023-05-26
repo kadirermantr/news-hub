@@ -6,8 +6,8 @@
 
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/admin">Kontrol Paneli</a></li>
-                        <li class="breadcrumb-item"><a href="/admin/user">Kullanıcılar</a></li>
+                        <li class="breadcrumb-item"><a href="/admin">Control Panel</a></li>
+                        <li class="breadcrumb-item"><a href="/admin/user">Users</a></li>
                         <li class="breadcrumb-item active" aria-current="page"><?= $title ?></li>
                     </ol>
                 </nav>
@@ -18,8 +18,8 @@
                         <table class="table caption-top table-hover">
                             <thead>
                             <tr>
-                                <th scope="col">Kullanıcı</th>
-                                <th scope="col">Tarih</th>
+                                <th scope="col">User</th>
+                                <th scope="col">Date</th>
                                 <th scope="col"></th>
                             </tr>
                             </thead>

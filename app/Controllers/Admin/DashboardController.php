@@ -48,16 +48,16 @@ class DashboardController extends Controller
 
             $news[$i]['user'] = $user['name'] . " " . $user['lastname'];
             $news[$i]['category'] = $category['name'];
-            $news[$i]['date'] = date("d/m/Y", strtotime($news[$i]['date']));
+            $news[$i]['date'] = date("Y/m/d", strtotime($news[$i]['date']));
         }
 
         for ($i=0; $i < count($comments); $i++) {
             $comment_news = (new User())->getNews($comments[$i]['news_id']);
             $comments[$i]['news'] = $comment_news['title'];
-            $comments[$i]['date'] = date("d/m/Y - H:i", strtotime($comments[$i]['date']));
+            $comments[$i]['date'] = date("Y/m/d - H:i", strtotime($comments[$i]['date']));
         }
 
 
-        return $this->view('auth/admin/dashboard', 'Kontrol Paneli', compact('news', 'comments'));
+        return $this->view('auth/admin/dashboard', 'Control Panel', compact('news', 'comments'));
     }
 }

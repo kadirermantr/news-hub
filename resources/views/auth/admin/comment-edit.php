@@ -8,8 +8,8 @@ require __DIR__ . '/layouts/header.php';?>
 
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/admin">Kontrol Paneli</a></li>
-                        <li class="breadcrumb-item"><a href="/admin/comment">Yorumlar</a></li>
+                        <li class="breadcrumb-item"><a href="/admin">Control Panel</a></li>
+                        <li class="breadcrumb-item"><a href="/admin/comment">Comments</a></li>
                         <li class="breadcrumb-item active" aria-current="page"><?= $title ?></li>
                     </ol>
                 </nav>
@@ -21,7 +21,7 @@ require __DIR__ . '/layouts/header.php';?>
                             <input type="hidden" name="_token" value="<?=csrf()?>">
 
                             <div class="form-group row">
-                                <label for="title" class="col-md-4 col-form-label text-md-right">Yazar</label>
+                                <label for="title" class="col-md-4 col-form-label text-md-right">Author</label>
 
                                 <div class="col-md-6">
                                     <input id="title" type="text" class="form-control" name="title" required autocomplete="title" value="<?= $comments['user'] ?>" readonly>
@@ -29,7 +29,7 @@ require __DIR__ . '/layouts/header.php';?>
                             </div>
 
                             <div class="form-group row">
-                                <label for="title" class="col-md-4 col-form-label text-md-right">Tarih</label>
+                                <label for="title" class="col-md-4 col-form-label text-md-right">Date</label>
 
                                 <div class="col-md-6">
                                     <input id="title" type="text" class="form-control" name="title" required autocomplete="title" value="<?= $comments['date'] ?>" readonly>
@@ -37,7 +37,7 @@ require __DIR__ . '/layouts/header.php';?>
                             </div>
 
                             <div class="form-group row">
-                                <label for="title" class="col-md-4 col-form-label text-md-right">Haber</label>
+                                <label for="title" class="col-md-4 col-form-label text-md-right">News</label>
 
                                 <div class="col-md-6">
                                     <div class="form-control">
@@ -47,7 +47,7 @@ require __DIR__ . '/layouts/header.php';?>
                             </div>
 
                             <div class="form-group row">
-                                <label for="content" class="col-md-4 col-form-label text-md-right">Yorum</label>
+                                <label for="content" class="col-md-4 col-form-label text-md-right">Comment</label>
 
                                 <div class="col-md-6">
                                     <textarea name="content" class="form-control" id="content" cols="30" rows="10"><?= $comments['content'] ?></textarea>
@@ -57,8 +57,8 @@ require __DIR__ . '/layouts/header.php';?>
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <input type="hidden" id="id" name="id" value="<?= $comments['id'] ?>">
-                                    <button type="submit" name="submit" class="btn btn-primary" value="update">Güncelle</button>
-                                    <button type="submit" name="submit" class="btn btn-danger" value="delete">Sil</button>
+                                    <button type="submit" name="submit" class="btn btn-primary" value="update">Update</button>
+                                    <button type="submit" name="submit" class="btn btn-danger" value="delete">Delete</button>
                                 </div>
                             </div>
                         </form>

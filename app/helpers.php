@@ -12,7 +12,7 @@ function public_path(?string $path = null)
 function env(string $data)
 {
     $env = parse_ini_file(__DIR__ . '/../.env');
-    return $env[$data];
+    return $env[$data] ?? null;
 }
 
 function validate_input(): bool

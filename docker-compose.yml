@@ -28,7 +28,7 @@ services:
         - no_proxy
     volumes:
       - ./docker/php/php8.0.ini:/usr/local/etc/php/php.ini
-      - ./src/:/var/www:cached
+      - ./:/var/www:cached
       - docker-in-docker:/certs/client
     ports:
       - "9003"
@@ -56,7 +56,7 @@ services:
         - https_proxy
         - no_proxy
     volumes:
-      - ./src/:/var/www:cached
+      - ./:/var/www:cached
       - ./docker/logs/nginx/:/var/log/nginx
       - ./docker/nginx/sites/:/etc/nginx/sites-available
       - ./docker/nginx/ssl/:/etc/nginx/ssl
@@ -114,7 +114,7 @@ services:
       DOCKER_TLS_SAN: DNS:docker-in-docker
     privileged: true
     volumes:
-      - ./src/:/var/www
+      - ./:/var/www
       - docker-in-docker:/certs/client
     expose:
       - 2375

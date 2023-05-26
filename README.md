@@ -4,7 +4,6 @@
 
 ```bash
 docker-compose up -d
-cd ./src
 composer install
 cp .env.example .env
 ```

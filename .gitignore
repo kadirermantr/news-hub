@@ -1,3 +1,7 @@
 /.idea
-/data
-/logs
+/docker/data
+/docker/logs
+/vendor
+/public/uploads/
+/app/storage/logs/
+.env

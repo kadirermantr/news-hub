@@ -3,9 +3,9 @@
 ## Installation
 
 ```bash
-docker-compose up -d
 composer install
 cp .env.example .env
+docker-compose up -d
 ```
 
 This command adds autoload, a helper function, and requirements to the composer file. It also creates a database and imports demo records.

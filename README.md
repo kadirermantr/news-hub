@@ -1,5 +1,7 @@
 # News Hub
 
+- **Tech Stack:** [Tech Stack File](https://github.com/kadirermantr/news-hub/blob/main/techstack.md)
+
 ## Installation
 
 ```bash
